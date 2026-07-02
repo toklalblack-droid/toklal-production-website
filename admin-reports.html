@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Reports</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN REPORTS - ELECTRIC INDIGO THEME       */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        /* ----- REPORT FILTER ----- */
+        .report-filter {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 25px;
+        }
+
+        .report-filter .filter-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .report-filter .filter-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .report-filter .filter-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .report-filter .filter-group input,
+        .report-filter .filter-group select {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .report-filter .filter-group input:focus,
+        .report-filter .filter-group select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .report-filter .filter-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .report-filter .filter-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .report-filter .filter-actions button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .report-filter .filter-actions .generate-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+        }
+
+        .report-filter .filter-actions .generate-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+        }
+
+        .report-filter .filter-actions .pdf-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+            border: 1px solid rgba(255, 184, 48, 0.2);
+        }
+
+        .report-filter .filter-actions .pdf-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ----- REPORT TYPE TABS ----- */
+        .report-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .report-tabs .tab-btn {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            color: #C4C0B8;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .report-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .report-tabs .tab-btn.active {
+            background: rgba(77, 19, 209, 0.2);
+            border-color: rgba(77, 19, 209, 0.3);
+            color: #FFF8F0;
+        }
+
+        .report-tabs .tab-btn .tab-icon {
+            margin-right: 8px;
+        }
+
+        /* ----- REPORT CONTENT ----- */
+        .report-content {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .report-content .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .report-content .report-header h2 {
+            color: #FFF8F0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .report-content .report-header h2 span {
+            color: #4D13D1;
+        }
+
+        .report-content .report-header .report-date {
+            color: #4A4A6A;
+            font-size: 0.85rem;
+        }
+
+        /* ----- STATS GRID ----- */
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .report-stat {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+        }
+
+        .report-stat .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .report-stat .stat-number.total {
+            color: #FFF8F0;
+        }
+
+        .report-stat .stat-number.studio {
+            color: #4D13D1;
+        }
+
+        .report-stat .stat-number.coaching {
+            color: #FFB830;
+        }
+
+        .report-stat .stat-label {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        /* ----- DETAIL TABLE ----- */
+        .detail-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .detail-table th {
+            color: #FFF8F0;
+            padding: 10px 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .detail-table td {
+            color: #C4C0B8;
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        .detail-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .detail-table .amount {
+            font-weight: 600;
+        }
+
+        .detail-table .amount.studio {
+            color: #4D13D1;
+        }
+
+        .detail-table .amount.coaching {
+            color: #FFB830;
+        }
+
+        .detail-table .amount.total {
+            color: #FFF8F0;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .report-filter .filter-row {
+                flex-direction: column;
+            }
+
+            .report-filter .filter-group {
+                width: 100%;
+            }
+
+            .report-filter .filter-actions {
+                width: 100%;
+            }
+
+            .report-filter .filter-actions button {
+                flex: 1;
+            }
+
+            .report-tabs {
+                flex-direction: column;
+            }
+
+            .report-tabs .tab-btn {
+                text-align: center;
+            }
+
+            .report-content {
+                padding: 15px 18px;
+            }
+
+            .report-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .report-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .report-filter {
+                padding: 15px 18px;
+            }
+
+            .report-filter .filter-actions {
+                flex-direction: column;
+            }
+
+            .report-filter .filter-actions button {
+                width: 100%;
+            }
+
+            .detail-table {
+                min-width: 450px;
+            }
+
+            .detail-table th,
+            .detail-table td {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+
+            .report-content .report-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN REPORTS                             -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>📊 <span>Laporan & Statistik</span></h1>
+            </div>
+
+            <!-- REPORT FILTER -->
+            <div class="report-filter">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>📅 Dari Tarikh</label>
+                        <input type="date" id="dateFrom" value="2025-01-01">
+                    </div>
+                    <div class="filter-group">
+                        <label>📅 Hingga Tarikh</label>
+                        <input type="date" id="dateTo" value="2025-12-31">
+                    </div>
+                    <div class="filter-group">
+                        <label>👤 Client</label>
+                        <select id="clientFilter">
+                            <option value="all">Semua Client</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="generate-btn" onclick="generateReport()">📋 Jana Laporan</button>
+                        <button class="pdf-btn" onclick="exportPDF()">📥 Export PDF</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPORT TABS -->
+            <div class="report-tabs">
+                <button class="tab-btn active" onclick="switchTab('all', this)">
+                    <span class="tab-icon">💰</span> 1. All Total Money
+                </button>
+                <button class="tab-btn" onclick="switchTab('studio', this)">
+                    <span class="tab-icon">🏢</span> 2. Studio Money
+                </button>
+                <button class="tab-btn" onclick="switchTab('coaching', this)">
+                    <span class="tab-icon">👨‍🏫</span> 3. Coaching Money
+                </button>
+            </div>
+
+            <!-- REPORT CONTENT -->
+            <div class="report-content" id="reportContent">
+                <div class="report-header">
+                    <h2>💰 <span>ALL TOTAL MONEY</span></h2>
+                    <span class="report-date" id="reportDate">Jan 2025 - Dec 2025</span>
+                </div>
+
+                <!-- Stats -->
+                <div class="report-stats" id="reportStats">
+                    <div class="report-stat">
+                        <div class="stat-number total" id="statTotal">RM 0</div>
+                        <div class="stat-label">💵 Jumlah Keseluruhan</div>
+                    </div>
+                    <div class="report-stat">
+                        <div class="stat-number studio" id="statStudio">RM 0</div>
+                        <div class="stat-label">🏢 Studio</div>
+                    </div>
+                    <div class="report-stat">
+                        <div class="stat-number coaching" id="statCoaching">RM 0</div>
+                        <div class="stat-label">👨‍🏫 Coaching</div>
+                    </div>
+                    <div class="report-stat">
+                        <div class="stat-number total" id="statTransactions">0</div>
+                        <div class="stat-label">📋 Transaksi</div>
+                    </div>
+                </div>
+
+                <!-- Detail Table -->
+                <div class="detail-table-wrapper">
+                    <table class="detail-table" id="detailTable">
+                        <thead>
+                            <tr>
+                                <th>#Invoice</th>
+                                <th>Client</th>
+                                <th>Service</th>
+                                <th>🏢 Studio</th>
+                                <th>👨‍🏫 Coaching</th>
+                                <th>💵 Total</th>
+                                <th>Tarikh</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailTableBody">
+                            <!-- Data loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ========================================== //
+        // DATA LOADING                              //
+        // ========================================== //
+
+        let currentReportType = 'all';
+        let currentData = [];
+
+        function loadPayments() {
+            const saved = localStorage.getItem('toklal_payments');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function loadClients() {
+            const saved = localStorage.getItem('toklal_clients');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function populateClientFilter() {
+            const clients = loadClients();
+            const select = document.getElementById('clientFilter');
+            select.innerHTML = '<option value="all">Semua Client</option>';
+            clients.forEach(c => {
+                select.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+            });
+        }
+
+        // ========================================== //
+        // GENERATE REPORT                           //
+        // ========================================== //
+
+        function generateReport() {
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+            const clientFilter = document.getElementById('clientFilter').value;
+
+            let payments = loadPayments();
+
+            // Filter by date
+            if (dateFrom) {
+                payments = payments.filter(p => p.date >= dateFrom);
+            }
+            if (dateTo) {
+                payments = payments.filter(p => p.date <= dateTo);
+            }
+
+            // Filter by client
+            if (clientFilter !== 'all') {
+                payments = payments.filter(p => p.clientName === clientFilter);
+            }
+
+            currentData = payments;
+
+            // Update report date
+            const fromDisplay = dateFrom || 'Awal';
+            const toDisplay = dateTo || 'Kini';
+            document.getElementById('reportDate').textContent = `${fromDisplay} - ${toDisplay}`;
+
+            renderReport();
+        }
+
+        // ========================================== //
+        // SWITCH TAB                                //
+        // ========================================== //
+
+        function switchTab(type, btn) {
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            currentReportType = type;
+
+            // Update title
+            const titles = {
+                all: '💰 ALL TOTAL MONEY',
+                studio: '🏢 STUDIO MONEY',
+                coaching: '👨‍🏫 COACHING MONEY'
+            };
+            document.querySelector('.report-header h2 span').textContent = titles[type];
+
+            renderReport();
+        }
+
+        // ========================================== //
+        // RENDER REPORT                             //
+        // ========================================== //
+
+        function renderReport() {
+            const payments = currentData;
+            const type = currentReportType;
+
+            // Calculate totals
+            let totalStudio = 0;
+            let totalCoaching = 0;
+            let totalAll = 0;
+
+            payments.forEach(p => {
+                if (type === 'all' || type === 'studio') {
+                    totalStudio += p.studioFeeFinal || 0;
+                }
+                if (type === 'all' || type === 'coaching') {
+                    totalCoaching += p.coachingFeeFinal || 0;
+                }
+                if (type === 'all') {
+                    totalAll += p.finalTotal || 0;
+                }
+            });
+
+            // For studio tab, totalAll = studio total
+            if (type === 'studio') {
+                totalAll = totalStudio;
+            }
+            // For coaching tab, totalAll = coaching total
+            if (type === 'coaching') {
+                totalAll = totalCoaching;
+            }
+
+            // Update stats
+            document.getElementById('statTotal').textContent = `RM ${totalAll.toFixed(0)}`;
+            document.getElementById('statStudio').textContent = `RM ${totalStudio.toFixed(0)}`;
+            document.getElementById('statCoaching').textContent = `RM ${totalCoaching.toFixed(0)}`;
+            document.getElementById('statTransactions').textContent = payments.length;
+
+            // Render table
+            const tbody = document.getElementById('detailTableBody');
+
+            if (payments.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align:center; padding:40px; color:#4A4A6A;">
+                            📭 Tiada transaksi untuk tempoh ini.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Filter data for table display
+            let displayData = payments;
+            if (type === 'studio') {
+                displayData = payments.filter(p => p.studioFeeFinal > 0);
+            } else if (type === 'coaching') {
+                displayData = payments.filter(p => p.coachingFeeFinal > 0);
+            }
+
+            if (displayData.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align:center; padding:40px; color:#4A4A6A;">
+                            📭 Tiada transaksi untuk kategori ini.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = displayData.map(p => `
+                <tr>
+                    <td style="color:#4D13D1; font-weight:600;">${p.invoice}</td>
+                    <td style="color:#FFF8F0;">${p.clientName}</td>
+                    <td style="color:#FFF8F0;">${p.serviceName}</td>
+                    <td class="amount studio">RM ${(type === 'studio' ? p.studioFeeFinal : p.studioFee).toFixed(2)}</td>
+                    <td class="amount coaching">RM ${(type === 'coaching' ? p.coachingFeeFinal : p.coachingFee).toFixed(2)}</td>
+                    <td class="amount total">RM ${(type === 'all' ? p.finalTotal : (type === 'studio' ? p.studioFeeFinal : p.coachingFeeFinal)).toFixed(2)}</td>
+                    <td style="color:#4A4A6A; font-size:0.85rem;">${p.date}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ========================================== //
+        // EXPORT PDF                                //
+        // ========================================== //
+
+        function exportPDF() {
+            const payments = currentData;
+            const type = currentReportType;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            if (payments.length === 0) {
+                alert('⚠️ Tiada data untuk dieksport. Jana laporan terlebih dahulu.');
+                return;
+            }
+
+            // Calculate totals
+            let totalStudio = 0;
+            let totalCoaching = 0;
+            let totalAll = 0;
+
+            payments.forEach(p => {
+                totalStudio += p.studioFeeFinal || 0;
+                totalCoaching += p.coachingFeeFinal || 0;
+                totalAll += p.finalTotal || 0;
+            });
+
+            if (type === 'studio') totalAll = totalStudio;
+            if (type === 'coaching') totalAll = totalCoaching;
+
+            const typeLabels = {
+                all: 'ALL TOTAL MONEY',
+                studio: 'STUDIO MONEY',
+                coaching: 'COACHING MONEY'
+            };
+
+            const fromDisplay = dateFrom || 'Awal';
+            const toDisplay = dateTo || 'Kini';
+
+            // Build table rows
+            let tableRows = '';
+            let displayData = payments;
+            if (type === 'studio') {
+                displayData = payments.filter(p => p.studioFeeFinal > 0);
+            } else if (type === 'coaching') {
+                displayData = payments.filter(p => p.coachingFeeFinal > 0);
+            }
+
+            displayData.forEach(p => {
+                const amount = type === 'all' ? p.finalTotal :
+                    type === 'studio' ? p.studioFeeFinal :
+                    p.coachingFeeFinal;
+                tableRows += `
+                    <tr>
+                        <td>${p.invoice}</td>
+                        <td>${p.clientName}</td>
+                        <td>${p.serviceName}</td>
+                        <td>RM ${p.studioFeeFinal.toFixed(2)}</td>
+                        <td>RM ${p.coachingFeeFinal.toFixed(2)}</td>
+                        <td>RM ${amount.toFixed(2)}</td>
+                        <td>${p.date}</td>
+                    </tr>
+                `;
+            });
+
+            // Open print window
+            const win = window.open('', '_blank', 'width=900,height=800');
+            if (!win) {
+                alert('⚠️ Sila benarkan pop-up untuk mengeksport PDF.');
+                return;
+            }
+
+            win.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Laporan Tok Lal Production</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 40px; background: #fff; color: #333; }
+                        .report { max-width: 1000px; margin: 0 auto; }
+                        .header { text-align: center; border-bottom: 3px solid #4D13D1; padding-bottom: 20px; margin-bottom: 25px; }
+                        .header h1 { margin: 0; color: #4D13D1; font-size: 28px; }
+                        .header p { margin: 5px 0; color: #666; }
+                        .header .report-type { color: #4D13D1; font-weight: 700; font-size: 18px; margin-top: 5px; }
+                        .header .report-date { color: #999; font-size: 14px; }
+                        .stats { display: flex; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
+                        .stat-box { flex: 1; min-width: 150px; background: #f5f5f5; padding: 15px; border-radius: 8px; text-align: center; }
+                        .stat-box .number { font-size: 24px; font-weight: 700; color: #4D13D1; }
+                        .stat-box .number.gold { color: #FFB830; }
+                        .stat-box .number.green { color: #4CAF50; }
+                        .stat-box .label { color: #666; font-size: 13px; margin-top: 3px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+                        th { background: #4D13D1; color: #fff; padding: 10px 12px; text-align: left; }
+                        td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+                        tr:hover td { background: #f9f9f9; }
+                        .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999; }
+                        .print-btn { display: block; width: 200px; margin: 20px auto; padding: 12px; background: #4D13D1; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+                        .print-btn:hover { background: #5D23E1; }
+                        @media print { .print-btn { display: none; } body { padding: 20px; } .stat-box { background: #f5f5f5; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="report">
+                        <div class="header">
+                            <h1>🎵 TOK LAL PRODUCTION</h1>
+                            <p>KM 10, JALAN RAJA HAJI, TELOK MAS • 75460 MELAKA</p>
+                            <p>📱 017-3327120 • 📧 toklalblack@gmail.com</p>
+                            <div class="report-type">📊 ${typeLabels[type]}</div>
+                            <div class="report-date">Tempoh: ${fromDisplay} - ${toDisplay}</div>
+                        </div>
+
+                        <div class="stats">
+                            <div class="stat-box">
+                                <div class="number">RM ${totalAll.toFixed(0)}</div>
+                                <div class="label">💵 Jumlah Keseluruhan</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="number">RM ${totalStudio.toFixed(0)}</div>
+                                <div class="label">🏢 Studio</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="number gold">RM ${totalCoaching.toFixed(0)}</div>
+                                <div class="label">👨‍🏫 Coaching</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="number green">${displayData.length}</div>
+                                <div class="label">📋 Transaksi</div>
+                            </div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#Invoice</th>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>🏢 Studio</th>
+                                    <th>👨‍🏫 Coaching</th>
+                                    <th>💵 Total</th>
+                                    <th>Tarikh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tableRows}
+                            </tbody>
+                        </table>
+
+                        <div class="footer">
+                            Laporan ini dijana secara automatik • ${new Date().toLocaleString()}
+                            <br>© 2025 Tok Lal Production
+                        </div>
+
+                        <button class="print-btn" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+                    </div>
+                    <script>
+                        // Auto-print after 1 second
+                        setTimeout(() => { window.print(); }, 1000);
+                    <\/script>
+                </body>
+                </html>
+            `);
+
+            win.document.close();
+        }
+
+        // ========================================== //
+        // INITIALIZE                                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateClientFilter();
+
+            // Set default dates
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const endOfYear = new Date(now.getFullYear(), 11, 31);
+
+            document.getElementById('dateFrom').value = startOfYear.toISOString().split('T')[0];
+            document.getElementById('dateTo').value = endOfYear.toISOString().split('T')[0];
+
+            // Generate initial report
+            generateReport();
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cPanel Admin - Laporan & Statistik', 'font-size:14px; color:#C4C0B8;');
+            console.log(`%c📊 3 Jenis Laporan Sedia`, 'font-size:12px; color:#FFB830;');
+        });
+    </script>
+
+</body>
+</html>

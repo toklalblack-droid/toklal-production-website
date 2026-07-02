@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Guru & Pelajar Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* USER LOGIN PAGE - ELECTRIC INDIGO THEME     */
+        /* ============================================ */
+
+        .login-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            max-width: 440px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 40px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ----- BACK LINK ----- */
+        .back-link {
+            display: inline-block;
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #FFB830;
+        }
+
+        /* ----- LOGO / ICON ----- */
+        .login-icon {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* ----- TITLE ----- */
+        .login-title {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .login-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .login-title h1 span {
+            color: #4D13D1;
+        }
+
+        .login-title .subtitle {
+            color: #C4C0B8;
+            font-size: 0.95rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* ----- ROLE SELECTOR ----- */
+        .role-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .role-btn.active {
+            background: rgba(77, 19, 209, 0.2);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .role-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .role-btn .role-icon {
+            margin-right: 6px;
+        }
+
+        /* ----- DIVIDER ----- */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+            color: #4A4A6A;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ----- GOOGLE BUTTON ----- */
+        .google-btn {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #FFF8F0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.15);
+        }
+
+        .google-btn .google-icon {
+            font-size: 1.4rem;
+        }
+
+        /* ----- FORM ----- */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .form-group input::placeholder {
+            color: #4A4A6A;
+        }
+
+        /* ----- PASSWORD WRAPPER ----- */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4A4A6A;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: #C4C0B8;
+        }
+
+        /* ----- FORM OPTIONS ----- */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0 20px 0;
+        }
+
+        .form-options .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .form-options .remember input[type="checkbox"] {
+            accent-color: #4D13D1;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .form-options .forgot-link {
+            color: #4A4A6A;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .form-options .forgot-link:hover {
+            color: #4D13D1;
+        }
+
+        /* ----- LOGIN BUTTON ----- */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- REGISTER LINK ----- */
+        .register-section {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .register-section p {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+        }
+
+        .register-section .register-link {
+            color: #4D13D1;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-section .register-link:hover {
+            color: #FFB830;
+        }
+
+        /* ----- ERROR MESSAGE ----- */
+        .error-msg {
+            color: #FF6B6B;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ----- DEMO CREDENTIALS ----- */
+        .demo-credentials {
+            background: rgba(255, 184, 48, 0.06);
+            border: 1px solid rgba(255, 184, 48, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+        }
+
+        .demo-credentials p {
+            color: #C4C0B8;
+            font-size: 0.75rem;
+            margin: 2px 0;
+            text-align: center;
+        }
+
+        .demo-credentials .demo-label {
+            color: #FFB830;
+            font-weight: 600;
+        }
+
+        .demo-credentials .demo-email {
+            color: #FFF8F0;
+            font-weight: 500;
+        }
+
+        /* ----- FOOTER ----- */
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #4A4A6A;
+            font-size: 0.7rem;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .login-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-icon {
+                font-size: 2.8rem;
+            }
+
+            .role-selector {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .form-options {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .google-btn {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+
+            .login-btn {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+
+            .demo-credentials p {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-container">
+
+            <!-- Back to Main Gate -->
+            <a href="index.html" class="back-link">← Kembali ke Laman Utama</a>
+
+            <!-- Icon -->
+            <div class="login-icon">👤</div>
+
+            <!-- Title -->
+            <div class="login-title">
+                <h1>GURU &amp; <span>PELAJAR</span></h1>
+                <p class="subtitle">Log masuk untuk akses penuh</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- ROLE SELECTOR                             -->
+            <!-- ========================================== -->
+
+            <div class="role-selector">
+                <button class="role-btn active" id="studentRole" onclick="selectRole('student')">
+                    <span class="role-icon">🎓</span> Pelajar
+                </button>
+                <button class="role-btn" id="teacherRole" onclick="selectRole('teacher')">
+                    <span class="role-icon">👨‍🏫</span> Guru
+                </button>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- GOOGLE LOGIN                              -->
+            <!-- ========================================== -->
+
+            <button class="google-btn" onclick="googleLogin()">
+                <span class="google-icon">🔵</span>
+                Log Masuk dengan Google
+            </button>
+
+            <!-- Divider -->
+            <div class="divider">ATAU</div>
+
+            <!-- ========================================== -->
+            <!-- EMAIL LOGIN                               -->
+            <!-- ========================================== -->
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="email@toklal.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Kata Laluan</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe"> Ingat saya
+                    </label>
+                    <a href="#" class="forgot-link">Lupa kata laluan?</a>
+                </div>
+
+                <button type="submit" class="login-btn">🔓 Log Masuk</button>
+
+                <div class="error-msg" id="loginError">❌ Email atau kata laluan salah. Sila cuba lagi.</div>
+
+            </form>
+
+            <!-- ========================================== -->
+            <!-- DEMO CREDENTIALS                          -->
+            <!-- ========================================== -->
+
+            <div class="demo-credentials">
+                <p><span class="demo-label">🎓 Pelajar:</span> <span class="demo-email">student@toklal.com</span> / <span style="color:#4A4A6A;">student123</span></p>
+                <p><span class="demo-label">👨‍🏫 Guru:</span> <span class="demo-email">teacher@toklal.com</span> / <span style="color:#4A4A6A;">teacher123</span></p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- REGISTER                                  -->
+            <!-- ========================================== -->
+
+            <div class="register-section">
+                <p>Tiada akaun? <a href="#" class="register-link">Daftar Sekarang →</a></p>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                © 2025 Tok Lal Production
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT                                -->
+    <!-- ========================================== -->
+
+    <script>
+        // ========================================== //
+        // STATE                                     //
+        // ========================================== //
+
+        let selectedRole = 'student';
+
+        // ========================================== //
+        // DEMO CREDENTIALS                           //
+        // ========================================== //
+
+        const demoCredentials = [
+            { email: 'student@toklal.com', password: 'student123', role: 'student', name: 'Ahmad Bin Abdullah' },
+            { email: 'teacher@toklal.com', password: 'teacher123', role: 'teacher', name: 'Cikgu Ahmad Bin Abdullah' }
+        ];
+
+        // ========================================== //
+        // SELECT ROLE                                //
+        // ========================================== //
+
+        function selectRole(role) {
+            selectedRole = role;
+
+            // Update button styles
+            document.getElementById('studentRole').classList.remove('active');
+            document.getElementById('teacherRole').classList.remove('active');
+
+            if (role === 'student') {
+                document.getElementById('studentRole').classList.add('active');
+            } else {
+                document.getElementById('teacherRole').classList.add('active');
+            }
+
+            // Clear error
+            document.getElementById('loginError').classList.remove('show');
+        }
+
+        // ========================================== //
+        // TOGGLE PASSWORD VISIBILITY                //
+        // ========================================== //
+
+        function togglePassword() {
+            const input = document.getElementById('password');
+            const btn = document.querySelector('.toggle-password');
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
+        // ========================================== //
+        // HANDLE LOGIN                              //
+        // ========================================== //
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('loginError');
+
+            // Find matching credentials
+            const found = demoCredentials.find(
+                cred => cred.email === email && cred.password === password
+            );
+
+            if (found) {
+                // Login success - redirect based on role
+                if (found.role === 'teacher') {
+                    window.location.href = 'teacher-dashboard.html';
+                } else {
+                    window.location.href = 'user-dashboard.html';
+                }
+            } else {
+                // Login failed
+                errorMsg.textContent = '❌ Email atau kata laluan salah. Sila cuba lagi.';
+                errorMsg.classList.add('show');
+
+                // Clear password field
+                document.getElementById('password').value = '';
+
+                // Auto-hide error after 3 seconds
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // ========================================== //
+        // GOOGLE LOGIN                              //
+        // ========================================== //
+
+        function googleLogin() {
+            alert('Fungsi login Google akan dibina di peringkat seterusnya.\n\nUntuk demo, sila gunakan:\n🎓 Pelajar: student@toklal.com / student123\n👨‍🏫 Guru: teacher@toklal.com / teacher123');
+        }
+
+        // ========================================== //
+        // REMEMBER ME - Local Storage                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberCheckbox = document.getElementById('rememberMe');
+            const emailInput = document.getElementById('email');
+
+            // Load saved email if exists
+            const savedEmail = localStorage.getItem('userEmail');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+                rememberCheckbox.checked = true;
+            }
+
+            // Save email when form submits
+            document.getElementById('loginForm').addEventListener('submit', function() {
+                if (rememberCheckbox.checked) {
+                    localStorage.setItem('userEmail', emailInput.value);
+                } else {
+                    localStorage.removeItem('userEmail');
+                }
+            });
+        });
+
+        // ========================================== //
+        // CONSOLE WELCOME                           //
+        // ========================================== //
+
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
+        console.log('%cPortal Guru & Pelajar', 'font-size: 14px; color: #C4C0B8;');
+        console.log('%c🎓 Demo: student@toklal.com / student123', 'font-size: 12px; color: #4D13D1;');
+        console.log('%c👨‍🏫 Demo: teacher@toklal.com / teacher123', 'font-size: 12px; color: #FFB830;');
+    </script>
+
+</body>
+</html>

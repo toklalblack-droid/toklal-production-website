@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Schedule</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN SCHEDULE - ELECTRIC INDIGO THEME      */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- TABLE ----- */
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .admin-table th {
+            color: #FFF8F0;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            font-weight: 600;
+        }
+
+        .admin-table td {
+            color: #C4C0B8;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 300;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .admin-table .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .admin-table .action-btns button {
+            padding: 5px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .admin-table .edit-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .admin-table .edit-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .admin-table .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .admin-table .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        .admin-table .status-badge {
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .admin-table .status-active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+        }
+
+        .admin-table .status-inactive {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .admin-table {
+                min-width: 500px;
+            }
+
+            .admin-table th,
+            .admin-table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .admin-table .action-btns {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .admin-table .action-btns button {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN SCHEDULE                            -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>📅 <span>Jadual Studio</span></h1>
+                <button class="add-btn" onclick="openModal('add')">➕ Tambah Kelas</button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Masa</th>
+                            <th>Kelas</th>
+                            <th>Guru</th>
+                            <th>Status</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTableBody">
+                        <tr>
+                            <td>Ahad</td>
+                            <td>10:30 - 12:00</td>
+                            <td>Kelas Kompang</td>
+                            <td>Cikgu Ahmad</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>09:00 - 10:30</td>
+                            <td>Kelas Kompang</td>
+                            <td>Cikgu Ahmad</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>14:00 - 15:30</td>
+                            <td>Kelas Gitar</td>
+                            <td>Cikgu Siti</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Khamis</td>
+                            <td>11:00 - 12:30</td>
+                            <td>Kelas Serunai</td>
+                            <td>Cikgu Rizal</td>
+                            <td><span class="status-badge status-inactive">Tidak Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jumaat</td>
+                            <td>10:00 - 12:00</td>
+                            <td>Rakaman Studio</td>
+                            <td>—</td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL                                     -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 id="modalTitle">Tambah Kelas</h2>
+            <form onsubmit="saveSchedule(event)">
+                <div class="form-group">
+                    <label for="scheduleDay">Hari</label>
+                    <select id="scheduleDay" required>
+                        <option value="Ahad">Ahad</option>
+                        <option value="Isnin">Isnin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Khamis">Khamis</option>
+                        <option value="Jumaat">Jumaat</option>
+                        <option value="Sabtu">Sabtu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="scheduleTime">Masa</label>
+                    <input type="text" id="scheduleTime" placeholder="10:30 - 12:00" required>
+                </div>
+                <div class="form-group">
+                    <label for="scheduleClass">Kelas</label>
+                    <input type="text" id="scheduleClass" placeholder="Kelas Kompang" required>
+                </div>
+                <div class="form-group">
+                    <label for="scheduleTeacher">Guru</label>
+                    <input type="text" id="scheduleTeacher" placeholder="Cikgu Ahmad">
+                </div>
+                <div class="form-group">
+                    <label for="scheduleStatus">Status</label>
+                    <select id="scheduleStatus">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // MODAL FUNCTIONS                           //
+        // ========================================== //
+
+        function openModal(action) {
+            const modal = document.getElementById('scheduleModal');
+            const title = document.getElementById('modalTitle');
+
+            if (action === 'add') {
+                title.textContent = '➕ Tambah Kelas';
+                document.getElementById('scheduleDay').value = 'Ahad';
+                document.getElementById('scheduleTime').value = '';
+                document.getElementById('scheduleClass').value = '';
+                document.getElementById('scheduleTeacher').value = '';
+                document.getElementById('scheduleStatus').value = 'Aktif';
+            } else {
+                title.textContent = '✏️ Edit Kelas';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('scheduleModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('scheduleModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ========================================== //
+        // SAVE SCHEDULE                             //
+        // ========================================== //
+
+        function saveSchedule(event) {
+            event.preventDefault();
+
+            const day = document.getElementById('scheduleDay').value;
+            const time = document.getElementById('scheduleTime').value;
+            const className = document.getElementById('scheduleClass').value;
+            const teacher = document.getElementById('scheduleTeacher').value || '—';
+            const status = document.getElementById('scheduleStatus').value;
+
+            // Add row to table
+            const table = document.getElementById('scheduleTableBody');
+            const row = document.createElement('tr');
+
+            const statusClass = status === 'Aktif' ? 'status-active' : 'status-inactive';
+
+            row.innerHTML = `
+                <td>${day}</td>
+                <td>${time}</td>
+                <td>${className}</td>
+                <td>${teacher}</td>
+                <td><span class="status-badge ${statusClass}">${status}</span></td>
+                <td>
+                    <div class="action-btns">
+                        <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                        <button class="delete-btn" onclick="deleteSchedule(this)">🗑️</button>
+                    </div>
+                </td>
+            `;
+
+            table.appendChild(row);
+
+            closeModal();
+            alert('✅ Kelas berjaya ditambah!');
+        }
+
+        // ========================================== //
+        // DELETE SCHEDULE                           //
+        // ========================================== //
+
+        function deleteSchedule(btn) {
+            if (confirm('❌ Adakah anda pasti mahu memadam kelas ini?')) {
+                const row = btn.closest('tr');
+                row.remove();
+                alert('✅ Kelas berjaya dipadam!');
+            }
+        }
+
+        // ========================================== //
+        // CONSOLE WELCOME                           //
+        // ========================================== //
+
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
+        console.log('%cPanel Admin - Jadual Studio', 'font-size: 14px; color: #C4C0B8;');
+    </script>
+
+</body>
+</html>

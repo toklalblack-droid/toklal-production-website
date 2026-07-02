@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN DASHBOARD - CHEERFUL THEME            */
+        /* ============================================ */
+
+        .admin-dashboard {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff7ef, #fff1f2);
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+        }
+
+        .admin-header .logo-area span {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-header .user-area .admin-name {
+            color: #2b2d42;
+            font-size: 0.9rem;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.2);
+        }
+
+        /* ----- STATS ----- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.08);
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .stat-card .stat-label {
+            color: #6c6f7d;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* ----- MENU ----- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.08);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .menu-card:hover {
+            border-color: #ff6b6b;
+            background: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.15);
+        }
+
+        .menu-card .menu-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-card .menu-title {
+            color: #2b2d42;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .menu-card .menu-desc {
+            color: #6c6f7d;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* ----- RECENT ----- */
+        .recent-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.08);
+        }
+
+        .recent-section h3 {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .recent-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.08);
+            color: #2b2d42;
+            font-size: 0.9rem;
+        }
+
+        .recent-item:last-child {
+            border-bottom: none;
+        }
+
+        .recent-item .time {
+            color: #6c6f7d;
+            font-size: 0.8rem;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-dashboard">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Admin Panel</span>
+                </div>
+                <div class="user-area">
+                    <span class="admin-name">👤 Admin</span>
+                    <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                </div>
+            </header>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Jadual Bulanan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Pelajar Aktif</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number">RM 0</div>
+                    <div class="stat-label">Pendapatan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Ulasan</div>
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-grid">
+                <a href="admin-schedule.html" class="menu-card">
+                    <div class="menu-icon">📅</div>
+                    <div class="menu-title">Jadual Studio</div>
+                    <div class="menu-desc">Urus jadual & tempahan</div>
+                </a>
+
+                <a href="admin-students.html" class="menu-card">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-title">Pelajar</div>
+                    <div class="menu-desc">Urus data pelajar</div>
+                </a>
+
+                <a href="admin-teachers.html" class="menu-card">
+                    <div class="menu-icon">👨‍🏫</div>
+                    <div class="menu-title">Guru</div>
+                    <div class="menu-desc">Urus profil guru</div>
+                </a>
+
+                <a href="admin-gallery.html" class="menu-card">
+                    <div class="menu-icon">🖼️</div>
+                    <div class="menu-title">Galeri</div>
+                    <div class="menu-desc">Upload gambar & video</div>
+                </a>
+
+                <a href="admin-reports.html" class="menu-card">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-title">Laporan</div>
+                    <div class="menu-desc">Statistik & PDF report</div>
+                </a>
+
+                <a href="admin-feedback.html" class="menu-card">
+                    <div class="menu-icon">⭐</div>
+                    <div class="menu-title">Ulasan</div>
+                    <div class="menu-desc">Semak & balas ulasan</div>
+                </a>
+            </div>
+
+            <!-- RECENT ACTIVITY -->
+            <div class="recent-section">
+                <h3>📋 Aktiviti Terkini</h3>
+                <div class="recent-item">
+                    <span>Tiada aktiviti terkini</span>
+                    <span class="time">—</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        console.log('Admin Dashboard Loaded');
+    </script>
+
+</body>
+</html>

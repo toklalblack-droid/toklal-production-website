@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Visitor</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* VISITOR PAGE - ELECTRIC INDIGO THEME        */
+        /* ============================================ */
+
+        .visitor-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 30px 20px 60px;
+        }
+
+        .visitor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- BACK BUTTON ----- */
+        .back-btn {
+            display: inline-block;
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #FFF8F0;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #C4C0B8;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* ----- SECTION TITLE ----- */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFF8F0;
+            margin: 50px 0 25px 0;
+            text-align: center;
+        }
+
+        /* ----- GALLERY GRID ----- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: #2A2A4A;
+        }
+
+        .gallery-item .item-info {
+            padding: 15px;
+        }
+
+        .gallery-item .item-info h4 {
+            color: #FFF8F0;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item .item-info p {
+            color: #FFF8F0;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        /* ----- TEACHERS GRID ----- */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            background: #2A2A4A;
+        }
+
+        .teacher-card h4 {
+            color: #FFF8F0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .teacher-card p {
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 300;
+            margin: 4px 0;
+        }
+
+        .teacher-card .rating {
+            color: #FFB830;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================ */
+        /* ===== CALENDAR STYLES =====                  */
+        /* ============================================ */
+
+        .calendar-wrapper {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
+
+        .calendar-header .month-year {
+            color: #FFF8F0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .calendar-header .nav-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #C4C0B8;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-header .nav-btn:hover {
+            background: rgba(77, 19, 209, 0.2);
+            border-color: rgba(77, 19, 209, 0.3);
+            color: #FFF8F0;
+        }
+
+        .calendar-header .today-btn {
+            background: rgba(77, 19, 209, 0.15);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-header .today-btn:hover {
+            background: rgba(77, 19, 209, 0.25);
+        }
+
+        .calendar-day-names {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .calendar-day-names .day-name {
+            text-align: center;
+            color: #4D13D1;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.15);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-cell {
+            aspect-ratio: 1 / 1;
+            padding: 8px 4px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: default;
+            transition: all 0.2s ease;
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .calendar-cell .date-number {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .calendar-cell.other-month .date-number {
+            color: #4A4A6A;
+        }
+
+        .calendar-cell.today {
+            background: rgba(77, 19, 209, 0.15);
+            border-color: rgba(77, 19, 209, 0.3);
+        }
+
+        .calendar-cell.today .date-number {
+            color: #FFF8F0;
+            font-weight: 700;
+        }
+
+        .calendar-cell.has-event {
+            cursor: pointer;
+        }
+
+        .calendar-cell.has-event:hover {
+            background: rgba(77, 19, 209, 0.1);
+            border-color: rgba(77, 19, 209, 0.2);
+            transform: scale(1.02);
+        }
+
+        .event-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4D13D1;
+            margin-top: 3px;
+            display: none;
+        }
+
+        .calendar-cell.has-event .event-dot {
+            display: block;
+        }
+
+        .event-badge {
+            font-size: 0.5rem;
+            color: #FFF8F0;
+            background: rgba(77, 19, 209, 0.2);
+            padding: 1px 6px;
+            border-radius: 10px;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: none;
+        }
+
+        .calendar-cell.has-event .event-badge {
+            display: block;
+        }
+
+        /* ============================================ */
+        /* ===== EVENT MODAL =====                     */
+        /* ============================================ */
+
+        .event-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .event-modal.active {
+            display: flex;
+        }
+
+        .event-modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 450px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .event-modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .event-modal-content .modal-date {
+            color: #4D13D1;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            clear: both;
+        }
+
+        .event-modal-content .modal-title {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .event-modal-content .modal-time {
+            color: #C4C0B8;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .event-modal-content .modal-teacher {
+            color: #C4C0B8;
+            font-size: 0.95rem;
+        }
+
+        .event-modal-content .modal-divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 15px 0;
+        }
+
+        .event-modal-content .no-events {
+            color: #C4C0B8;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* ----- CONTACT SECTION ----- */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 35px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 30px;
+        }
+
+        .contact-section h3 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            color: #C4C0B8;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            font-weight: 300;
+        }
+
+        .contact-section .contact-link {
+            display: inline-block;
+            background: #4D13D1;
+            color: #FFF8F0;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 18px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-section .contact-link:hover {
+            background: #5D23E1;
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        .contact-info-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-row .label {
+            color: #C4C0B8;
+            margin: 0;
+        }
+
+        .contact-info-row .address {
+            color: #C4C0B8;
+            margin: 0;
+        }
+
+        .contact-info-row .qr-code {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid rgba(77, 19, 209, 0.3);
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .visitor-page {
+                padding: 20px 15px 40px;
+            }
+
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-title p {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+
+            .gallery-item img {
+                height: 150px;
+            }
+
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+
+            .teacher-card img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .calendar-wrapper {
+                padding: 15px;
+            }
+
+            .calendar-header .month-year {
+                font-size: 1rem;
+            }
+
+            .calendar-cell {
+                min-height: 45px;
+                padding: 4px 2px;
+            }
+
+            .calendar-cell .date-number {
+                font-size: 0.75rem;
+            }
+
+            .event-badge {
+                font-size: 0.4rem;
+                padding: 1px 4px;
+            }
+
+            .event-modal-content {
+                padding: 25px 20px;
+            }
+
+            .event-modal-content .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .contact-section {
+                padding: 25px 20px;
+            }
+
+            .contact-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .contact-section .contact-link {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
+
+            .contact-info-row {
+                gap: 10px;
+            }
+
+            .contact-info-row .qr-code {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .gallery-item img {
+                height: 120px;
+            }
+
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .teacher-card img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .calendar-cell {
+                min-height: 38px;
+                padding: 2px 1px;
+            }
+
+            .calendar-cell .date-number {
+                font-size: 0.65rem;
+            }
+
+            .calendar-header .nav-btn,
+            .calendar-header .today-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+
+            .calendar-header .month-year {
+                font-size: 0.9rem;
+            }
+
+            .event-badge {
+                display: none !important;
+            }
+
+            .event-modal-content {
+                padding: 20px 15px;
+            }
+
+            .event-modal-content .modal-title {
+                font-size: 1rem;
+            }
+
+            .contact-section .contact-link {
+                font-size: 0.8rem;
+                padding: 8px 20px;
+            }
+
+            .contact-info-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .contact-info-row .qr-code {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- VISITOR PAGE                              -->
+    <!-- ========================================== -->
+
+    <div class="visitor-page">
+
+        <div class="visitor-container">
+
+            <!-- Back Button -->
+            <a href="index.html" class="back-btn">← Kembali ke Laman Utama</a>
+
+            <!-- Page Title -->
+            <div class="page-title">
+                <h1>👥 PORTAL PELAWAT</h1>
+                <p>Terokai portfolio, kelas &amp; aktiviti Tok Lal Production</p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- GALLERY SECTION                           -->
+            <!-- ========================================== -->
+
+            <h2 class="section-title">🖼️ Galeri Projek Terkini</h2>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item">
+                    <img src="pictures/gallery/performances/performance-1.jpg" alt="Performance" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EPerformance%3C/text%3E%3C/svg%3E'">
+                    <div class="item-info">
+                        <h4>Persembahan Marching Band</h4>
+                        <p>Hari Kebangsaan 2024</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="pictures/gallery/classes/class-1.jpg" alt="Class" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EClass%3C/text%3E%3C/svg%3E'">
+                    <div class="item-info">
+                        <h4>Kelas Kompang</h4>
+                        <p>Sesi latihan mingguan</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="pictures/gallery/studio/studio-1.jpg" alt="Studio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EStudio%3C/text%3E%3C/svg%3E'">
+                    <div class="item-info">
+                        <h4>Sesi Rakaman Studio</h4>
+                        <p>Projek album 2024</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="pictures/gallery/events/event-1.jpg" alt="Event" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EEvent%3C/text%3E%3C/svg%3E'">
+                    <div class="item-info">
+                        <h4>Bengkel Muzik Tradisional</h4>
+                        <p>ASWARA 2023</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TEACHERS SECTION                          -->
+            <!-- ========================================== -->
+
+            <h2 class="section-title">👨‍🏫 Kenali Guru Kami</h2>
+
+            <div class="teachers-grid">
+
+                <div class="teacher-card">
+                    <img src="pictures/teachers/cikgu-ahmad.jpg" alt="Cikgu Ahmad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
+                    <h4>Cikgu Ahmad</h4>
+                    <p>Kompang, Gendang, Rebana</p>
+                    <span class="rating">⭐ 4.2/5</span>
+                </div>
+
+                <div class="teacher-card">
+                    <img src="pictures/teachers/cikgu-siti.jpg" alt="Cikgu Siti" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👩‍🏫%3C/text%3E%3C/svg%3E'">
+                    <h4>Cikgu Siti</h4>
+                    <p>Gitar, Keyboard, Modern</p>
+                    <span class="rating">⭐ 4.8/5</span>
+                </div>
+
+                <div class="teacher-card">
+                    <img src="pictures/teachers/cikgu-rizal.jpg" alt="Cikgu Rizal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
+                    <h4>Cikgu Rizal</h4>
+                    <p>Serunai, Marching Band</p>
+                    <span class="rating">⭐ 3.5/5</span>
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- CALENDAR SECTION                          -->
+            <!-- ========================================== -->
+
+            <h2 class="section-title">📅 Jadual Studio</h2>
+
+            <div class="calendar-wrapper">
+                <!-- Calendar Header -->
+                <div class="calendar-header">
+                    <button class="nav-btn" onclick="changeMonth(-1)">◀</button>
+                    <span class="month-year" id="calendarTitle">Julai 2025</span>
+                    <button class="today-btn" onclick="goToToday()">Hari Ini</button>
+                    <button class="nav-btn" onclick="changeMonth(1)">▶</button>
+                </div>
+
+                <!-- Day Names -->
+                <div class="calendar-day-names">
+                    <div class="day-name">Ahad</div>
+                    <div class="day-name">Isnin</div>
+                    <div class="day-name">Selasa</div>
+                    <div class="day-name">Rabu</div>
+                    <div class="day-name">Khamis</div>
+                    <div class="day-name">Jumaat</div>
+                    <div class="day-name">Sabtu</div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- EVENT MODAL                               -->
+            <!-- ========================================== -->
+
+            <div class="event-modal" id="eventModal">
+                <div class="event-modal-content">
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                    <div class="modal-date" id="modalDate">—</div>
+                    <div id="modalEventsList">
+                        <div class="no-events">Tiada sesi pada tarikh ini.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- CONTACT SECTION                           -->
+            <!-- ========================================== -->
+
+            <div class="contact-section">
+                <h3>📞 Hubungi Kami</h3>
+                <p>📱 Telefon: 017-3327120</p>
+                <p>📧 Email: toklalblack@gmail.com</p>
+
+                <div class="contact-info-row">
+                    <span class="label">📍 Alamat:</span>
+                    <span class="address">KM 10, JALAN RAJA HAJI, TELOK MAS 75460 MELAKA</span>
+                    <img src="pictures/qr/qrlocation.png" alt="QR Code Lokasi" class="qr-code">
+                </div>
+
+                <a href="https://wa.me/60173327120" class="contact-link">💬 WhatsApp</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CALENDAR JAVASCRIPT                       -->
+    <!-- ========================================== -->
+
+    <script>
+        // ========================================== //
+        // HARDCODED SCHEDULE DATA                   //
+        // ========================================== //
+
+        const scheduleData = [
+            { date: '2025-07-06', time: '10:30 - 12:00', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-06', time: '14:00 - 15:30', title: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { date: '2025-07-07', time: '09:00 - 10:30', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-09', time: '14:00 - 15:30', title: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { date: '2025-07-10', time: '11:00 - 12:30', title: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { date: '2025-07-11', time: '10:00 - 12:00', title: 'Rakaman Studio', teacher: '—' },
+            { date: '2025-07-13', time: '10:30 - 12:00', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-14', time: '09:00 - 10:30', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-16', time: '14:00 - 15:30', title: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { date: '2025-07-17', time: '11:00 - 12:30', title: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { date: '2025-07-18', time: '10:00 - 12:00', title: 'Rakaman Studio', teacher: '—' },
+            { date: '2025-07-20', time: '10:30 - 12:00', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-21', time: '09:00 - 10:30', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-23', time: '14:00 - 15:30', title: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { date: '2025-07-24', time: '11:00 - 12:30', title: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { date: '2025-07-25', time: '10:00 - 12:00', title: 'Rakaman Studio', teacher: '—' },
+            { date: '2025-07-27', time: '10:30 - 12:00', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-28', time: '09:00 - 10:30', title: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { date: '2025-07-30', time: '14:00 - 15:30', title: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { date: '2025-07-31', time: '11:00 - 12:30', title: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+        ];
+
+        // ========================================== //
+        // CALENDAR STATE                            //
+        // ========================================== //
+
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // ========================================== //
+        // GET EVENTS FOR A SPECIFIC DATE            //
+        // ========================================== //
+
+        function getEventsForDate(dateStr) {
+            return scheduleData.filter(event => event.date === dateStr);
+        }
+
+        // ========================================== //
+        // FORMAT DATE TO YYYY-MM-DD                  //
+        // ========================================== //
+
+        function formatDate(year, month, day) {
+            return year + '-' + String(month + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+        }
+
+        // ========================================== //
+        // RENDER CALENDAR                           //
+        // ========================================== //
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const title = document.getElementById('calendarTitle');
+
+            const monthNames = ['Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober',
+                'November', 'Disember'
+            ];
+            title.textContent = monthNames[currentMonth] + ' ' + currentYear;
+
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startDayOfWeek = firstDay.getDay();
+
+            const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
+
+            let html = '';
+
+            // Previous month days
+            for (let i = startDayOfWeek - 1; i >= 0; i--) {
+                const day = prevMonthLastDay - i;
+                const dateStr = formatDate(currentYear, currentMonth - 1, day);
+                const events = getEventsForDate(dateStr);
+                html += `<div class="calendar-cell other-month ${events.length > 0 ? 'has-event' : ''}">
+                            <span class="date-number">${day}</span>
+                            <span class="event-dot"></span>
+                            <span class="event-badge">${events.length > 0 ? events[0].title : ''}</span>
+                         </div>`;
+            }
+
+            // Current month days
+            const today = new Date();
+            const todayStr = formatDate(today.getFullYear(), today.getMonth(), today.getDate());
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = formatDate(currentYear, currentMonth, day);
+                const events = getEventsForDate(dateStr);
+                const isToday = (dateStr === todayStr);
+                const hasEvent = events.length > 0;
+
+                let eventBadge = '';
+                if (hasEvent) {
+                    eventBadge = events[0].title;
+                    if (events.length > 1) {
+                        eventBadge += ' +' + (events.length - 1);
+                    }
+                }
+
+                html += `<div class="calendar-cell ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''}" 
+                              onclick="${hasEvent ? `showEvents('${dateStr}')` : ''}"
+                              style="${hasEvent ? 'cursor:pointer;' : ''}">
+                            <span class="date-number">${day}</span>
+                            <span class="event-dot"></span>
+                            <span class="event-badge">${eventBadge}</span>
+                         </div>`;
+            }
+
+            // Next month days
+            const totalCells = startDayOfWeek + daysInMonth;
+            const remainingCells = (7 - (totalCells % 7)) % 7;
+
+            for (let day = 1; day <= remainingCells; day++) {
+                const dateStr = formatDate(currentYear, currentMonth + 1, day);
+                const events = getEventsForDate(dateStr);
+                html += `<div class="calendar-cell other-month ${events.length > 0 ? 'has-event' : ''}">
+                            <span class="date-number">${day}</span>
+                            <span class="event-dot"></span>
+                            <span class="event-badge">${events.length > 0 ? events[0].title : ''}</span>
+                         </div>`;
+            }
+
+            grid.innerHTML = html;
+        }
+
+        // ========================================== //
+        // SHOW EVENTS IN MODAL                      //
+        // ========================================== //
+
+        function showEvents(dateStr) {
+            const events = getEventsForDate(dateStr);
+            const modal = document.getElementById('eventModal');
+            const modalDate = document.getElementById('modalDate');
+            const modalList = document.getElementById('modalEventsList');
+
+            const dateObj = new Date(dateStr + 'T00:00:00');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            modalDate.textContent = dateObj.toLocaleDateString('ms-MY', options);
+
+            if (events.length === 0) {
+                modalList.innerHTML = '<div class="no-events">Tiada sesi pada tarikh ini.</div>';
+            } else {
+                let html = '';
+                events.forEach(event => {
+                    html += `
+                                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <div class="modal-title">${event.title}</div>
+                                    <div class="modal-time">🕐 ${event.time}</div>
+                                    <div class="modal-teacher">👨‍🏫 ${event.teacher}</div>
+                                </div>
+                            `;
+                });
+                modalList.innerHTML = html;
+            }
+
+            modal.classList.add('active');
+        }
+
+        // ========================================== //
+        // CLOSE MODAL                               //
+        // ========================================== //
+
+        function closeModal() {
+            document.getElementById('eventModal').classList.remove('active');
+        }
+
+        // ========================================== //
+        // CHANGE MONTH                              //
+        // ========================================== //
+
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        // ========================================== //
+        // GO TO TODAY                               //
+        // ========================================== //
+
+        function goToToday() {
+            const today = new Date();
+            currentMonth = today.getMonth();
+            currentYear = today.getFullYear();
+            renderCalendar();
+        }
+
+        // ========================================== //
+        // CLOSE MODAL ON OUTSIDE CLICK              //
+        // ========================================== //
+
+        document.getElementById('eventModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ========================================== //
+        // INITIALIZE CALENDAR                       //
+        // ========================================== //
+
+        renderCalendar();
+    </script>
+
+</body>
+</html>

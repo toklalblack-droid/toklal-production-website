@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Teacher Biodata</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* TEACHER BIODATA - ELECTRIC INDIGO THEME     */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- STATS BAR ----- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .stat-box .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFF8F0;
+        }
+
+        .stat-box .stat-number.gold {
+            color: #FFB830;
+        }
+
+        .stat-box .stat-number.purple {
+            color: #4D13D1;
+        }
+
+        .stat-box .stat-number.green {
+            color: #4CAF50;
+        }
+
+        .stat-box .stat-label {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        /* ----- TEACHER GRID ----- */
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .teacher-card:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-card .card-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(77, 19, 209, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #FFF8F0;
+            margin-bottom: 12px;
+        }
+
+        .teacher-card .card-name {
+            color: #FFF8F0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .teacher-card .card-specialty {
+            color: #FFB830;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .teacher-card .card-contact {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+
+        .teacher-card .card-stats {
+            display: flex;
+            gap: 15px;
+            margin: 12px 0;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .teacher-card .card-stats .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .teacher-card .card-stats .stat-item .stat-value {
+            color: #FFF8F0;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .teacher-card .card-stats .stat-item .stat-label {
+            color: #4A4A6A;
+            font-size: 0.65rem;
+        }
+
+        .teacher-card .card-rating {
+            color: #FFB830;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .teacher-card .card-status {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .teacher-card .card-status.active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+        }
+
+        .teacher-card .card-status.inactive {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .teacher-card .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .teacher-card .card-actions button {
+            padding: 5px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .teacher-card .card-actions .view-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .teacher-card .card-actions .view-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .teacher-card .card-actions .edit-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+        }
+
+        .teacher-card .card-actions .edit-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+        }
+
+        .teacher-card .card-actions .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .teacher-card .card-actions .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus,
+        .modal-content .form-group textarea:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
+        }
+
+        .modal-content .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        /* ----- VIEW TEACHER MODAL ----- */
+        .view-teacher-section {
+            margin-top: 15px;
+        }
+
+        .view-teacher-section .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .view-teacher-section .info-row .label {
+            color: #C4C0B8;
+        }
+
+        .view-teacher-section .info-row .value {
+            color: #FFF8F0;
+            font-weight: 600;
+        }
+
+        .view-teacher-section .info-row .value.gold {
+            color: #FFB830;
+        }
+
+        .view-teacher-section .biodata-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .view-teacher-section .biodata-box .bio-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            color: #C4C0B8;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .view-teacher-section .biodata-box .bio-item:last-child {
+            border-bottom: none;
+        }
+
+        .view-teacher-section .biodata-box .bio-item .bio-label {
+            color: #4A4A6A;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .modal-content .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .teacher-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .teacher-card {
+                padding: 15px 18px;
+            }
+
+            .teacher-card .card-stats {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .teacher-card .card-actions {
+                flex-direction: column;
+            }
+
+            .teacher-card .card-actions button {
+                width: 100%;
+            }
+
+            .view-teacher-section .info-row {
+                flex-direction: column;
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- TEACHER BIODATA                           -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>👨‍🏫 <span>Biodata Guru</span></h1>
+                <button class="add-btn" onclick="openTeacherModal()">➕ Tambah Guru</button>
+            </div>
+
+            <!-- STATS BAR -->
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-number purple" id="totalTeachers">0</div>
+                    <div class="stat-label">👨‍🏫 Jumlah Guru</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number green" id="activeTeachers">0</div>
+                    <div class="stat-label">✅ Guru Aktif</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number gold" id="totalEarnings">RM 0</div>
+                    <div class="stat-label">💰 Jumlah Pendapatan</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:#FFB830;" id="avgRating">0</div>
+                    <div class="stat-label">⭐ Rating Purata</div>
+                </div>
+            </div>
+
+            <!-- TEACHER GRID -->
+            <div class="teacher-grid" id="teacherGrid">
+                <!-- Data will be loaded from localStorage -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TEACHER MODAL                             -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="teacherModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTeacherModal()">✕</button>
+            <h2 id="modalTitle">👨‍🏫 Tambah Guru</h2>
+
+            <form id="teacherForm" onsubmit="saveTeacher(event)">
+                <div class="form-group">
+                    <label for="teacherName">Nama Guru</label>
+                    <input type="text" id="teacherName" placeholder="Cikgu Ahmad" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherEmail">Email</label>
+                        <input type="email" id="teacherEmail" placeholder="guru@toklal.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherPhone">Telefon</label>
+                        <input type="text" id="teacherPhone" placeholder="012-3456789">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="teacherSpecialty">Pakar / Kepakaran</label>
+                    <input type="text" id="teacherSpecialty" placeholder="Kompang, Gendang, Rebana" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="teacherExperience">Pengalaman (tahun)</label>
+                    <input type="number" id="teacherExperience" placeholder="5" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="teacherBio">Biodata / Pengenalan</label>
+                    <textarea id="teacherBio" placeholder="Cikgu Ahmad adalah pakar dalam bidang kompang dan gendang..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherRating">Rating (1-5)</label>
+                        <input type="number" id="teacherRating" placeholder="4.2" min="0" max="5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherStatus">Status</label>
+                        <select id="teacherStatus">
+                            <option value="active">✅ Aktif</option>
+                            <option value="inactive">❌ Tidak Aktif</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">💾 Simpan Guru</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW TEACHER MODAL                        -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeViewModal()">✕</button>
+            <h2>👨‍🏫 Profil Guru</h2>
+            <div id="viewContent">
+                <p style="color:#C4C0B8; text-align:center;">Memuatkan...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // DATA STORAGE                              //
+        // ========================================== //
+
+        let teachers = [];
+        let editingId = null;
+
+        // Load data from localStorage
+        function loadData() {
+            const saved = localStorage.getItem('toklal_teachers');
+            if (saved) {
+                teachers = JSON.parse(saved);
+            } else {
+                // Seed with sample data
+                teachers = [{
+                    id: 'TCH-001',
+                    name: 'Cikgu Ahmad',
+                    email: 'ahmad@toklal.com',
+                    phone: '012-3456789',
+                    specialty: 'Kompang, Gendang, Rebana',
+                    experience: 8,
+                    bio: 'Cikgu Ahmad adalah pakar dalam bidang muzik tradisional dengan pengalaman lebih 8 tahun. Beliau pernah mengajar di pelbagai institusi dan aktif dalam persembahan marching band.',
+                    rating: 4.2,
+                    status: 'active',
+                    createdAt: '2025-07-01'
+                }, {
+                    id: 'TCH-002',
+                    name: 'Cikgu Siti',
+                    email: 'siti@toklal.com',
+                    phone: '013-8765432',
+                    specialty: 'Gitar, Keyboard, Modern',
+                    experience: 6,
+                    bio: 'Cikgu Siti merupakan guru muzik moden yang berpengalaman. Beliau pakar dalam gitar dan keyboard serta aktif dalam industri muzik kontemporari.',
+                    rating: 4.8,
+                    status: 'active',
+                    createdAt: '2025-07-05'
+                }, {
+                    id: 'TCH-003',
+                    name: 'Cikgu Rizal',
+                    email: 'rizal@toklal.com',
+                    phone: '019-1234567',
+                    specialty: 'Serunai, Marching Band',
+                    experience: 10,
+                    bio: 'Cikgu Rizal adalah pakar serunai dan marching band. Beliau mempunyai pengalaman lebih 10 tahun dan pernah membimbing pelajar ke peringkat kebangsaan.',
+                    rating: 3.5,
+                    status: 'active',
+                    createdAt: '2025-07-10'
+                }];
+                saveData();
+            }
+
+            updateStats();
+            renderTeachers();
+        }
+
+        function saveData() {
+            localStorage.setItem('toklal_teachers', JSON.stringify(teachers));
+            updateStats();
+            renderTeachers();
+        }
+
+        // ========================================== //
+        // GET TEACHER EARNINGS FROM PAYMENTS       //
+        // ========================================== //
+
+        function getTeacherEarnings(teacherName) {
+            const payments = JSON.parse(localStorage.getItem('toklal_payments') || '[]');
+            // Find payments where teacher name appears in service name or client name
+            // For demo, we'll check if teacher name is in the service name
+            return payments
+                .filter(p => p.serviceName.toLowerCase().includes(teacherName.toLowerCase()) ||
+                    p.serviceName.toLowerCase().includes('cikgu') ||
+                    p.serviceName.toLowerCase().includes('guru'))
+                .reduce((sum, p) => sum + p.coachingFeeFinal, 0);
+        }
+
+        function getTeacherClasses(teacherName) {
+            const payments = JSON.parse(localStorage.getItem('toklal_payments') || '[]');
+            return payments.filter(p =>
+                p.serviceName.toLowerCase().includes(teacherName.toLowerCase()) ||
+                p.serviceName.toLowerCase().includes('cikgu') ||
+                p.serviceName.toLowerCase().includes('guru')
+            );
+        }
+
+        // ========================================== //
+        // OPEN / CLOSE MODAL                        //
+        // ========================================== //
+
+        function openTeacherModal() {
+            const modal = document.getElementById('teacherModal');
+            const title = document.getElementById('modalTitle');
+
+            title.textContent = '👨‍🏫 Tambah Guru';
+            document.getElementById('teacherForm').reset();
+            document.getElementById('teacherStatus').value = 'active';
+            editingId = null;
+            modal.classList.add('active');
+        }
+
+        function closeTeacherModal() {
+            document.getElementById('teacherModal').classList.remove('active');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewModal').classList.remove('active');
+        }
+
+        // Close modals on outside click
+        document.getElementById('teacherModal').addEventListener('click', function(e) {
+            if (e.target === this) closeTeacherModal();
+        });
+
+        document.getElementById('viewModal').addEventListener('click', function(e) {
+            if (e.target === this) closeViewModal();
+        });
+
+        // ========================================== //
+        // SAVE TEACHER                              //
+        // ========================================== //
+
+        function saveTeacher(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('teacherName').value.trim();
+            const email = document.getElementById('teacherEmail').value.trim();
+            const phone = document.getElementById('teacherPhone').value.trim();
+            const specialty = document.getElementById('teacherSpecialty').value.trim();
+            const experience = parseInt(document.getElementById('teacherExperience').value) || 0;
+            const bio = document.getElementById('teacherBio').value.trim();
+            const rating = parseFloat(document.getElementById('teacherRating').value) || 0;
+            const status = document.getElementById('teacherStatus').value;
+
+            if (!name || !specialty) {
+                alert('⚠️ Sila isi nama dan kepakaran guru.');
+                return;
+            }
+
+            const teacher = {
+                id: editingId || `TCH-${String(Date.now()).slice(-6)}`,
+                name,
+                email,
+                phone,
+                specialty,
+                experience,
+                bio,
+                rating,
+                status,
+                createdAt: new Date().toISOString().split('T')[0]
+            };
+
+            if (editingId) {
+                const index = teachers.findIndex(t => t.id === editingId);
+                if (index !== -1) teachers[index] = teacher;
+            } else {
+                teachers.push(teacher);
+            }
+
+            saveData();
+            closeTeacherModal();
+            alert(`✅ Guru ${teacher.name} berjaya disimpan!`);
+        }
+
+        // ========================================== //
+        // VIEW TEACHER                              //
+        // ========================================== //
+
+        function viewTeacher(id) {
+            const teacher = teachers.find(t => t.id === id);
+            if (!teacher) return;
+
+            const earnings = getTeacherEarnings(teacher.name);
+            const classes = getTeacherClasses(teacher.name);
+
+            const content = document.getElementById('viewContent');
+
+            content.innerHTML = `
+                <div class="view-teacher-section">
+                    <div style="background:rgba(77,19,209,0.1); padding:12px 15px; border-radius:8px; margin-bottom:15px;">
+                        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;">
+                            <span style="color:#4D13D1; font-weight:700;">🆔 ${teacher.id}</span>
+                            <span style="color:#4A4A6A; font-size:0.85rem;">Guru sejak ${teacher.createdAt}</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
+                        <div style="width:60px; height:60px; border-radius:50%; background:rgba(77,19,209,0.2); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#FFF8F0;">
+                            ${teacher.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                            <div style="color:#FFF8F0; font-size:1.2rem; font-weight:600;">${teacher.name}</div>
+                            <div style="color:#FFB830; font-weight:500;">${teacher.specialty}</div>
+                        </div>
+                    </div>
+
+                    <div class="biodata-box">
+                        <div class="bio-item">
+                            <span class="bio-label">📧 Email</span>
+                            <span>${teacher.email || '—'}</span>
+                        </div>
+                        <div class="bio-item">
+                            <span class="bio-label">📱 Telefon</span>
+                            <span>${teacher.phone || '—'}</span>
+                        </div>
+                        <div class="bio-item">
+                            <span class="bio-label">📅 Pengalaman</span>
+                            <span>${teacher.experience} tahun</span>
+                        </div>
+                        <div class="bio-item">
+                            <span class="bio-label">⭐ Rating</span>
+                            <span style="color:#FFB830;">${teacher.rating.toFixed(1)} / 5</span>
+                        </div>
+                        <div class="bio-item">
+                            <span class="bio-label">Status</span>
+                            <span style="color:${teacher.status === 'active' ? '#4CAF50' : '#FF6B6B'};">
+                                ${teacher.status === 'active' ? '✅ Aktif' : '❌ Tidak Aktif'}
+                            </span>
+                        </div>
+                    </div>
+
+                    ${teacher.bio ? `
+                    <div class="biodata-box" style="margin-top:10px;">
+                        <div style="color:#FFF8F0; font-weight:600; margin-bottom:8px;">📝 Biodata</div>
+                        <div style="color:#C4C0B8; font-size:0.9rem; line-height:1.6;">${teacher.bio}</div>
+                    </div>` : ''}
+
+                    <div class="biodata-box" style="margin-top:10px; background:rgba(255,184,48,0.05); border:1px solid rgba(255,184,48,0.1);">
+                        <div style="display:flex; justify-content:space-between; padding:6px 0; color:#C4C0B8;">
+                            <span>💰 Jumlah Pendapatan</span>
+                            <span style="color:#FFB830; font-weight:700;">RM ${earnings.toFixed(2)}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:6px 0; color:#C4C0B8;">
+                            <span>📋 Bilangan Kelas</span>
+                            <span style="color:#FFF8F0; font-weight:600;">${classes.length}</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <button onclick="editTeacher('${teacher.id}')" style="flex:1; padding:10px; background:#FFB830; color:#1A1A2E; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+                            ✏️ Edit Profil
+                        </button>
+                        <button onclick="closeViewModal()" style="flex:1; padding:10px; background:rgba(255,255,255,0.06); color:#C4C0B8; border:none; border-radius:8px; cursor:pointer;">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('viewModal').classList.add('active');
+        }
+
+        // ========================================== //
+        // EDIT TEACHER                              //
+        // ========================================== //
+
+        function editTeacher(id) {
+            const teacher = teachers.find(t => t.id === id);
+            if (!teacher) return;
+
+            closeViewModal();
+
+            const modal = document.getElementById('teacherModal');
+            document.getElementById('modalTitle').textContent = '✏️ Edit Guru';
+
+            document.getElementById('teacherName').value = teacher.name;
+            document.getElementById('teacherEmail').value = teacher.email || '';
+            document.getElementById('teacherPhone').value = teacher.phone || '';
+            document.getElementById('teacherSpecialty').value = teacher.specialty;
+            document.getElementById('teacherExperience').value = teacher.experience || '';
+            document.getElementById('teacherBio').value = teacher.bio || '';
+            document.getElementById('teacherRating').value = teacher.rating || '';
+            document.getElementById('teacherStatus').value = teacher.status;
+
+            editingId = teacher.id;
+            modal.classList.add('active');
+        }
+
+        // ========================================== //
+        // DELETE TEACHER                            //
+        // ========================================== //
+
+        function deleteTeacher(id) {
+            const teacher = teachers.find(t => t.id === id);
+            if (!teacher) return;
+
+            if (!confirm(`❌ Adakah anda pasti mahu memadam guru ${teacher.name}?`)) {
+                return;
+            }
+
+            teachers = teachers.filter(t => t.id !== id);
+            saveData();
+            alert(`✅ Guru ${teacher.name} berjaya dipadam!`);
+        }
+
+        // ========================================== //
+        // RENDER TEACHERS                           //
+        // ========================================== //
+
+        function renderTeachers() {
+            const grid = document.getElementById('teacherGrid');
+
+            if (teachers.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#4A4A6A;">
+                        <div style="font-size:3rem; margin-bottom:15px;">👨‍🏫</div>
+                        <h3 style="color:#FFF8F0;">Tiada Guru</h3>
+                        <p>Klik "Tambah Guru" untuk menambah guru.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = teachers.map(t => {
+                const earnings = getTeacherEarnings(t.name);
+                const classes = getTeacherClasses(t.name);
+
+                return `
+                    <div class="teacher-card" onclick="viewTeacher('${t.id}')">
+                        <div class="card-avatar">${t.name.charAt(0).toUpperCase()}</div>
+                        <div class="card-name">${t.name}</div>
+                        <div class="card-specialty">🎵 ${t.specialty}</div>
+                        ${t.email ? `<div class="card-contact">📧 ${t.email}</div>` : ''}
+                        ${t.phone ? `<div class="card-contact">📱 ${t.phone}</div>` : ''}
+
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${classes.length}</div>
+                                <div class="stat-label">📋 Kelas</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">⭐ ${t.rating.toFixed(1)}</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color:#FFB830;">RM ${earnings.toFixed(0)}</div>
+                                <div class="stat-label">💰 Pendapatan</div>
+                            </div>
+                        </div>
+
+                        <span class="card-status ${t.status}">${t.status === 'active' ? '✅ Aktif' : '❌ Tidak Aktif'}</span>
+
+                        <div class="card-actions" onclick="event.stopPropagation();">
+                            <button class="view-btn" onclick="viewTeacher('${t.id}')">👁️ Lihat</button>
+                            <button class="edit-btn" onclick="editTeacher('${t.id}')">✏️ Edit</button>
+                            <button class="delete-btn" onclick="deleteTeacher('${t.id}')">🗑️ Padam</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ========================================== //
+        // UPDATE STATS                              //
+        // ========================================== //
+
+        function updateStats() {
+            const total = teachers.length;
+            const active = teachers.filter(t => t.status === 'active').length;
+
+            let totalEarnings = 0;
+            let totalRating = 0;
+            let ratingCount = 0;
+
+            teachers.forEach(t => {
+                const earnings = getTeacherEarnings(t.name);
+                totalEarnings += earnings;
+                if (t.rating > 0) {
+                    totalRating += t.rating;
+                    ratingCount++;
+                }
+            });
+
+            const avgRating = ratingCount > 0 ? totalRating / ratingCount : 0;
+
+            document.getElementById('totalTeachers').textContent = total;
+            document.getElementById('activeTeachers').textContent = active;
+            document.getElementById('totalEarnings').textContent = `RM ${totalEarnings.toFixed(0)}`;
+            document.getElementById('avgRating').textContent = avgRating.toFixed(1);
+        }
+
+        // ========================================== //
+        // INITIALIZE                                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cPanel Admin - Biodata Guru', 'font-size:14px; color:#C4C0B8;');
+            console.log(`%c👨‍🏫 Jumlah Guru: ${teachers.length}`, 'font-size:12px; color:#FFB830;');
+        });
+    </script>
+
+</body>
+</html>

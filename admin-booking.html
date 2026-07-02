@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Booking</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN BOOKING - ELECTRIC INDIGO THEME       */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- STATS BAR ----- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .stat-box .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFF8F0;
+        }
+
+        .stat-box .stat-number.purple {
+            color: #4D13D1;
+        }
+
+        .stat-box .stat-number.gold {
+            color: #FFB830;
+        }
+
+        .stat-box .stat-number.green {
+            color: #4CAF50;
+        }
+
+        .stat-box .stat-label {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        /* ----- FILTER ----- */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .filter-bar input::placeholder {
+            color: #4A4A6A;
+        }
+
+        .filter-bar select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .filter-bar .filter-btn {
+            padding: 10px 20px;
+            background: rgba(77, 19, 209, 0.2);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-bar .filter-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- BOOKING CARDS ----- */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .booking-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .booking-card .card-header .booking-id {
+            color: #4D13D1;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .booking-card .card-header .booking-date {
+            color: #4A4A6A;
+            font-size: 0.75rem;
+        }
+
+        .booking-card .card-client {
+            color: #FFF8F0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .booking-card .card-service {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+        }
+
+        .booking-card .card-fees {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 10px 0;
+        }
+
+        .booking-card .card-fees .fee-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #C4C0B8;
+            padding: 2px 0;
+        }
+
+        .booking-card .card-fees .fee-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 6px;
+            margin-top: 4px;
+            font-weight: 600;
+            color: #FFF8F0;
+        }
+
+        .booking-card .card-fees .fee-row.final {
+            border-top: 2px solid rgba(77, 19, 209, 0.3);
+            padding-top: 6px;
+            margin-top: 4px;
+            font-weight: 700;
+            color: #FFB830;
+        }
+
+        .booking-card .card-status {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .booking-card .card-status.confirmed {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+        }
+
+        .booking-card .card-status.pending {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+        }
+
+        .booking-card .card-status.cancelled {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .booking-card .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .booking-card .card-actions button {
+            padding: 5px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .booking-card .card-actions .view-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .booking-card .card-actions .view-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .booking-card .card-actions .edit-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+        }
+
+        .booking-card .card-actions .edit-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+        }
+
+        .booking-card .card-actions .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .booking-card .card-actions .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        .booking-card .bundle-badge {
+            display: inline-block;
+            background: rgba(77, 19, 209, 0.15);
+            color: #4D13D1;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-content .bundle-items {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 10px;
+        }
+
+        .modal-content .bundle-items .bundle-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #C4C0B8;
+            font-size: 0.9rem;
+        }
+
+        .modal-content .bundle-items .bundle-item:last-child {
+            border-bottom: none;
+        }
+
+        .modal-content .bundle-items .bundle-item .remove-item {
+            color: #FF6B6B;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+        }
+
+        .modal-content .bundle-items .bundle-item .remove-item:hover {
+            opacity: 0.7;
+        }
+
+        .modal-content .add-bundle-item {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .modal-content .add-bundle-item input {
+            flex: 1;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            color: #FFF8F0;
+            font-size: 0.9rem;
+        }
+
+        .modal-content .add-bundle-item button {
+            padding: 8px 15px;
+            background: rgba(77, 19, 209, 0.2);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-content .add-bundle-item button:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .modal-content .fee-display {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .modal-content .fee-display .fee-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            color: #C4C0B8;
+            font-size: 0.9rem;
+        }
+
+        .modal-content .fee-display .fee-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 600;
+            color: #FFF8F0;
+        }
+
+        .modal-content .fee-display .fee-row.discount {
+            color: #FF6B6B;
+        }
+
+        .modal-content .fee-display .fee-row.final {
+            border-top: 2px solid rgba(77, 19, 209, 0.3);
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            color: #FFB830;
+            font-size: 1.1rem;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        .modal-content .bundle-toggle {
+            background: rgba(77, 19, 209, 0.1);
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 8px;
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #FFF8F0;
+            transition: all 0.3s;
+        }
+
+        .modal-content .bundle-toggle:hover {
+            background: rgba(77, 19, 209, 0.15);
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            .filter-bar input,
+            .filter-bar select {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .modal-content .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-card {
+                padding: 15px 18px;
+            }
+
+            .booking-card .card-actions {
+                flex-direction: column;
+            }
+
+            .booking-card .card-actions button {
+                width: 100%;
+            }
+
+            .modal-content .add-bundle-item {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN BOOKING                             -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>📅 <span>Urus Tempahan</span></h1>
+                <button class="add-btn" onclick="openBookingModal()">➕ Tempah Baru</button>
+            </div>
+
+            <!-- STATS BAR -->
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-number purple" id="totalBookings">0</div>
+                    <div class="stat-label">📋 Jumlah Tempahan</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number gold" id="pendingBookings">0</div>
+                    <div class="stat-label">⏳ Menunggu</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number green" id="confirmedBookings">0</div>
+                    <div class="stat-label">✅ Disahkan</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:#FF6B6B;" id="cancelledBookings">0</div>
+                    <div class="stat-label">❌ Dibatal</div>
+                </div>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <input type="text" id="searchBooking" placeholder="🔍 Cari client / service..." onkeyup="filterBookings()">
+                <select id="statusFilter" onchange="filterBookings()">
+                    <option value="all">Semua Status</option>
+                    <option value="confirmed">✅ Disahkan</option>
+                    <option value="pending">⏳ Menunggu</option>
+                    <option value="cancelled">❌ Dibatal</option>
+                </select>
+                <input type="date" id="dateFrom" onchange="filterBookings()">
+                <input type="date" id="dateTo" onchange="filterBookings()">
+                <button class="filter-btn" onclick="filterBookings()">📋 Papar</button>
+                <button class="filter-btn" onclick="clearFilters()">🔄 Reset</button>
+            </div>
+
+            <!-- BOOKING GRID -->
+            <div class="booking-grid" id="bookingGrid">
+                <!-- Data will be loaded from localStorage -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BOOKING MODAL                             -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">✕</button>
+            <h2 id="modalTitle">📅 Tempah Baru</h2>
+
+            <form id="bookingForm" onsubmit="saveBooking(event)">
+                <!-- Client -->
+                <div class="form-group">
+                    <label for="clientName">Nama Client</label>
+                    <input type="text" id="clientName" placeholder="Ahmad Bin Abdullah" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientEmail">Email</label>
+                        <input type="email" id="clientEmail" placeholder="client@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Telefon</label>
+                        <input type="text" id="clientPhone" placeholder="012-3456789">
+                    </div>
+                </div>
+
+                <!-- Service -->
+                <div class="form-group">
+                    <label for="serviceName">Perkhidmatan</label>
+                    <input type="text" id="serviceName" placeholder="Recording Session / Kelas Kompang" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceType">Jenis Perkhidmatan</label>
+                    <select id="serviceType" onchange="toggleFeeFields()">
+                        <option value="both">🏢 Studio + 👨‍🏫 Coaching</option>
+                        <option value="studio">🏢 Studio Sahaja</option>
+                        <option value="coaching">👨‍🏫 Coaching Sahaja</option>
+                    </select>
+                </div>
+
+                <!-- Bundle Toggle -->
+                <div class="form-group">
+                    <div class="bundle-toggle" onclick="toggleBundle()">
+                        <span>📦 Bundle (Gabungan Perkhidmatan)</span>
+                        <span id="bundleToggleIcon">▶</span>
+                    </div>
+                </div>
+
+                <!-- Bundle Items (Hidden by default) -->
+                <div id="bundleSection" style="display:none;">
+                    <div class="form-group">
+                        <label>Item dalam Bundle</label>
+                        <div class="bundle-items" id="bundleItems">
+                            <div class="bundle-item" style="color:#4A4A6A; text-align:center; padding:10px 0;">
+                                Tiada item. Tambah di bawah.
+                            </div>
+                        </div>
+                        <div class="add-bundle-item">
+                            <input type="text" id="bundleItemInput" placeholder="Nama perkhidmatan...">
+                            <button type="button" onclick="addBundleItem()">➕ Tambah</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fees -->
+                <div class="form-row">
+                    <div class="form-group" id="studioFeeGroup">
+                        <label for="studioFee">🏢 Yuran Studio (RM)</label>
+                        <input type="number" id="studioFee" placeholder="150" min="0" step="0.01" oninput="calculateTotals()">
+                    </div>
+                    <div class="form-group" id="coachingFeeGroup">
+                        <label for="coachingFee">👨‍🏫 Yuran Coaching (RM)</label>
+                        <input type="number" id="coachingFee" placeholder="100" min="0" step="0.01" oninput="calculateTotals()">
+                    </div>
+                </div>
+
+                <!-- Discount -->
+                <div class="form-group">
+                    <label for="discountPercent">Diskaun (%)</label>
+                    <input type="number" id="discountPercent" placeholder="0" min="0" max="100" step="1" value="0" oninput="calculateTotals()">
+                </div>
+
+                <!-- Fee Display -->
+                <div class="fee-display" id="feeDisplay">
+                    <div class="fee-row">
+                        <span>🏢 Yuran Studio</span>
+                        <span id="displayStudioFee">RM 0.00</span>
+                    </div>
+                    <div class="fee-row">
+                        <span>👨‍🏫 Yuran Coaching</span>
+                        <span id="displayCoachingFee">RM 0.00</span>
+                    </div>
+                    <div class="fee-row total">
+                        <span>💰 Subtotal</span>
+                        <span id="displaySubtotal">RM 0.00</span>
+                    </div>
+                    <div class="fee-row discount" id="discountRow" style="display:none;">
+                        <span>✏️ Diskaun (<span id="displayDiscountPercent">0</span>%)</span>
+                        <span id="displayDiscountAmount">- RM 0.00</span>
+                    </div>
+                    <div class="fee-row final">
+                        <span>💵 Jumlah Akhir</span>
+                        <span id="displayFinalTotal">RM 0.00</span>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="form-group">
+                    <label for="bookingStatus">Status Tempahan</label>
+                    <select id="bookingStatus">
+                        <option value="confirmed">✅ Disahkan</option>
+                        <option value="pending">⏳ Menunggu</option>
+                        <option value="cancelled">❌ Dibatal</option>
+                    </select>
+                </div>
+
+                <!-- Date -->
+                <div class="form-group">
+                    <label for="bookingDate">Tarikh</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+
+                <button type="submit" class="submit-btn">💾 Simpan Tempahan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW BOOKING MODAL                        -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeViewModal()">✕</button>
+            <h2>📄 Maklumat Tempahan</h2>
+            <div id="viewContent">
+                <p style="color:#C4C0B8; text-align:center;">Memuatkan...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // DATA STORAGE                              //
+        // ========================================== //
+
+        let bookings = [];
+        let editingId = null;
+        let bundleItems = [];
+        let isBundle = false;
+
+        // Load data from localStorage
+        function loadData() {
+            const saved = localStorage.getItem('toklal_bookings');
+            if (saved) {
+                bookings = JSON.parse(saved);
+            } else {
+                // Seed with sample data
+                bookings = [{
+                    id: 'BOK-001',
+                    clientName: 'Ahmad Bin Abdullah',
+                    clientEmail: 'ahmad@email.com',
+                    clientPhone: '012-3456789',
+                    serviceName: 'Recording Session',
+                    serviceType: 'studio',
+                    isBundle: false,
+                    bundleItems: [],
+                    studioFee: 150,
+                    coachingFee: 0,
+                    discountPercent: 10,
+                    subtotal: 150,
+                    discountAmount: 15,
+                    finalTotal: 135,
+                    status: 'confirmed',
+                    date: '2025-07-15',
+                    createdAt: '2025-07-15T10:00:00'
+                }, {
+                    id: 'BOK-002',
+                    clientName: 'Siti Aisyah',
+                    clientEmail: 'siti@email.com',
+                    clientPhone: '013-8765432',
+                    serviceName: 'Kelas Kompang + Gitar',
+                    serviceType: 'both',
+                    isBundle: true,
+                    bundleItems: ['Kelas Kompang', 'Kelas Gitar'],
+                    studioFee: 120,
+                    coachingFee: 170,
+                    discountPercent: 15,
+                    subtotal: 290,
+                    discountAmount: 43.50,
+                    finalTotal: 246.50,
+                    status: 'pending',
+                    date: '2025-07-20',
+                    createdAt: '2025-07-20T14:30:00'
+                }, {
+                    id: 'BOK-003',
+                    clientName: 'Nurul Huda',
+                    clientEmail: 'nurul@email.com',
+                    clientPhone: '019-1234567',
+                    serviceName: 'Mixing & Mastering',
+                    serviceType: 'studio',
+                    isBundle: false,
+                    bundleItems: [],
+                    studioFee: 100,
+                    coachingFee: 0,
+                    discountPercent: 0,
+                    subtotal: 100,
+                    discountAmount: 0,
+                    finalTotal: 100,
+                    status: 'confirmed',
+                    date: '2025-07-18',
+                    createdAt: '2025-07-18T09:15:00'
+                }];
+                saveData();
+            }
+
+            updateStats();
+            renderBookings();
+        }
+
+        function saveData() {
+            localStorage.setItem('toklal_bookings', JSON.stringify(bookings));
+            updateStats();
+            renderBookings();
+        }
+
+        // ========================================== //
+        // BUNDLE FUNCTIONS                          //
+        // ========================================== //
+
+        function toggleBundle() {
+            isBundle = !isBundle;
+            const section = document.getElementById('bundleSection');
+            const icon = document.getElementById('bundleToggleIcon');
+
+            if (isBundle) {
+                section.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                section.style.display = 'none';
+                icon.textContent = '▶';
+                bundleItems = [];
+                renderBundleItems();
+            }
+        }
+
+        function addBundleItem() {
+            const input = document.getElementById('bundleItemInput');
+            const item = input.value.trim();
+
+            if (!item) {
+                alert('⚠️ Sila masukkan nama perkhidmatan.');
+                return;
+            }
+
+            if (bundleItems.includes(item)) {
+                alert('⚠️ Perkhidmatan ini sudah ada dalam bundle.');
+                return;
+            }
+
+            bundleItems.push(item);
+            input.value = '';
+            renderBundleItems();
+        }
+
+        function removeBundleItem(index) {
+            bundleItems.splice(index, 1);
+            renderBundleItems();
+        }
+
+        function renderBundleItems() {
+            const container = document.getElementById('bundleItems');
+
+            if (bundleItems.length === 0) {
+                container.innerHTML = `
+                    <div class="bundle-item" style="color:#4A4A6A; text-align:center; padding:10px 0;">
+                        Tiada item. Tambah di bawah.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = bundleItems.map((item, index) => `
+                <div class="bundle-item">
+                    <span>📦 ${item}</span>
+                    <button class="remove-item" onclick="removeBundleItem(${index})">✕</button>
+                </div>
+            `).join('');
+        }
+
+        // ========================================== //
+        // CALCULATE TOTALS                          //
+        // ========================================== //
+
+        function calculateTotals() {
+            const studioFee = parseFloat(document.getElementById('studioFee').value) || 0;
+            const coachingFee = parseFloat(document.getElementById('coachingFee').value) || 0;
+            const discountPercent = parseFloat(document.getElementById('discountPercent').value) || 0;
+
+            const subtotal = studioFee + coachingFee;
+            const discountAmount = subtotal * (discountPercent / 100);
+            const finalTotal = subtotal - discountAmount;
+
+            // Calculate proportional fees after discount
+            let studioFeeFinal = studioFee;
+            let coachingFeeFinal = coachingFee;
+
+            if (subtotal > 0 && discountPercent > 0) {
+                const ratio = finalTotal / subtotal;
+                studioFeeFinal = studioFee * ratio;
+                coachingFeeFinal = coachingFee * ratio;
+            }
+
+            // Update display
+            document.getElementById('displayStudioFee').textContent = `RM ${studioFee.toFixed(2)}`;
+            document.getElementById('displayCoachingFee').textContent = `RM ${coachingFee.toFixed(2)}`;
+            document.getElementById('displaySubtotal').textContent = `RM ${subtotal.toFixed(2)}`;
+
+            if (discountPercent > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('displayDiscountPercent').textContent = discountPercent;
+                document.getElementById('displayDiscountAmount').textContent = `- RM ${discountAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('discountRow').style.display = 'none';
+            }
+
+            document.getElementById('displayFinalTotal').textContent = `RM ${finalTotal.toFixed(2)}`;
+
+            return {
+                studioFee,
+                coachingFee,
+                subtotal,
+                discountPercent,
+                discountAmount,
+                finalTotal,
+                studioFeeFinal,
+                coachingFeeFinal
+            };
+        }
+
+        // ========================================== //
+        // TOGGLE FEE FIELDS                         //
+        // ========================================== //
+
+        function toggleFeeFields() {
+            const type = document.getElementById('serviceType').value;
+            const studioGroup = document.getElementById('studioFeeGroup');
+            const coachingGroup = document.getElementById('coachingFeeGroup');
+
+            if (type === 'studio') {
+                studioGroup.style.display = 'block';
+                coachingGroup.style.display = 'none';
+                document.getElementById('coachingFee').value = '0';
+            } else if (type === 'coaching') {
+                studioGroup.style.display = 'none';
+                coachingGroup.style.display = 'block';
+                document.getElementById('studioFee').value = '0';
+            } else {
+                studioGroup.style.display = 'block';
+                coachingGroup.style.display = 'block';
+            }
+
+            calculateTotals();
+        }
+
+        // ========================================== //
+        // OPEN / CLOSE MODAL                        //
+        // ========================================== //
+
+        function openBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            const title = document.getElementById('modalTitle');
+
+            title.textContent = '📅 Tempah Baru';
+            document.getElementById('bookingForm').reset();
+            document.getElementById('bookingStatus').value = 'confirmed';
+            document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('studioFee').value = '';
+            document.getElementById('coachingFee').value = '';
+            document.getElementById('discountPercent').value = '0';
+            document.getElementById('serviceType').value = 'both';
+            editingId = null;
+            isBundle = false;
+            bundleItems = [];
+            document.getElementById('bundleSection').style.display = 'none';
+            document.getElementById('bundleToggleIcon').textContent = '▶';
+            renderBundleItems();
+            toggleFeeFields();
+            calculateTotals();
+
+            modal.classList.add('active');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewModal').classList.remove('active');
+        }
+
+        // Close modals on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        document.getElementById('viewModal').addEventListener('click', function(e) {
+            if (e.target === this) closeViewModal();
+        });
+
+        // ========================================== //
+        // SAVE BOOKING                              //
+        // ========================================== //
+
+        function saveBooking(event) {
+            event.preventDefault();
+
+            const clientName = document.getElementById('clientName').value.trim();
+            const clientEmail = document.getElementById('clientEmail').value.trim();
+            const clientPhone = document.getElementById('clientPhone').value.trim();
+            const serviceName = document.getElementById('serviceName').value.trim();
+            const serviceType = document.getElementById('serviceType').value;
+            const status = document.getElementById('bookingStatus').value;
+            const date = document.getElementById('bookingDate').value;
+
+            // Get calculated values
+            const {
+                studioFee,
+                coachingFee,
+                subtotal,
+                discountPercent,
+                discountAmount,
+                finalTotal,
+                studioFeeFinal,
+                coachingFeeFinal
+            } = calculateTotals();
+
+            // Validate
+            if (!clientName || !serviceName) {
+                alert('⚠️ Sila isi nama client dan perkhidmatan.');
+                return;
+            }
+
+            if (subtotal === 0) {
+                alert('⚠️ Sila masukkan yuran (studio atau coaching).');
+                return;
+            }
+
+            const booking = {
+                id: editingId || `BOK-${String(Date.now()).slice(-6)}`,
+                clientName,
+                clientEmail,
+                clientPhone,
+                serviceName,
+                serviceType,
+                isBundle,
+                bundleItems: isBundle ? bundleItems : [],
+                studioFee,
+                coachingFee,
+                discountPercent,
+                subtotal,
+                discountAmount,
+                finalTotal,
+                studioFeeFinal,
+                coachingFeeFinal,
+                status,
+                date,
+                createdAt: new Date().toISOString()
+            };
+
+            if (editingId) {
+                const index = bookings.findIndex(b => b.id === editingId);
+                if (index !== -1) bookings[index] = booking;
+            } else {
+                bookings.push(booking);
+            }
+
+            saveData();
+            closeBookingModal();
+            alert(`✅ Tempahan ${booking.id} berjaya disimpan!`);
+        }
+
+        // ========================================== //
+        // VIEW BOOKING                              //
+        // ========================================== //
+
+        function viewBooking(id) {
+            const booking = bookings.find(b => b.id === id);
+            if (!booking) return;
+
+            const content = document.getElementById('viewContent');
+            const statusColors = {
+                confirmed: '✅ Disahkan',
+                pending: '⏳ Menunggu',
+                cancelled: '❌ Dibatal'
+            };
+
+            const statusColorMap = {
+                confirmed: '#4CAF50',
+                pending: '#FFB830',
+                cancelled: '#FF6B6B'
+            };
+
+            const serviceTypeLabels = {
+                studio: '🏢 Studio Sahaja',
+                coaching: '👨‍🏫 Coaching Sahaja',
+                both: '🏢 Studio + 👨‍🏫 Coaching'
+            };
+
+            let bundleHtml = '';
+            if (booking.isBundle && booking.bundleItems.length > 0) {
+                bundleHtml = `
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">📦 Bundle</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${booking.bundleItems.join(', ')}</span>
+                    </div>
+                `;
+            }
+
+            content.innerHTML = `
+                <div style="margin-top:15px;">
+                    <div style="background:rgba(77,19,209,0.1); padding:12px 15px; border-radius:8px; margin-bottom:15px;">
+                        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;">
+                            <span style="color:#4D13D1; font-weight:700;">📅 ${booking.id}</span>
+                            <span style="color:#C4C0B8; font-size:0.85rem;">${booking.date}</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Client</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${booking.clientName}</span>
+                    </div>
+                    ${booking.clientEmail ? `
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Email</span>
+                        <span style="color:#FFF8F0;">${booking.clientEmail}</span>
+                    </div>` : ''}
+                    ${booking.clientPhone ? `
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Telefon</span>
+                        <span style="color:#FFF8F0;">${booking.clientPhone}</span>
+                    </div>` : ''}
+
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Perkhidmatan</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${booking.serviceName}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Jenis</span>
+                        <span style="color:#FFF8F0;">${serviceTypeLabels[booking.serviceType]}</span>
+                    </div>
+                    ${bundleHtml}
+
+                    <div style="background:rgba(255,255,255,0.02); border-radius:8px; padding:12px; margin-top:10px;">
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; color:#C4C0B8;">
+                            <span>🏢 Yuran Studio</span>
+                            <span>RM ${booking.studioFee.toFixed(2)}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; color:#C4C0B8;">
+                            <span>👨‍🏫 Yuran Coaching</span>
+                            <span>RM ${booking.coachingFee.toFixed(2)}</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:1px solid rgba(255,255,255,0.06); margin-top:4px; color:#FFF8F0; font-weight:600;">
+                            <span>💰 Subtotal</span>
+                            <span>RM ${booking.subtotal.toFixed(2)}</span>
+                        </div>
+                        ${booking.discountPercent > 0 ? `
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; color:#FF6B6B;">
+                            <span>✏️ Diskaun (${booking.discountPercent}%)</span>
+                            <span>- RM ${booking.discountAmount.toFixed(2)}</span>
+                        </div>` : ''}
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:2px solid rgba(77,19,209,0.3); margin-top:4px; color:#FFB830; font-weight:700; font-size:1.1rem;">
+                            <span>💵 Jumlah Akhir</span>
+                            <span>RM ${booking.finalTotal.toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); margin-top:10px;">
+                        <span style="color:#C4C0B8;">Status</span>
+                        <span style="color:${statusColorMap[booking.status]}; font-weight:600;">${statusColors[booking.status]}</span>
+                    </div>
+
+                    <div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <button onclick="editBooking('${booking.id}')" style="flex:1; padding:10px; background:#FFB830; color:#1A1A2E; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+                            ✏️ Edit
+                        </button>
+                        <button onclick="closeViewModal()" style="flex:1; padding:10px; background:rgba(255,255,255,0.06); color:#C4C0B8; border:none; border-radius:8px; cursor:pointer;">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('viewModal').classList.add('active');
+        }
+
+        // ========================================== //
+        // EDIT BOOKING                              //
+        // ========================================== //
+
+        function editBooking(id) {
+            const booking = bookings.find(b => b.id === id);
+            if (!booking) return;
+
+            closeViewModal();
+
+            // Open modal with data
+            const modal = document.getElementById('bookingModal');
+            document.getElementById('modalTitle').textContent = '✏️ Edit Tempahan';
+
+            document.getElementById('clientName').value = booking.clientName;
+            document.getElementById('clientEmail').value = booking.clientEmail || '';
+            document.getElementById('clientPhone').value = booking.clientPhone || '';
+            document.getElementById('serviceName').value = booking.serviceName;
+            document.getElementById('serviceType').value = booking.serviceType;
+            document.getElementById('studioFee').value = booking.studioFee;
+            document.getElementById('coachingFee').value = booking.coachingFee;
+            document.getElementById('discountPercent').value = booking.discountPercent;
+            document.getElementById('bookingStatus').value = booking.status;
+            document.getElementById('bookingDate').value = booking.date;
+
+            editingId = booking.id;
+
+            if (booking.isBundle) {
+                isBundle = true;
+                bundleItems = [...booking.bundleItems];
+                document.getElementById('bundleSection').style.display = 'block';
+                document.getElementById('bundleToggleIcon').textContent = '▼';
+                renderBundleItems();
+            } else {
+                isBundle = false;
+                bundleItems = [];
+                document.getElementById('bundleSection').style.display = 'none';
+                document.getElementById('bundleToggleIcon').textContent = '▶';
+            }
+
+            toggleFeeFields();
+            calculateTotals();
+            modal.classList.add('active');
+        }
+
+        // ========================================== //
+        // DELETE BOOKING                            //
+        // ========================================== //
+
+        function deleteBooking(id) {
+            if (!confirm('❌ Adakah anda pasti mahu memadam tempahan ini?')) return;
+
+            bookings = bookings.filter(b => b.id !== id);
+            saveData();
+            alert('✅ Tempahan berjaya dipadam!');
+        }
+
+        // ========================================== //
+        // FILTER BOOKINGS                           //
+        // ========================================== //
+
+        function filterBookings() {
+            const search = document.getElementById('searchBooking').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            const filtered = bookings.filter(b => {
+                const matchSearch = b.clientName.toLowerCase().includes(search) ||
+                    b.serviceName.toLowerCase().includes(search) ||
+                    b.id.toLowerCase().includes(search);
+                const matchStatus = status === 'all' || b.status === status;
+                const matchDate = (!dateFrom || b.date >= dateFrom) && (!dateTo || b.date <= dateTo);
+                return matchSearch && matchStatus && matchDate;
+            });
+
+            renderBookings(filtered);
+        }
+
+        function clearFilters() {
+            document.getElementById('searchBooking').value = '';
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+            renderBookings(bookings);
+        }
+
+        // ========================================== //
+        // RENDER BOOKINGS                           //
+        // ========================================== //
+
+        function renderBookings(data) {
+            const grid = document.getElementById('bookingGrid');
+            const items = data || bookings;
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#4A4A6A;">
+                        <div style="font-size:3rem; margin-bottom:15px;">📭</div>
+                        <h3 style="color:#FFF8F0;">Tiada Tempahan</h3>
+                        <p>Klik "Tempah Baru" untuk membuat tempahan.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const statusColors = {
+                confirmed: 'confirmed',
+                pending: 'pending',
+                cancelled: 'cancelled'
+            };
+
+            const statusLabels = {
+                confirmed: '✅ Disahkan',
+                pending: '⏳ Menunggu',
+                cancelled: '❌ Dibatal'
+            };
+
+            grid.innerHTML = items.map(b => `
+                <div class="booking-card">
+                    <div class="card-header">
+                        <span class="booking-id">📅 ${b.id}</span>
+                        <span class="booking-date">${b.date}</span>
+                    </div>
+                    <div class="card-client">${b.clientName}</div>
+                    <div class="card-service">
+                        ${b.serviceName}
+                        ${b.isBundle ? '<span class="bundle-badge">📦 Bundle</span>' : ''}
+                    </div>
+                    <div class="card-fees">
+                        <div class="fee-row">
+                            <span>🏢 Studio</span>
+                            <span>RM ${b.studioFee.toFixed(2)}</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>👨‍🏫 Coaching</span>
+                            <span>RM ${b.coachingFee.toFixed(2)}</span>
+                        </div>
+                        ${b.discountPercent > 0 ? `
+                        <div class="fee-row" style="color:#FF6B6B;">
+                            <span>✏️ Diskaun (${b.discountPercent}%)</span>
+                            <span>- RM ${b.discountAmount.toFixed(2)}</span>
+                        </div>` : ''}
+                        <div class="fee-row final">
+                            <span>💵 Jumlah</span>
+                            <span>RM ${b.finalTotal.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="card-status ${statusColors[b.status]}">${statusLabels[b.status]}</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="view-btn" onclick="viewBooking('${b.id}')">👁️ Lihat</button>
+                        <button class="edit-btn" onclick="editBooking('${b.id}')">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteBooking('${b.id}')">🗑️ Padam</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ========================================== //
+        // UPDATE STATS                              //
+        // ========================================== //
+
+        function updateStats() {
+            const total = bookings.length;
+            const pending = bookings.filter(b => b.status === 'pending').length;
+            const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+            const cancelled = bookings.filter(b => b.status === 'cancelled').length;
+
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('confirmedBookings').textContent = confirmed;
+            document.getElementById('cancelledBookings').textContent = cancelled;
+        }
+
+        // ========================================== //
+        // INITIALIZE                                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            // Set default date
+            document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cPanel Admin - Urus Tempahan', 'font-size:14px; color:#C4C0B8;');
+            console.log(`%c📅 Jumlah Tempahan: ${bookings.length}`, 'font-size:12px; color:#FFB830;');
+        });
+    </script>
+
+</body>
+</html>

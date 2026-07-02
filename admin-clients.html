@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Clients</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN CLIENTS - ELECTRIC INDIGO THEME       */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- STATS BAR ----- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .stat-box .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFF8F0;
+        }
+
+        .stat-box .stat-number.purple {
+            color: #4D13D1;
+        }
+
+        .stat-box .stat-number.gold {
+            color: #FFB830;
+        }
+
+        .stat-box .stat-number.green {
+            color: #4CAF50;
+        }
+
+        .stat-box .stat-label {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        /* ----- FILTER ----- */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .filter-bar input::placeholder {
+            color: #4A4A6A;
+        }
+
+        .filter-bar select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .filter-bar .filter-btn {
+            padding: 10px 20px;
+            background: rgba(77, 19, 209, 0.2);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-bar .filter-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- CLIENT GRID ----- */
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .client-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .client-card:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .client-card .card-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(77, 19, 209, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #FFF8F0;
+            margin-bottom: 12px;
+        }
+
+        .client-card .card-name {
+            color: #FFF8F0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .client-card .card-contact {
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+
+        .client-card .card-stats {
+            display: flex;
+            gap: 15px;
+            margin: 12px 0;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .client-card .card-stats .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .client-card .card-stats .stat-item .stat-value {
+            color: #FFF8F0;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .client-card .card-stats .stat-item .stat-label {
+            color: #4A4A6A;
+            font-size: 0.65rem;
+        }
+
+        .client-card .card-total {
+            color: #FFB830;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+
+        .client-card .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .client-card .card-actions button {
+            padding: 5px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .client-card .card-actions .view-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .client-card .card-actions .view-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .client-card .card-actions .edit-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+        }
+
+        .client-card .card-actions .edit-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+        }
+
+        .client-card .card-actions .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .client-card .card-actions .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        /* ----- VIEW CLIENT MODAL ----- */
+        .view-client-section {
+            margin-top: 15px;
+        }
+
+        .view-client-section .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .view-client-section .info-row .label {
+            color: #C4C0B8;
+        }
+
+        .view-client-section .info-row .value {
+            color: #FFF8F0;
+            font-weight: 600;
+        }
+
+        .view-client-section .project-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #4D13D1;
+        }
+
+        .view-client-section .project-item .project-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .view-client-section .project-item .project-name {
+            color: #FFF8F0;
+            font-weight: 600;
+        }
+
+        .view-client-section .project-item .project-date {
+            color: #4A4A6A;
+            font-size: 0.8rem;
+        }
+
+        .view-client-section .project-item .project-details {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+
+        .view-client-section .project-item .project-details span {
+            color: #C4C0B8;
+            font-size: 0.85rem;
+        }
+
+        .view-client-section .project-item .project-details .amount {
+            color: #FFB830;
+            font-weight: 600;
+        }
+
+        .view-client-section .total-spent {
+            background: rgba(255, 184, 48, 0.05);
+            border: 1px solid rgba(255, 184, 48, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .view-client-section .total-spent .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            color: #C4C0B8;
+        }
+
+        .view-client-section .total-spent .total-row.final {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            color: #FFB830;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            .filter-bar input,
+            .filter-bar select {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .modal-content .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .client-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .client-card {
+                padding: 15px 18px;
+            }
+
+            .client-card .card-stats {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .client-card .card-actions {
+                flex-direction: column;
+            }
+
+            .client-card .card-actions button {
+                width: 100%;
+            }
+
+            .view-client-section .project-item .project-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN CLIENTS                             -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>👤 <span>Senarai Client</span></h1>
+                <button class="add-btn" onclick="openClientModal()">➕ Tambah Client</button>
+            </div>
+
+            <!-- STATS BAR -->
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-number purple" id="totalClients">0</div>
+                    <div class="stat-label">👤 Jumlah Client</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number gold" id="totalRevenue">RM 0</div>
+                    <div class="stat-label">💰 Jumlah Pendapatan</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number green" id="totalProjects">0</div>
+                    <div class="stat-label">📋 Jumlah Projek</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:#4CAF50;" id="activeClients">0</div>
+                    <div class="stat-label">✅ Client Aktif</div>
+                </div>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <input type="text" id="searchClient" placeholder="🔍 Cari client..." onkeyup="filterClients()">
+                <select id="sortFilter" onchange="filterClients()">
+                    <option value="name">Susun mengikut Nama</option>
+                    <option value="total">Susun mengikut Total</option>
+                    <option value="projects">Susun mengikut Projek</option>
+                </select>
+                <button class="filter-btn" onclick="filterClients()">📋 Papar</button>
+                <button class="filter-btn" onclick="clearFilters()">🔄 Reset</button>
+            </div>
+
+            <!-- CLIENT GRID -->
+            <div class="client-grid" id="clientGrid">
+                <!-- Data will be loaded from localStorage -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CLIENT MODAL                              -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeClientModal()">✕</button>
+            <h2 id="modalTitle">👤 Tambah Client</h2>
+
+            <form id="clientForm" onsubmit="saveClient(event)">
+                <div class="form-group">
+                    <label for="clientName">Nama Client</label>
+                    <input type="text" id="clientName" placeholder="Ahmad Bin Abdullah" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientEmail">Email</label>
+                        <input type="email" id="clientEmail" placeholder="client@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">Telefon</label>
+                        <input type="text" id="clientPhone" placeholder="012-3456789">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientAddress">Alamat</label>
+                    <input type="text" id="clientAddress" placeholder="No. 15, Jalan 3, Taman Muzik, 75460 Melaka">
+                </div>
+
+                <button type="submit" class="submit-btn">💾 Simpan Client</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW CLIENT MODAL                         -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeViewModal()">✕</button>
+            <h2>👤 Profil Client</h2>
+            <div id="viewContent">
+                <p style="color:#C4C0B8; text-align:center;">Memuatkan...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // DATA STORAGE                              //
+        // ========================================== //
+
+        let clients = [];
+        let editingId = null;
+
+        // Load data from localStorage
+        function loadData() {
+            const saved = localStorage.getItem('toklal_clients');
+            if (saved) {
+                clients = JSON.parse(saved);
+            } else {
+                // Seed with sample data from payments
+                clients = [{
+                    id: 'CLT-001',
+                    name: 'Ahmad Bin Abdullah',
+                    email: 'ahmad@email.com',
+                    phone: '012-3456789',
+                    address: 'No. 15, Jalan 3, Taman Muzik, 75460 Melaka',
+                    createdAt: '2025-07-01'
+                }, {
+                    id: 'CLT-002',
+                    name: 'Siti Aisyah',
+                    email: 'siti@email.com',
+                    phone: '013-8765432',
+                    address: 'No. 8, Jalan 2, Taman Ria, 75460 Melaka',
+                    createdAt: '2025-07-05'
+                }, {
+                    id: 'CLT-003',
+                    name: 'Nurul Huda',
+                    email: 'nurul@email.com',
+                    phone: '019-1234567',
+                    address: 'No. 22, Jalan 5, Taman Mewah, 75460 Melaka',
+                    createdAt: '2025-07-10'
+                }];
+                saveData();
+            }
+
+            updateStats();
+            renderClients();
+        }
+
+        function saveData() {
+            localStorage.setItem('toklal_clients', JSON.stringify(clients));
+            updateStats();
+            renderClients();
+        }
+
+        // ========================================== //
+        // GET CLIENT PROJECTS FROM PAYMENTS        //
+        // ========================================== //
+
+        function getClientProjects(clientName) {
+            const payments = JSON.parse(localStorage.getItem('toklal_payments') || '[]');
+            return payments.filter(p => p.clientName === clientName);
+        }
+
+        function getClientTotal(clientName) {
+            const projects = getClientProjects(clientName);
+            return projects.reduce((sum, p) => sum + p.finalTotal, 0);
+        }
+
+        function getClientStudioTotal(clientName) {
+            const projects = getClientProjects(clientName);
+            return projects.reduce((sum, p) => sum + p.studioFeeFinal, 0);
+        }
+
+        function getClientCoachingTotal(clientName) {
+            const projects = getClientProjects(clientName);
+            return projects.reduce((sum, p) => sum + p.coachingFeeFinal, 0);
+        }
+
+        // ========================================== //
+        // OPEN / CLOSE MODAL                        //
+        // ========================================== //
+
+        function openClientModal() {
+            const modal = document.getElementById('clientModal');
+            const title = document.getElementById('modalTitle');
+
+            title.textContent = '👤 Tambah Client';
+            document.getElementById('clientForm').reset();
+            editingId = null;
+            modal.classList.add('active');
+        }
+
+        function closeClientModal() {
+            document.getElementById('clientModal').classList.remove('active');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewModal').classList.remove('active');
+        }
+
+        // Close modals on outside click
+        document.getElementById('clientModal').addEventListener('click', function(e) {
+            if (e.target === this) closeClientModal();
+        });
+
+        document.getElementById('viewModal').addEventListener('click', function(e) {
+            if (e.target === this) closeViewModal();
+        });
+
+        // ========================================== //
+        // SAVE CLIENT                               //
+        // ========================================== //
+
+        function saveClient(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('clientName').value.trim();
+            const email = document.getElementById('clientEmail').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const address = document.getElementById('clientAddress').value.trim();
+
+            if (!name) {
+                alert('⚠️ Sila isi nama client.');
+                return;
+            }
+
+            // Check for duplicate
+            const existing = clients.find(c =>
+                c.name.toLowerCase() === name.toLowerCase() && c.id !== editingId
+            );
+            if (existing) {
+                alert('⚠️ Client dengan nama ini sudah wujud.');
+                return;
+            }
+
+            const client = {
+                id: editingId || `CLT-${String(Date.now()).slice(-6)}`,
+                name,
+                email,
+                phone,
+                address,
+                createdAt: new Date().toISOString().split('T')[0]
+            };
+
+            if (editingId) {
+                const index = clients.findIndex(c => c.id === editingId);
+                if (index !== -1) clients[index] = client;
+            } else {
+                clients.push(client);
+            }
+
+            saveData();
+            closeClientModal();
+            alert(`✅ Client ${client.name} berjaya disimpan!`);
+        }
+
+        // ========================================== //
+        // VIEW CLIENT                               //
+        // ========================================== //
+
+        function viewClient(id) {
+            const client = clients.find(c => c.id === id);
+            if (!client) return;
+
+            const projects = getClientProjects(client.name);
+            const total = getClientTotal(client.name);
+            const studioTotal = getClientStudioTotal(client.name);
+            const coachingTotal = getClientCoachingTotal(client.name);
+
+            const content = document.getElementById('viewContent');
+
+            let projectsHtml = '';
+            if (projects.length === 0) {
+                projectsHtml = `
+                    <div style="text-align:center; padding:20px; color:#4A4A6A;">
+                        📭 Tiada projek untuk client ini.
+                    </div>
+                `;
+            } else {
+                projectsHtml = projects.map(p => `
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-name">${p.serviceName}</span>
+                            <span class="project-date">${p.date}</span>
+                        </div>
+                        <div class="project-details">
+                            <span>🏢 Studio: RM ${p.studioFeeFinal.toFixed(2)}</span>
+                            <span>👨‍🏫 Coaching: RM ${p.coachingFeeFinal.toFixed(2)}</span>
+                            <span class="amount">💵 Total: RM ${p.finalTotal.toFixed(2)}</span>
+                            <span style="color:${p.status === 'paid' ? '#4CAF50' : p.status === 'pending' ? '#FFB830' : '#FF6B6B'};">
+                                ${p.status === 'paid' ? '✅ Selesai' : p.status === 'pending' ? '⏳ Menunggu' : '❌ Gagal'}
+                            </span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            content.innerHTML = `
+                <div class="view-client-section">
+                    <div style="background:rgba(77,19,209,0.1); padding:12px 15px; border-radius:8px; margin-bottom:15px;">
+                        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;">
+                            <span style="color:#4D13D1; font-weight:700;">🆔 ${client.id}</span>
+                            <span style="color:#4A4A6A; font-size:0.85rem;">Client sejak ${client.createdAt}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="label">👤 Nama</span>
+                        <span class="value">${client.name}</span>
+                    </div>
+                    ${client.email ? `
+                    <div class="info-row">
+                        <span class="label">📧 Email</span>
+                        <span class="value">${client.email}</span>
+                    </div>` : ''}
+                    ${client.phone ? `
+                    <div class="info-row">
+                        <span class="label">📱 Telefon</span>
+                        <span class="value">${client.phone}</span>
+                    </div>` : ''}
+                    ${client.address ? `
+                    <div class="info-row">
+                        <span class="label">📍 Alamat</span>
+                        <span class="value">${client.address}</span>
+                    </div>` : ''}
+
+                    <div style="margin-top:20px;">
+                        <h3 style="color:#FFF8F0; font-size:1rem; margin-bottom:10px;">📋 Projek (${projects.length})</h3>
+                        ${projectsHtml}
+                    </div>
+
+                    <div class="total-spent">
+                        <div class="total-row">
+                            <span>💰 Jumlah Keseluruhan</span>
+                            <span style="color:#FFB830; font-weight:600;">RM ${total.toFixed(2)}</span>
+                        </div>
+                        <div class="total-row">
+                            <span>🏢 Jumlah Studio</span>
+                            <span>RM ${studioTotal.toFixed(2)}</span>
+                        </div>
+                        <div class="total-row">
+                            <span>👨‍🏫 Jumlah Coaching</span>
+                            <span>RM ${coachingTotal.toFixed(2)}</span>
+                        </div>
+                        <div class="total-row final">
+                            <span>💵 JUMLAH BESAR</span>
+                            <span>RM ${total.toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <button onclick="editClient('${client.id}')" style="flex:1; padding:10px; background:#FFB830; color:#1A1A2E; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+                            ✏️ Edit Client
+                        </button>
+                        <button onclick="closeViewModal()" style="flex:1; padding:10px; background:rgba(255,255,255,0.06); color:#C4C0B8; border:none; border-radius:8px; cursor:pointer;">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('viewModal').classList.add('active');
+        }
+
+        // ========================================== //
+        // EDIT CLIENT                               //
+        // ========================================== //
+
+        function editClient(id) {
+            const client = clients.find(c => c.id === id);
+            if (!client) return;
+
+            closeViewModal();
+
+            const modal = document.getElementById('clientModal');
+            document.getElementById('modalTitle').textContent = '✏️ Edit Client';
+
+            document.getElementById('clientName').value = client.name;
+            document.getElementById('clientEmail').value = client.email || '';
+            document.getElementById('clientPhone').value = client.phone || '';
+            document.getElementById('clientAddress').value = client.address || '';
+
+            editingId = client.id;
+            modal.classList.add('active');
+        }
+
+        // ========================================== //
+        // DELETE CLIENT                             //
+        // ========================================== //
+
+        function deleteClient(id) {
+            const client = clients.find(c => c.id === id);
+            if (!client) return;
+
+            const projects = getClientProjects(client.name);
+            if (projects.length > 0) {
+                if (!confirm(`⚠️ Client ini mempunyai ${projects.length} projek. Padam akan memadam semua rekod client. Teruskan?`)) {
+                    return;
+                }
+            } else {
+                if (!confirm(`❌ Adakah anda pasti mahu memadam client ${client.name}?`)) {
+                    return;
+                }
+            }
+
+            // Delete client
+            clients = clients.filter(c => c.id !== id);
+
+            // Also delete related payments
+            const payments = JSON.parse(localStorage.getItem('toklal_payments') || '[]');
+            const updatedPayments = payments.filter(p => p.clientName !== client.name);
+            localStorage.setItem('toklal_payments', JSON.stringify(updatedPayments));
+
+            saveData();
+            alert(`✅ Client ${client.name} berjaya dipadam!`);
+            renderClients();
+        }
+
+        // ========================================== //
+        // FILTER CLIENTS                            //
+        // ========================================== //
+
+        function filterClients() {
+            const search = document.getElementById('searchClient').value.toLowerCase();
+            const sort = document.getElementById('sortFilter').value;
+
+            let filtered = clients.filter(c =>
+                c.name.toLowerCase().includes(search)
+            );
+
+            // Sort
+            filtered.sort((a, b) => {
+                if (sort === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else if (sort === 'total') {
+                    return getClientTotal(b.name) - getClientTotal(a.name);
+                } else if (sort === 'projects') {
+                    return getClientProjects(b.name).length - getClientProjects(a.name).length;
+                }
+                return 0;
+            });
+
+            renderClients(filtered);
+        }
+
+        function clearFilters() {
+            document.getElementById('searchClient').value = '';
+            document.getElementById('sortFilter').value = 'name';
+            renderClients(clients);
+        }
+
+        // ========================================== //
+        // RENDER CLIENTS                            //
+        // ========================================== //
+
+        function renderClients(data) {
+            const grid = document.getElementById('clientGrid');
+            const items = data || clients;
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#4A4A6A;">
+                        <div style="font-size:3rem; margin-bottom:15px;">👤</div>
+                        <h3 style="color:#FFF8F0;">Tiada Client</h3>
+                        <p>Klik "Tambah Client" untuk menambah client.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(c => {
+                const projects = getClientProjects(c.name);
+                const total = getClientTotal(c.name);
+                const projectCount = projects.length;
+
+                return `
+                    <div class="client-card" onclick="viewClient('${c.id}')">
+                        <div class="card-avatar">${c.name.charAt(0).toUpperCase()}</div>
+                        <div class="card-name">${c.name}</div>
+                        ${c.email ? `<div class="card-contact">📧 ${c.email}</div>` : ''}
+                        ${c.phone ? `<div class="card-contact">📱 ${c.phone}</div>` : ''}
+
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${projectCount}</div>
+                                <div class="stat-label">📋 Projek</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">RM ${total.toFixed(0)}</div>
+                                <div class="stat-label">💰 Total</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${projects.filter(p => p.status === 'paid').length}</div>
+                                <div class="stat-label">✅ Selesai</div>
+                            </div>
+                        </div>
+
+                        <div class="card-total">RM ${total.toFixed(2)}</div>
+
+                        <div class="card-actions" onclick="event.stopPropagation();">
+                            <button class="view-btn" onclick="viewClient('${c.id}')">👁️ Lihat</button>
+                            <button class="edit-btn" onclick="editClient('${c.id}')">✏️ Edit</button>
+                            <button class="delete-btn" onclick="deleteClient('${c.id}')">🗑️ Padam</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ========================================== //
+        // UPDATE STATS                              //
+        // ========================================== //
+
+        function updateStats() {
+            const total = clients.length;
+
+            // Calculate total revenue from all clients
+            let totalRevenue = 0;
+            let totalProjects = 0;
+            let activeClients = 0;
+
+            clients.forEach(c => {
+                const projects = getClientProjects(c.name);
+                const totalClient = getClientTotal(c.name);
+                totalRevenue += totalClient;
+                totalProjects += projects.length;
+
+                // Active = has at least one paid project
+                if (projects.some(p => p.status === 'paid')) {
+                    activeClients++;
+                }
+            });
+
+            document.getElementById('totalClients').textContent = total;
+            document.getElementById('totalRevenue').textContent = `RM ${totalRevenue.toFixed(0)}`;
+            document.getElementById('totalProjects').textContent = totalProjects;
+            document.getElementById('activeClients').textContent = activeClients;
+        }
+
+        // ========================================== //
+        // INITIALIZE                                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cPanel Admin - Senarai Client', 'font-size:14px; color:#C4C0B8;');
+            console.log(`%c👤 Jumlah Client: ${clients.length}`, 'font-size:12px; color:#FFB830;');
+        });
+    </script>
+
+</body>
+</html>

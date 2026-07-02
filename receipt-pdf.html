@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Receipt</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #1A1A2E;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .receipt-container {
+            max-width: 500px;
+            width: 100%;
+            background: #FFF8F0;
+            border-radius: 16px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px solid #4D13D1;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-header h1 {
+            color: #4D13D1;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .receipt-header .subtitle {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .receipt-header .subtitle strong {
+            color: #333;
+        }
+
+        .receipt-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .receipt-meta .label {
+            color: #666;
+        }
+
+        .receipt-meta .value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .receipt-client {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .receipt-client .client-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+        }
+
+        .receipt-client .client-row .label {
+            color: #666;
+        }
+
+        .receipt-client .client-row .value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .receipt-service {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-service .service-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .receipt-service .service-row .label {
+            color: #666;
+        }
+
+        .receipt-service .service-row .value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .receipt-items {
+            border-top: 2px solid #4D13D1;
+            border-bottom: 2px solid #4D13D1;
+            padding: 12px 0;
+            margin: 15px 0;
+        }
+
+        .receipt-items .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .receipt-items .item-row.total {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .receipt-items .item-row.discount {
+            color: #e74c3c;
+        }
+
+        .receipt-items .item-row.final {
+            border-top: 2px solid #FFB830;
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 18px;
+            color: #FFB830;
+        }
+
+        .receipt-status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .receipt-status.paid {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .receipt-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .receipt-status.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .receipt-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .receipt-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .receipt-actions .print-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+        }
+
+        .receipt-actions .print-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        .receipt-actions .back-btn {
+            background: rgba(0, 0, 0, 0.05);
+            color: #666;
+        }
+
+        .receipt-actions .back-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .receipt-actions .back-btn a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .receipt-watermark {
+            text-align: center;
+            font-size: 11px;
+            color: #ccc;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: #fff;
+                padding: 20px;
+            }
+
+            .receipt-container {
+                box-shadow: none;
+                padding: 20px;
+                border: 1px solid #ddd;
+            }
+
+            .receipt-actions {
+                display: none;
+            }
+
+            .receipt-watermark {
+                display: none;
+            }
+
+            .receipt-header h1 {
+                color: #4D13D1;
+            }
+
+            .receipt-items .item-row.final {
+                color: #FFB830;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .receipt-container {
+                padding: 25px 20px;
+            }
+
+            .receipt-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .receipt-client .client-row {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .receipt-actions {
+                flex-direction: column;
+            }
+
+            .receipt-items .item-row {
+                font-size: 13px;
+            }
+
+            .receipt-items .item-row.final {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="receipt-container" id="receiptContainer">
+
+        <!-- Header -->
+        <div class="receipt-header">
+            <h1>🎵 TOK LAL PRODUCTION</h1>
+            <div class="subtitle">
+                <strong>KM 10, JALAN RAJA HAJI, TELOK MAS</strong><br>
+                75460 MELAKA<br>
+                📱 017-3327120 &nbsp;|&nbsp; 📧 toklalblack@gmail.com
+            </div>
+        </div>
+
+        <!-- Meta Info -->
+        <div class="receipt-meta">
+            <span><span class="label">No. Resit:</span> <span class="value" id="receiptNumber">INV-2025-001</span></span>
+            <span><span class="label">Tarikh:</span> <span class="value" id="receiptDate">15 Jul 2025</span></span>
+        </div>
+
+        <!-- Client Info -->
+        <div class="receipt-client">
+            <div class="client-row">
+                <span class="label">👤 Client</span>
+                <span class="value" id="clientName">Ahmad Bin Abdullah</span>
+            </div>
+            <div class="client-row" id="clientEmailRow">
+                <span class="label">📧 Email</span>
+                <span class="value" id="clientEmail">ahmad@email.com</span>
+            </div>
+            <div class="client-row" id="clientPhoneRow">
+                <span class="label">📱 Telefon</span>
+                <span class="value" id="clientPhone">012-3456789</span>
+            </div>
+        </div>
+
+        <!-- Service Info -->
+        <div class="receipt-service">
+            <div class="service-row">
+                <span class="label">📋 Perkhidmatan</span>
+                <span class="value" id="serviceName">Recording Session</span>
+            </div>
+            <div class="service-row">
+                <span class="label">🏷️ Jenis</span>
+                <span class="value" id="serviceType">🏢 Studio</span>
+            </div>
+        </div>
+
+        <!-- Items / Fee Breakdown -->
+        <div class="receipt-items">
+            <div class="item-row">
+                <span>🏢 Yuran Studio</span>
+                <span id="studioFee">RM 150.00</span>
+            </div>
+            <div class="item-row">
+                <span>👨‍🏫 Yuran Coaching</span>
+                <span id="coachingFee">RM 0.00</span>
+            </div>
+            <div class="item-row total">
+                <span>💰 Subtotal</span>
+                <span id="subtotal">RM 150.00</span>
+            </div>
+            <div class="item-row discount" id="discountRow" style="display:none;">
+                <span>✏️ Diskaun (<span id="discountPercent">0</span>%)</span>
+                <span id="discountAmount">- RM 0.00</span>
+            </div>
+            <div class="item-row final">
+                <span>💵 JUMLAH AKHIR</span>
+                <span id="finalTotal">RM 150.00</span>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="receipt-status paid" id="receiptStatus">✅ LUNAS</div>
+
+        <!-- Footer -->
+        <div class="receipt-footer">
+            Terima kasih kerana memilih Tok Lal Production! 🎵
+        </div>
+
+        <div class="receipt-watermark">
+            Resit ini dijana secara elektronik
+        </div>
+
+        <!-- Actions -->
+        <div class="receipt-actions">
+            <button class="print-btn" onclick="window.print()">🖨️ Cetak Resit</button>
+            <button class="back-btn"><a href="admin-payments.html">← Kembali</a></button>
+        </div>
+
+    </div>
+
+    <script>
+        // ========================================== //
+        // LOAD RECEIPT DATA FROM URL PARAMETERS     //
+        // ========================================== //
+
+        function getUrlParams() {
+            var params = {};
+            var query = window.location.search.substring(1);
+            var pairs = query.split('&');
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i].split('=');
+                if (pair.length === 2) {
+                    params[pair[0]] = decodeURIComponent(pair[1]);
+                }
+            }
+            return params;
+        }
+
+        function loadReceiptData() {
+            var params = getUrlParams();
+
+            // If payment ID is provided, load from localStorage
+            if (params.id) {
+                var paymentId = params.id;
+                var payments = JSON.parse(localStorage.getItem('toklal_payments') || '[]');
+                var payment = null;
+
+                for (var i = 0; i < payments.length; i++) {
+                    if (payments[i].id === paymentId) {
+                        payment = payments[i];
+                        break;
+                    }
+                }
+
+                if (payment) {
+                    populateReceipt(payment);
+                    return;
+                }
+            }
+
+            // If no payment found, check for direct params
+            if (params.invoice) document.getElementById('receiptNumber').textContent = params.invoice;
+            if (params.date) document.getElementById('receiptDate').textContent = params.date;
+            if (params.client) document.getElementById('clientName').textContent = params.client;
+            if (params.email) {
+                document.getElementById('clientEmail').textContent = params.email;
+                document.getElementById('clientEmailRow').style.display = 'flex';
+            } else {
+                document.getElementById('clientEmailRow').style.display = 'none';
+            }
+            if (params.phone) {
+                document.getElementById('clientPhone').textContent = params.phone;
+                document.getElementById('clientPhoneRow').style.display = 'flex';
+            } else {
+                document.getElementById('clientPhoneRow').style.display = 'none';
+            }
+            if (params.service) document.getElementById('serviceName').textContent = params.service;
+            if (params.type) document.getElementById('serviceType').textContent = params.type;
+            if (params.studioFee) document.getElementById('studioFee').textContent = 'RM ' + parseFloat(params.studioFee).toFixed(2);
+            if (params.coachingFee) document.getElementById('coachingFee').textContent = 'RM ' + parseFloat(params.coachingFee).toFixed(2);
+            if (params.subtotal) document.getElementById('subtotal').textContent = 'RM ' + parseFloat(params.subtotal).toFixed(2);
+            if (params.discountPercent && parseFloat(params.discountPercent) > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountPercent').textContent = params.discountPercent;
+                document.getElementById('discountAmount').textContent = '- RM ' + parseFloat(params.discountAmount || 0).toFixed(2);
+            }
+            if (params.finalTotal) document.getElementById('finalTotal').textContent = 'RM ' + parseFloat(params.finalTotal).toFixed(2);
+            if (params.status) {
+                var statusEl = document.getElementById('receiptStatus');
+                var statusMap = {
+                    'paid': { class: 'paid', label: '✅ LUNAS' },
+                    'pending': { class: 'pending', label: '⏳ MENUNGGU' },
+                    'failed': { class: 'failed', label: '❌ GAGAL' }
+                };
+                var s = statusMap[params.status] || statusMap['pending'];
+                statusEl.className = 'receipt-status ' + s.class;
+                statusEl.textContent = s.label;
+            }
+        }
+
+        function populateReceipt(payment) {
+            document.getElementById('receiptNumber').textContent = payment.invoice || 'INV-2025-001';
+            document.getElementById('receiptDate').textContent = payment.date || new Date().toLocaleDateString('ms-MY');
+
+            document.getElementById('clientName').textContent = payment.clientName || '-';
+
+            if (payment.clientEmail) {
+                document.getElementById('clientEmail').textContent = payment.clientEmail;
+                document.getElementById('clientEmailRow').style.display = 'flex';
+            } else {
+                document.getElementById('clientEmailRow').style.display = 'none';
+            }
+
+            if (payment.clientPhone) {
+                document.getElementById('clientPhone').textContent = payment.clientPhone;
+                document.getElementById('clientPhoneRow').style.display = 'flex';
+            } else {
+                document.getElementById('clientPhoneRow').style.display = 'none';
+            }
+
+            document.getElementById('serviceName').textContent = payment.serviceName || '-';
+
+            var typeLabels = {
+                'studio': '🏢 Studio',
+                'coaching': '👨‍🏫 Coaching',
+                'both': '🏢 Studio + 👨‍🏫 Coaching'
+            };
+            document.getElementById('serviceType').textContent = typeLabels[payment.serviceType] || '🏢 Studio + 👨‍🏫 Coaching';
+
+            document.getElementById('studioFee').textContent = 'RM ' + (payment.studioFee || 0).toFixed(2);
+            document.getElementById('coachingFee').textContent = 'RM ' + (payment.coachingFee || 0).toFixed(2);
+            document.getElementById('subtotal').textContent = 'RM ' + (payment.subtotal || 0).toFixed(2);
+
+            if (payment.discountPercent && payment.discountPercent > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountPercent').textContent = payment.discountPercent;
+                document.getElementById('discountAmount').textContent = '- RM ' + (payment.discountAmount || 0).toFixed(2);
+            } else {
+                document.getElementById('discountRow').style.display = 'none';
+            }
+
+            document.getElementById('finalTotal').textContent = 'RM ' + (payment.finalTotal || 0).toFixed(2);
+
+            var statusEl = document.getElementById('receiptStatus');
+            var statusMap = {
+                'paid': { class: 'paid', label: '✅ LUNAS' },
+                'pending': { class: 'pending', label: '⏳ MENUNGGU' },
+                'failed': { class: 'failed', label: '❌ GAGAL' }
+            };
+            var s = statusMap[payment.status] || statusMap['pending'];
+            statusEl.className = 'receipt-status ' + s.class;
+            statusEl.textContent = s.label;
+        }
+
+        // ========================================== //
+        // PRINT FUNCTION                            //
+        // ========================================== //
+
+        function printReceipt() {
+            window.print();
+        }
+
+        // ========================================== //
+        // INITIALIZE                                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReceiptData();
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cResit Dijana', 'font-size:14px; color:#C4C0B8;');
+        });
+    </script>
+
+</body>
+</html>

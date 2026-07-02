@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Students</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        .admin-page {
+            min-height: 100vh;
+            background: #0a0a1a;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+        }
+
+        .admin-header .logo-area span {
+            color: #d4a843;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-header .user-area .admin-name {
+            color: #c0c0d0;
+            font-size: 0.9rem;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(231, 76, 60, 0.15);
+        }
+
+        /* Page Title */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            color: #d4a843;
+            font-size: 1.8rem;
+        }
+
+        .page-title .add-btn {
+            background: #d4a843;
+            color: #0a0a1a;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .page-title .add-btn:hover {
+            background: #e8c45a;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #8888a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #d4a843;
+        }
+
+        /* Search Box */
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #d4a843;
+        }
+
+        .search-box input::placeholder {
+            color: #555570;
+        }
+
+        /* Students Table */
+        .students-table-wrapper {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow-x: auto;
+        }
+
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .students-table th {
+            color: #d4a843;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(212, 168, 67, 0.2);
+            font-weight: 600;
+        }
+
+        .students-table td {
+            color: #c0c0d0;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .students-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .students-table .status-active {
+            color: #2ecc71;
+        }
+
+        .students-table .status-inactive {
+            color: #e74c3c;
+        }
+
+        .students-table .action-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #c0c0d0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+
+        .students-table .action-btn:hover {
+            background: rgba(212, 168, 67, 0.15);
+            border-color: rgba(212, 168, 67, 0.3);
+            color: #d4a843;
+        }
+
+        .students-table .action-btn.delete:hover {
+            background: rgba(231, 76, 60, 0.15);
+            border-color: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #555570;
+            padding: 40px 20px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- ========================================== -->
+            <!-- HEADER                                    -->
+            <!-- ========================================== -->
+
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Admin Panel</span>
+                </div>
+                <div class="user-area">
+                    <span class="admin-name">👤 Admin</span>
+                    <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                </div>
+            </header>
+
+            <!-- ========================================== -->
+            <!-- BACK LINK                                 -->
+            <!-- ========================================== -->
+
+            <a href="admin-dashboard.html" class="back-link">← Kembali ke Dashboard</a>
+
+            <!-- ========================================== -->
+            <!-- PAGE TITLE                                -->
+            <!-- ========================================== -->
+
+            <div class="page-title">
+                <h1>👥 Senarai Pelajar</h1>
+                <button class="add-btn" onclick="openAddStudent()">➕ Tambah Pelajar</button>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- SEARCH                                    -->
+            <!-- ========================================== -->
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari pelajar..." onkeyup="searchStudent()">
+            </div>
+
+            <!-- ========================================== -->
+            <!-- STUDENTS TABLE                            -->
+            <!-- ========================================== -->
+
+            <div class="students-table-wrapper">
+
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama</th>
+                            <th>No. IC</th>
+                            <th>Telefon</th>
+                            <th>Kelas</th>
+                            <th>Status</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody">
+                        <tr>
+                            <td colspan="7">
+                                <div class="empty-state">
+                                    <div class="empty-icon">👤</div>
+                                    <p>Tiada pelajar. Klik "Tambah Pelajar" untuk mula.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // ADD STUDENT - Placeholder Function
+        // ==========================================
+
+        function openAddStudent() {
+            alert('Fungsi tambah pelajar akan dibina di peringkat seterusnya.');
+        }
+
+        // ==========================================
+        // EDIT STUDENT - Placeholder Function
+        // ==========================================
+
+        function editStudent(id) {
+            alert('Fungsi edit pelajar akan dibina di peringkat seterusnya.');
+        }
+
+        // ==========================================
+        // DELETE STUDENT - Placeholder Function
+        // ==========================================
+
+        function deleteStudent(id) {
+            if (confirm('Adakah anda pasti mahu memadam pelajar ini?')) {
+                alert('Pelajar akan dipadam di peringkat seterusnya.');
+            }
+        }
+
+        // ==========================================
+        // SEARCH STUDENT - Placeholder Function
+        // ==========================================
+
+        function searchStudent() {
+            // Search functionality will be added later
+            console.log('Searching...');
+        }
+    </script>
+
+</body>
+</html>

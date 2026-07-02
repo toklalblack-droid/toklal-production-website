@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN LOGIN PAGE - ELECTRIC INDIGO THEME    */
+        /* ============================================ */
+
+        /* ----- BANNER ----- */
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .login-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            max-width: 440px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 40px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ----- BACK LINK ----- */
+        .back-link {
+            display: inline-block;
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #FFB830;
+        }
+
+        /* ----- LOGO / ICON ----- */
+        .login-icon {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* ----- TITLE ----- */
+        .login-title {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .login-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .login-title h1 span {
+            color: #4D13D1;
+        }
+
+        .login-title .subtitle {
+            color: #C4C0B8;
+            font-size: 0.95rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* ----- ADMIN ROLE BADGE ----- */
+        .admin-badge {
+            display: inline-block;
+            background: rgba(77, 19, 209, 0.15);
+            color: #4D13D1;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* ----- FORM ----- */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .form-group input::placeholder {
+            color: #4A4A6A;
+        }
+
+        .form-group input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ----- PASSWORD WRAPPER ----- */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4A4A6A;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: #C4C0B8;
+        }
+
+        /* ----- FORM OPTIONS ----- */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0 20px 0;
+        }
+
+        .form-options .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .form-options .remember input[type="checkbox"] {
+            accent-color: #4D13D1;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* ----- LOGIN BUTTON ----- */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ----- ATTEMPT COUNTER ----- */
+        .attempt-counter {
+            color: #FF6B6B;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .attempt-counter.show {
+            display: block;
+        }
+
+        /* ----- ERROR MESSAGE ----- */
+        .error-msg {
+            color: #FF6B6B;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ----- SUCCESS MESSAGE ----- */
+        .success-msg {
+            color: #4CAF50;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
+        /* ----- CHANGE PASSWORD SECTION ----- */
+        .change-password-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .change-password-section .toggle-change-btn {
+            background: none;
+            border: none;
+            color: #4A4A6A;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: underline;
+        }
+
+        .change-password-section .toggle-change-btn:hover {
+            color: #4D13D1;
+        }
+
+        .change-password-form {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .change-password-form.show {
+            display: block;
+        }
+
+        .change-password-form .form-group {
+            margin-bottom: 12px;
+        }
+
+        .change-password-form .change-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+            border: 1px solid rgba(255, 184, 48, 0.2);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .change-password-form .change-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ----- FOOTER ----- */
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #4A4A6A;
+            font-size: 0.7rem;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .login-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-icon {
+                font-size: 2.8rem;
+            }
+
+            .form-options {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .login-btn {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+
+            .change-password-form .change-btn {
+                font-size: 0.85rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN LOGIN PAGE                          -->
+    <!-- ========================================== -->
+
+    <div class="login-page">
+
+        <div class="login-container">
+
+            <!-- Back to Main Gate -->
+            <a href="index.html" class="back-link">← Kembali ke Laman Utama</a>
+
+            <!-- Icon -->
+            <div class="login-icon">🔐</div>
+
+            <!-- Title -->
+            <div class="login-title">
+                <h1>ADMIN <span>LOGIN</span></h1>
+                <p class="subtitle">Log masuk ke panel pentadbiran</p>
+            </div>
+
+            <!-- Admin Badge -->
+            <div class="admin-badge">🛡️ Akses Pentadbir</div>
+
+            <!-- ========================================== -->
+            <!-- LOGIN FORM                                -->
+            <!-- ========================================== -->
+
+            <form id="loginForm" onsubmit="handleAdminLogin(event)">
+
+                <div class="form-group">
+                    <label for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" placeholder="Masukkan email anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">Kata Laluan</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="adminPassword" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe"> Ingat saya
+                    </label>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">🔓 Log Masuk</button>
+
+                <!-- Attempt Counter -->
+                <div class="attempt-counter" id="attemptCounter">
+                    ⚠️ Percubaan ke <span id="attemptCount">0</span> / 5. Akaun akan dikunci selepas 5 percubaan.
+                </div>
+
+                <div class="error-msg" id="loginError">❌ Email atau kata laluan salah. Sila cuba lagi.</div>
+                <div class="success-msg" id="loginSuccess">✅ Log masuk berjaya! Mengalihkan...</div>
+
+            </form>
+
+            <!-- ========================================== -->
+            <!-- CHANGE PASSWORD                           -->
+            <!-- ========================================== -->
+
+            <div class="change-password-section">
+                <button type="button" class="toggle-change-btn" onclick="toggleChangePassword()">
+                    🔑 Tukar Kata Laluan
+                </button>
+
+                <div class="change-password-form" id="changePasswordForm">
+                    <form onsubmit="handleChangePassword(event)">
+                        <div class="form-group">
+                            <label for="currentPassword">Kata Laluan Semasa</label>
+                            <input type="password" id="currentPassword" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Kata Laluan Baru</label>
+                            <input type="password" id="newPassword" placeholder="••••••••" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Sahkan Kata Laluan Baru</label>
+                            <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="change-btn">🔄 Kemaskini Kata Laluan</button>
+                        <div class="error-msg" id="changeError" style="margin-top:10px;">❌ Kata laluan semasa salah atau kata laluan baru tidak sepadan.</div>
+                        <div class="success-msg" id="changeSuccess" style="margin-top:10px;">✅ Kata laluan berjaya dikemaskini!</div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                © 2025 Tok Lal Production
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT                                -->
+    <!-- ========================================== -->
+
+    <script>
+        // ========================================== //
+        // STATE                                     //
+        // ========================================== //
+
+        const ADMIN_EMAIL = 'toklalblack@gmail.com';
+        let ADMIN_PASSWORD = 'admin123';
+        let loginAttempts = 0;
+        const MAX_ATTEMPTS = 5;
+        let isLocked = false;
+
+        // ========================================== //
+        // TOGGLE PASSWORD VISIBILITY                //
+        // ========================================== //
+
+        function togglePassword() {
+            const input = document.getElementById('adminPassword');
+            const btn = document.querySelector('.toggle-password');
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
+        // ========================================== //
+        // TOGGLE CHANGE PASSWORD FORM               //
+        // ========================================== //
+
+        function toggleChangePassword() {
+            const form = document.getElementById('changePasswordForm');
+            form.classList.toggle('show');
+
+            // Hide any messages
+            document.getElementById('changeError').classList.remove('show');
+            document.getElementById('changeSuccess').classList.remove('show');
+
+            // Clear form fields
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+
+        // ========================================== //
+        // HANDLE ADMIN LOGIN                        //
+        // ========================================== //
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value.trim();
+            const errorMsg = document.getElementById('loginError');
+            const successMsg = document.getElementById('loginSuccess');
+            const attemptCounter = document.getElementById('attemptCounter');
+            const attemptCount = document.getElementById('attemptCount');
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Check if locked
+            if (isLocked) {
+                errorMsg.textContent = '❌ Akaun telah dikunci. Sila hubungi pentadbir sistem.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Validate credentials
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                // Login success
+                successMsg.classList.add('show');
+                errorMsg.classList.remove('show');
+                attemptCounter.classList.remove('show');
+
+                // Disable button temporarily
+                loginBtn.disabled = true;
+                loginBtn.textContent = '⏳ Mengalihkan...';
+
+                // Reset attempts
+                loginAttempts = 0;
+
+                // Redirect to admin dashboard
+                setTimeout(() => {
+                    window.location.href = 'admin-dashboard.html';
+                }, 1500);
+
+            } else {
+                // Login failed
+                loginAttempts++;
+                attemptCount.textContent = loginAttempts;
+
+                if (loginAttempts >= MAX_ATTEMPTS) {
+                    isLocked = true;
+                    errorMsg.textContent = '❌ Akaun telah dikunci! 5 percubaan gagal. Sila hubungi pentadbir sistem.';
+                    errorMsg.classList.add('show');
+                    attemptCounter.classList.add('show');
+                    loginBtn.disabled = true;
+                } else {
+                    errorMsg.textContent = `❌ Email atau kata laluan salah. Percubaan ${loginAttempts}/${MAX_ATTEMPTS}.`;
+                    errorMsg.classList.add('show');
+                    attemptCounter.classList.add('show');
+                }
+
+                // Clear password field
+                document.getElementById('adminPassword').value = '';
+
+                // Auto-hide error after 3 seconds
+                setTimeout(() => {
+                    if (!isLocked) {
+                        errorMsg.classList.remove('show');
+                    }
+                }, 3000);
+            }
+        }
+
+        // ========================================== //
+        // HANDLE CHANGE PASSWORD                    //
+        // ========================================== //
+
+        function handleChangePassword(event) {
+            event.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value.trim();
+            const newPassword = document.getElementById('newPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+            const errorMsg = document.getElementById('changeError');
+            const successMsg = document.getElementById('changeSuccess');
+
+            // Hide previous messages
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+
+            // Validate current password
+            if (currentPassword !== ADMIN_PASSWORD) {
+                errorMsg.textContent = '❌ Kata laluan semasa salah.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Validate new password
+            if (newPassword.length < 6) {
+                errorMsg.textContent = '❌ Kata laluan baru mestilah sekurang-kurangnya 6 aksara.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Validate confirmation
+            if (newPassword !== confirmPassword) {
+                errorMsg.textContent = '❌ Kata laluan baru tidak sepadan.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            // Update password
+            ADMIN_PASSWORD = newPassword;
+
+            // Show success
+            successMsg.textContent = '✅ Kata laluan berjaya dikemaskini!';
+            successMsg.classList.add('show');
+
+            // Clear form
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+
+            // Auto-hide success after 3 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+        }
+
+        // ========================================== //
+        // REMEMBER ME - Local Storage                //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberCheckbox = document.getElementById('rememberMe');
+            const emailInput = document.getElementById('adminEmail');
+
+            // Load saved email if exists
+            const savedEmail = localStorage.getItem('adminEmail');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+                rememberCheckbox.checked = true;
+            }
+
+            // Save email when form submits
+            document.getElementById('loginForm').addEventListener('submit', function() {
+                if (rememberCheckbox.checked) {
+                    localStorage.setItem('adminEmail', emailInput.value);
+                } else {
+                    localStorage.removeItem('adminEmail');
+                }
+            });
+
+            // Check if account was locked (persist across page reloads)
+            const savedLocked = localStorage.getItem('adminLocked');
+            if (savedLocked === 'true') {
+                isLocked = true;
+                const loginBtn = document.getElementById('loginBtn');
+                loginBtn.disabled = true;
+                const errorMsg = document.getElementById('loginError');
+                errorMsg.textContent = '❌ Akaun telah dikunci. Sila hubungi pentadbir sistem.';
+                errorMsg.classList.add('show');
+            }
+
+            // Reset lock on successful login via session storage
+            if (sessionStorage.getItem('adminUnlocked') === 'true') {
+                localStorage.removeItem('adminLocked');
+                sessionStorage.removeItem('adminUnlocked');
+            }
+        });
+
+        // ========================================== //
+        // CONSOLE WELCOME                           //
+        // ========================================== //
+
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
+        console.log('%cPanel Pentadbiran', 'font-size: 14px; color: #C4C0B8;');
+    </script>
+
+</body>
+</html>

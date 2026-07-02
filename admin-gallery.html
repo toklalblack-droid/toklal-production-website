@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Gallery</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN GALLERY - ELECTRIC INDIGO THEME       */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- CATEGORY FILTER ----- */
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .category-filter .filter-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            color: #C4C0B8;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .category-filter .filter-btn:hover {
+            background: rgba(77, 19, 209, 0.1);
+            border-color: rgba(77, 19, 209, 0.3);
+            color: #FFF8F0;
+        }
+
+        .category-filter .filter-btn.active {
+            background: rgba(77, 19, 209, 0.2);
+            border-color: rgba(77, 19, 209, 0.3);
+            color: #FFF8F0;
+        }
+
+        /* ----- GALLERY GRID ----- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-card .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: #2A2A4A;
+        }
+
+        .gallery-card .gallery-info {
+            padding: 15px;
+        }
+
+        .gallery-card .gallery-info h4 {
+            color: #FFF8F0;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .gallery-card .gallery-info p {
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .gallery-card .gallery-actions {
+            display: flex;
+            gap: 8px;
+            padding: 10px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .gallery-card .gallery-actions button {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .gallery-card .gallery-actions .edit-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .gallery-card .gallery-actions .edit-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .gallery-card .gallery-actions .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .gallery-card .gallery-actions .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        .gallery-card .category-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(77, 19, 209, 0.15);
+            color: #4D13D1;
+            margin-top: 5px;
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus,
+        .modal-content .form-group textarea:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
+        }
+
+        .modal-content .file-upload-area {
+            border: 2px dashed rgba(77, 19, 209, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            color: #C4C0B8;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-content .file-upload-area:hover {
+            border-color: rgba(77, 19, 209, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .modal-content .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .modal-content .file-upload-area .upload-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .gallery-card .gallery-img {
+                height: 150px;
+            }
+
+            .category-filter {
+                justify-content: center;
+            }
+
+            .category-filter .filter-btn {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN GALLERY                             -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>🖼️ <span>Galeri Projek</span></h1>
+                <button class="add-btn" onclick="openModal('add')">➕ Upload Gambar</button>
+            </div>
+
+            <!-- CATEGORY FILTER -->
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterGallery('all', this)">📷 Semua</button>
+                <button class="filter-btn" onclick="filterGallery('performance', this)">🎭 Performance</button>
+                <button class="filter-btn" onclick="filterGallery('class', this)">📚 Kelas</button>
+                <button class="filter-btn" onclick="filterGallery('studio', this)">🎵 Studio</button>
+                <button class="filter-btn" onclick="filterGallery('event', this)">📅 Event</button>
+            </div>
+
+            <!-- GALLERY GRID -->
+            <div class="gallery-grid" id="galleryGrid">
+
+                <div class="gallery-card" data-category="performance">
+                    <img src="pictures/gallery/performances/performance-1.jpg" alt="Performance" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EPerformance%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-info">
+                        <h4>Persembahan Marching Band</h4>
+                        <p>Hari Kebangsaan 2024</p>
+                        <span class="category-tag">🎭 Performance</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-category="class">
+                    <img src="pictures/gallery/classes/class-1.jpg" alt="Class" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EClass%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-info">
+                        <h4>Kelas Kompang</h4>
+                        <p>Sesi latihan mingguan</p>
+                        <span class="category-tag">📚 Kelas</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-category="studio">
+                    <img src="pictures/gallery/studio/studio-1.jpg" alt="Studio" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EStudio%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-info">
+                        <h4>Sesi Rakaman Studio</h4>
+                        <p>Projek album 2024</p>
+                        <span class="category-tag">🎵 Studio</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-category="event">
+                    <img src="pictures/gallery/events/event-1.jpg" alt="Event" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EEvent%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-info">
+                        <h4>Bengkel Muzik Tradisional</h4>
+                        <p>ASWARA 2023</p>
+                        <span class="category-tag">📅 Event</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
+                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL                                     -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="galleryModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 id="modalTitle">Upload Gambar</h2>
+            <form onsubmit="saveGallery(event)">
+                <div class="form-group">
+                    <label for="galleryTitle">Tajuk</label>
+                    <input type="text" id="galleryTitle" placeholder="Persembahan Marching Band" required>
+                </div>
+                <div class="form-group">
+                    <label for="galleryDesc">Keterangan</label>
+                    <textarea id="galleryDesc" placeholder="Hari Kebangsaan 2024"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="galleryCategory">Kategori</label>
+                    <select id="galleryCategory" required>
+                        <option value="performance">🎭 Performance</option>
+                        <option value="class">📚 Kelas</option>
+                        <option value="studio">🎵 Studio</option>
+                        <option value="event">📅 Event</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Gambar</label>
+                    <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
+                        <span class="upload-icon">📸</span>
+                        <p>Klik untuk upload gambar</p>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // MODAL FUNCTIONS                           //
+        // ========================================== //
+
+        function openModal(action) {
+            const modal = document.getElementById('galleryModal');
+            const title = document.getElementById('modalTitle');
+
+            if (action === 'add') {
+                title.textContent = '📸 Upload Gambar';
+                document.getElementById('galleryTitle').value = '';
+                document.getElementById('galleryDesc').value = '';
+                document.getElementById('galleryCategory').value = 'performance';
+                document.getElementById('fileInput').value = '';
+            } else {
+                title.textContent = '✏️ Edit Gambar';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('galleryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ========================================== //
+        // SAVE GALLERY                              //
+        // ========================================== //
+
+        function saveGallery(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('galleryTitle').value;
+            const desc = document.getElementById('galleryDesc').value || '—';
+            const category = document.getElementById('galleryCategory').value;
+            const fileInput = document.getElementById('fileInput');
+
+            // Category labels
+            const categoryLabels = {
+                'performance': '🎭 Performance',
+                'class': '📚 Kelas',
+                'studio': '🎵 Studio',
+                'event': '📅 Event'
+            };
+
+            const categoryEmojis = {
+                'performance': '🎭',
+                'class': '📚',
+                'studio': '🎵',
+                'event': '📅'
+            };
+
+            // Create new gallery card
+            const grid = document.getElementById('galleryGrid');
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.dataset.category = category;
+
+            // Get image preview if available
+            let imgSrc = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3E' + categoryEmojis[category] + '%3C/text%3E%3C/svg%3E';
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgSrc = e.target.result;
+                    updateCardImage(card, imgSrc);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            card.innerHTML = `
+                <img src="${imgSrc}" alt="${title}" class="gallery-img">
+                <div class="gallery-info">
+                    <h4>${title}</h4>
+                    <p>${desc}</p>
+                    <span class="category-tag">${categoryLabels[category]}</span>
+                </div>
+                <div class="gallery-actions">
+                    <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
+                    <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+                </div>
+            `;
+
+            grid.appendChild(card);
+
+            closeModal();
+            alert('✅ Gambar berjaya diupload!');
+        }
+
+        function updateCardImage(card, src) {
+            const img = card.querySelector('.gallery-img');
+            if (img) {
+                img.src = src;
+            }
+        }
+
+        // ========================================== //
+        // DELETE GALLERY                            //
+        // ========================================== //
+
+        function deleteGallery(btn) {
+            if (confirm('❌ Adakah anda pasti mahu memadam gambar ini?')) {
+                const card = btn.closest('.gallery-card');
+                card.remove();
+                alert('✅ Gambar berjaya dipadam!');
+            }
+        }
+
+        // ========================================== //
+        // FILTER GALLERY                            //
+        // ========================================== //
+
+        function filterGallery(category, btn) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.gallery-card');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ========================================== //
+        // CONSOLE WELCOME                           //
+        // ========================================== //
+
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
+        console.log('%cPanel Admin - Galeri Projek', 'font-size: 14px; color: #C4C0B8;');
+    </script>
+
+</body>
+</html>

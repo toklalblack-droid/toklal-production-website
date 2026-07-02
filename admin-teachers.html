@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Teachers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* ============================================ */
+        /* ADMIN TEACHERS - ELECTRIC INDIGO THEME      */
+        /* ============================================ */
+
+        .site-header {
+            width: 100%;
+            display: block;
+            background: #1A1A2E;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+        }
+
+        .site-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            background: #1A1A2E;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADER ----- */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-header .logo-area span {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header .user-area .user-name {
+            color: #FFF8F0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #FF6B6B;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .admin-header .back-btn {
+            color: #C4C0B8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .admin-header .back-btn:hover {
+            color: #FFB830;
+        }
+
+        /* ----- PAGE TITLE ----- */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title h1 {
+            color: #FFF8F0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .page-title h1 span {
+            color: #4D13D1;
+        }
+
+        .page-title .add-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-title .add-btn:hover {
+            background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- SEARCH BAR ----- */
+        .search-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .search-bar input::placeholder {
+            color: #4A4A6A;
+        }
+
+        .search-bar .search-btn {
+            padding: 10px 25px;
+            background: rgba(77, 19, 209, 0.2);
+            color: #FFF8F0;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-bar .search-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        /* ----- TABLE ----- */
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .admin-table th {
+            color: #FFF8F0;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            font-weight: 600;
+        }
+
+        .admin-table td {
+            color: #C4C0B8;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 300;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .admin-table .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .admin-table .action-btns button {
+            padding: 5px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .admin-table .edit-btn {
+            background: rgba(77, 19, 209, 0.2);
+            color: #4D13D1;
+        }
+
+        .admin-table .edit-btn:hover {
+            background: rgba(77, 19, 209, 0.3);
+        }
+
+        .admin-table .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .admin-table .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        .admin-table .view-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+        }
+
+        .admin-table .view-btn:hover {
+            background: rgba(255, 184, 48, 0.25);
+        }
+
+        .admin-table .status-badge {
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .admin-table .status-active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+        }
+
+        .admin-table .status-inactive {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .admin-table .rating-badge {
+            color: #FFB830;
+            font-weight: 600;
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.2);
+            border-radius: 16px;
+            padding: 30px 35px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #C4C0B8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-content .modal-close:hover {
+            color: #FF6B6B;
+        }
+
+        .modal-content h2 {
+            color: #FFF8F0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            clear: both;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            color: #C4C0B8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #FFF8F0;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus {
+            outline: none;
+            border-color: #4D13D1;
+        }
+
+        .modal-content .form-group select option {
+            background: #1A1A2E;
+            color: #FFF8F0;
+        }
+
+        .modal-content .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4D13D1;
+            color: #FFF8F0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .modal-content .submit-btn:hover {
+            background: #5D23E1;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                  */
+        /* ============================================ */
+
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px 20px;
+            }
+
+            .admin-header .user-area {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 1.4rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .search-bar input {
+                min-width: auto;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+
+            .admin-table {
+                min-width: 600px;
+            }
+
+            .admin-table th,
+            .admin-table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .admin-table .action-btns {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .admin-table .action-btns button {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- BANNER                                    -->
+    <!-- ========================================== -->
+
+    <header class="site-header">
+        <img src="pictures/banner.png" alt="TOK LAL Production Banner">
+    </header>
+
+    <!-- ========================================== -->
+    <!-- ADMIN TEACHERS                            -->
+    <!-- ========================================== -->
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Panel Admin</span>
+                </div>
+                <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                    <a href="admin-dashboard.html" class="back-btn">← Dashboard</a>
+                    <div class="user-area">
+                        <div class="user-name">🛡️ Admin</div>
+                        <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE TITLE -->
+            <div class="page-title">
+                <h1>👨‍🏫 <span>Senarai Guru</span></h1>
+                <button class="add-btn" onclick="openModal('add')">➕ Tambah Guru</button>
+            </div>
+
+            <!-- SEARCH BAR -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Cari guru..." onkeyup="searchTeachers()">
+                <button class="search-btn" onclick="searchTeachers()">Cari</button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Pakar</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacherTableBody">
+                        <tr>
+                            <td>Cikgu Ahmad</td>
+                            <td>ahmad@toklal.com</td>
+                            <td>Kompang, Gendang, Rebana</td>
+                            <td><span class="rating-badge">⭐ 4.2</span></td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="view-btn" onclick="viewTeacher(this)">👁️</button>
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteTeacher(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cikgu Siti</td>
+                            <td>siti@toklal.com</td>
+                            <td>Gitar, Keyboard, Modern</td>
+                            <td><span class="rating-badge">⭐ 4.8</span></td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="view-btn" onclick="viewTeacher(this)">👁️</button>
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteTeacher(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cikgu Rizal</td>
+                            <td>rizal@toklal.com</td>
+                            <td>Serunai, Marching Band</td>
+                            <td><span class="rating-badge">⭐ 3.5</span></td>
+                            <td><span class="status-badge status-active">Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="view-btn" onclick="viewTeacher(this)">👁️</button>
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteTeacher(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cikgu Farid</td>
+                            <td>farid@toklal.com</td>
+                            <td>Vokal, Komposisi</td>
+                            <td><span class="rating-badge">⭐ 4.0</span></td>
+                            <td><span class="status-badge status-inactive">Tidak Aktif</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="view-btn" onclick="viewTeacher(this)">👁️</button>
+                                    <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                                    <button class="delete-btn" onclick="deleteTeacher(this)">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL                                     -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="teacherModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 id="modalTitle">Tambah Guru</h2>
+            <form onsubmit="saveTeacher(event)">
+                <div class="form-group">
+                    <label for="teacherName">Nama Guru</label>
+                    <input type="text" id="teacherName" placeholder="Cikgu Ahmad" required>
+                </div>
+                <div class="form-group">
+                    <label for="teacherEmail">Email</label>
+                    <input type="email" id="teacherEmail" placeholder="email@toklal.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="teacherExpertise">Pakar</label>
+                    <input type="text" id="teacherExpertise" placeholder="Kompang, Gendang, Rebana" required>
+                </div>
+                <div class="form-group">
+                    <label for="teacherRating">Rating</label>
+                    <input type="number" id="teacherRating" placeholder="4.2" min="0" max="5" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="teacherStatus">Status</label>
+                    <select id="teacherStatus">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW TEACHER MODAL                        -->
+    <!-- ========================================== -->
+
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeViewModal()">✕</button>
+            <h2>👨‍🏫 Profil Guru</h2>
+            <div id="viewTeacherContent">
+                <p style="color:#C4C0B8; text-align:center;">Memuatkan...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================== //
+        // MODAL FUNCTIONS                           //
+        // ========================================== //
+
+        function openModal(action) {
+            const modal = document.getElementById('teacherModal');
+            const title = document.getElementById('modalTitle');
+
+            if (action === 'add') {
+                title.textContent = '➕ Tambah Guru';
+                document.getElementById('teacherName').value = '';
+                document.getElementById('teacherEmail').value = '';
+                document.getElementById('teacherExpertise').value = '';
+                document.getElementById('teacherRating').value = '';
+                document.getElementById('teacherStatus').value = 'Aktif';
+            } else {
+                title.textContent = '✏️ Edit Guru';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('teacherModal').classList.remove('active');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewModal').classList.remove('active');
+        }
+
+        // Close modals on outside click
+        document.getElementById('teacherModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('viewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeViewModal();
+            }
+        });
+
+        // ========================================== //
+        // VIEW TEACHER                              //
+        // ========================================== //
+
+        function viewTeacher(btn) {
+            const row = btn.closest('tr');
+            const cells = row.querySelectorAll('td');
+            const name = cells[0].textContent;
+            const email = cells[1].textContent;
+            const expertise = cells[2].textContent;
+            const rating = cells[3].textContent.trim();
+            const status = cells[4].textContent.trim();
+
+            const content = document.getElementById('viewTeacherContent');
+            content.innerHTML = `
+                <div style="margin-top:15px;">
+                    <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Nama</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${name}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Email</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${email}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Pakar</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${expertise}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Rating</span>
+                        <span style="color:#FFB830; font-weight:600;">${rating}</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <span style="color:#C4C0B8;">Status</span>
+                        <span style="color:#FFF8F0; font-weight:600;">${status}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('viewModal').classList.add('active');
+        }
+
+        // ========================================== //
+        // SAVE TEACHER                              //
+        // ========================================== //
+
+        function saveTeacher(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('teacherName').value;
+            const email = document.getElementById('teacherEmail').value;
+            const expertise = document.getElementById('teacherExpertise').value;
+            const rating = document.getElementById('teacherRating').value;
+            const status = document.getElementById('teacherStatus').value;
+
+            // Add row to table
+            const table = document.getElementById('teacherTableBody');
+            const row = document.createElement('tr');
+
+            const statusClass = status === 'Aktif' ? 'status-active' : 'status-inactive';
+
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${expertise}</td>
+                <td><span class="rating-badge">⭐ ${rating}</span></td>
+                <td><span class="status-badge ${statusClass}">${status}</span></td>
+                <td>
+                    <div class="action-btns">
+                        <button class="view-btn" onclick="viewTeacher(this)">👁️</button>
+                        <button class="edit-btn" onclick="openModal('edit')">✏️</button>
+                        <button class="delete-btn" onclick="deleteTeacher(this)">🗑️</button>
+                    </div>
+                </td>
+            `;
+
+            table.appendChild(row);
+
+            closeModal();
+            alert('✅ Guru berjaya ditambah!');
+        }
+
+        // ========================================== //
+        // DELETE TEACHER                            //
+        // ========================================== //
+
+        function deleteTeacher(btn) {
+            if (confirm('❌ Adakah anda pasti mahu memadam guru ini?')) {
+                const row = btn.closest('tr');
+                row.remove();
+                alert('✅ Guru berjaya dipadam!');
+            }
+        }
+
+        // ========================================== //
+        // SEARCH TEACHERS                           //
+        // ========================================== //
+
+        function searchTeachers() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#teacherTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        // ========================================== //
+        // CONSOLE WELCOME                           //
+        // ========================================== //
+
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
+        console.log('%cPanel Admin - Senarai Guru', 'font-size: 14px; color: #C4C0B8;');
+    </script>
+
+</body>
+</html>

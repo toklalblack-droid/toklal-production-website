@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tok Lal Production - Admin Teachers</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        .admin-page {
+            min-height: 100vh;
+            background: #0a0a1a;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .admin-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-header .logo-area img {
+            height: 40px;
+            width: auto;
+        }
+
+        .admin-header .logo-area span {
+            color: #d4a843;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .admin-header .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-header .user-area .admin-name {
+            color: #c0c0d0;
+            font-size: 0.9rem;
+        }
+
+        .admin-header .user-area .logout-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .admin-header .user-area .logout-btn:hover {
+            background: rgba(231, 76, 60, 0.15);
+        }
+
+        /* Page Title */
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            color: #d4a843;
+            font-size: 1.8rem;
+        }
+
+        .page-title .add-btn {
+            background: #d4a843;
+            color: #0a0a1a;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .page-title .add-btn:hover {
+            background: #e8c45a;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #8888a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #d4a843;
+        }
+
+        /* Teachers Grid */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .teacher-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            border-color: rgba(212, 168, 67, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .teacher-card .teacher-name {
+            color: #e8e8f0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .teacher-card .teacher-expertise {
+            color: #8888a0;
+            font-size: 0.85rem;
+            margin: 5px 0;
+        }
+
+        .teacher-card .teacher-rating {
+            color: #d4a843;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .teacher-card .teacher-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .teacher-card .action-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #c0c0d0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .teacher-card .action-btn:hover {
+            background: rgba(212, 168, 67, 0.15);
+            border-color: rgba(212, 168, 67, 0.3);
+            color: #d4a843;
+        }
+
+        .teacher-card .action-btn.delete:hover {
+            background: rgba(231, 76, 60, 0.15);
+            border-color: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #555570;
+            padding: 60px 20px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .page-title {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-page">
+
+        <div class="admin-container">
+
+            <!-- ========================================== -->
+            <!-- HEADER                                    -->
+            <!-- ========================================== -->
+
+            <header class="admin-header">
+                <div class="logo-area">
+                    <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
+                    <span>Admin Panel</span>
+                </div>
+                <div class="user-area">
+                    <span class="admin-name">👤 Admin</span>
+                    <a href="admin-login.html" class="logout-btn">🚪 Log Keluar</a>
+                </div>
+            </header>
+
+            <!-- ========================================== -->
+            <!-- BACK LINK                                 -->
+            <!-- ========================================== -->
+
+            <a href="admin-dashboard.html" class="back-link">← Kembali ke Dashboard</a>
+
+            <!-- ========================================== -->
+            <!-- PAGE TITLE                                -->
+            <!-- ========================================== -->
+
+            <div class="page-title">
+                <h1>👨‍🏫 Senarai Guru</h1>
+                <button class="add-btn" onclick="openAddTeacher()">➕ Tambah Guru</button>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TEACHERS GRID                             -->
+            <!-- ========================================== -->
+
+            <div class="teachers-grid" id="teachersGrid">
+
+                <!-- Empty State -->
+                <div class="empty-state">
+                    <div class="empty-icon">👨‍🏫</div>
+                    <p>Tiada guru. Klik "Tambah Guru" untuk mula.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // ADD TEACHER - Placeholder Function
+        // ==========================================
+
+        function openAddTeacher() {
+            alert('Fungsi tambah guru akan dibina di peringkat seterusnya.');
+        }
+
+        // ==========================================
+        // EDIT TEACHER - Placeholder Function
+        // ==========================================
+
+        function editTeacher(id) {
+            alert('Fungsi edit guru akan dibina di peringkat seterusnya.');
+        }
+
+        // ==========================================
+        // DELETE TEACHER - Placeholder Function
+        // ==========================================
+
+        function deleteTeacher(id) {
+            if (confirm('Adakah anda pasti mahu memadam guru ini?')) {
+                alert('Guru akan dipadam di peringkat seterusnya.');
+            }
+        }
+    </script>
+
+</body>
+</html>

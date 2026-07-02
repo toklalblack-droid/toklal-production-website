@@ -1,0 +1,354 @@
+/* ============================================ */
+/* TOK LAL PRODUCTION - RESPONSIVE STYLES      */
+/* ============================================ */
+
+/* ---------- TABLET (768px - 1024px) ---------- */
+@media screen and (max-width: 1024px) {
+    
+    .gate-logo h1 {
+        font-size: 2.2rem;
+    }
+
+    .gate-logo .tagline {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    .visitor-card {
+        padding: 30px 30px;
+    }
+
+    .visitor-card .card-icon {
+        font-size: 3rem;
+    }
+
+    .visitor-card .card-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------- MOBILE (up to 768px) ---------- */
+@media screen and (max-width: 768px) {
+
+    .gate-container {
+        padding: 30px 15px;
+    }
+
+    .gate-logo img {
+        max-width: 80px;
+    }
+
+    .gate-logo h1 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .gate-logo .tagline {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+
+    .gate-welcome h2 {
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+    }
+
+    .gate-welcome p {
+        font-size: 0.85rem;
+    }
+
+    .gate-options {
+        gap: 15px;
+    }
+
+    /* --- Visitor Card --- */
+    .visitor-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 12px;
+    }
+
+    .visitor-card .card-icon {
+        font-size: 2.8rem;
+    }
+
+    .visitor-card .card-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .visitor-card .card-desc {
+        font-size: 0.9rem;
+    }
+
+    .visitor-card .card-btn {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+
+    /* --- Row (User + Admin) --- */
+    .gate-row {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    /* --- User Card (Mobile) --- */
+    .user-card {
+        flex-direction: row;
+        padding: 16px 20px;
+        gap: 12px;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .user-card .card-icon {
+        font-size: 1.6rem;
+    }
+
+    .user-card .card-content h4 {
+        font-size: 0.95rem;
+    }
+
+    .user-card .card-content .card-sub {
+        font-size: 0.7rem;
+    }
+
+    .user-card .card-btn-small {
+        font-size: 0.7rem;
+        padding: 4px 14px;
+    }
+
+    /* --- Admin Card (Mobile) --- */
+    .admin-card {
+        flex-direction: row;
+        padding: 16px 20px;
+        gap: 12px;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .admin-card .card-icon {
+        font-size: 1.6rem;
+    }
+
+    .admin-card .card-content h4 {
+        font-size: 0.95rem;
+    }
+
+    .admin-card .card-content .card-sub {
+        font-size: 0.7rem;
+    }
+
+    .admin-card .card-btn-small {
+        font-size: 0.7rem;
+    }
+
+    .gate-footer p {
+        font-size: 0.7rem;
+    }
+}
+
+/* ---------- SMALL MOBILE (up to 480px) ---------- */
+@media screen and (max-width: 480px) {
+
+    .gate-container {
+        padding: 20px 12px;
+    }
+
+    .gate-logo img {
+        max-width: 60px;
+    }
+
+    .gate-logo h1 {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+
+    .gate-logo .tagline {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .gate-welcome h2 {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    .gate-welcome p {
+        font-size: 0.75rem;
+    }
+
+    .gate-options {
+        gap: 12px;
+    }
+
+    /* --- Visitor --- */
+    .visitor-card {
+        padding: 22px 15px;
+        gap: 8px;
+        border-radius: 12px;
+    }
+
+    .visitor-card .card-icon {
+        font-size: 2.2rem;
+    }
+
+    .visitor-card .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .visitor-card .card-desc {
+        font-size: 0.75rem;
+    }
+
+    .visitor-card .card-btn {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    /* --- User --- */
+    .user-card {
+        padding: 14px 16px;
+        gap: 10px;
+        border-radius: 12px;
+    }
+
+    .user-card .card-icon {
+        font-size: 1.4rem;
+    }
+
+    .user-card .card-content h4 {
+        font-size: 0.85rem;
+    }
+
+    .user-card .card-content .card-sub {
+        font-size: 0.6rem;
+    }
+
+    .user-card .card-btn-small {
+        font-size: 0.65rem;
+        padding: 3px 12px;
+    }
+
+    /* --- Admin --- */
+    .admin-card {
+        padding: 14px 16px;
+        gap: 10px;
+        border-radius: 12px;
+    }
+
+    .admin-card .card-icon {
+        font-size: 1.4rem;
+    }
+
+    .admin-card .card-content h4 {
+        font-size: 0.85rem;
+    }
+
+    .admin-card .card-content .card-sub {
+        font-size: 0.6rem;
+    }
+
+    .admin-card .card-btn-small {
+        font-size: 0.65rem;
+    }
+
+    .gate-footer {
+        margin-top: 30px;
+        padding-top: 15px;
+    }
+
+    .gate-footer p {
+        font-size: 0.6rem;
+    }
+}
+/* ============================================ */
+/* VISITOR RESPONSIVE - WITH PICTURE           */
+/* ============================================ */
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+    .visitor-right {
+        width: 160px;
+        height: 120px;
+    }
+
+    .visitor-left .card-icon {
+        font-size: 3rem;
+    }
+
+    .visitor-left .card-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .visitor-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 25px 20px !important;
+        gap: 15px;
+    }
+
+    .visitor-left {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .visitor-left .card-icon {
+        font-size: 2.8rem;
+    }
+
+    .visitor-left .card-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .visitor-left .card-content .card-desc {
+        font-size: 0.9rem;
+    }
+
+    .visitor-left .card-btn {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+
+    .visitor-right {
+        width: 100%;
+        height: 180px;
+        max-width: 400px;
+    }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+    .visitor-card {
+        padding: 18px 15px !important;
+        gap: 12px;
+    }
+
+    .visitor-left .card-icon {
+        font-size: 2.2rem;
+    }
+
+    .visitor-left .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .visitor-left .card-content .card-desc {
+        font-size: 0.75rem;
+    }
+
+    .visitor-left .card-btn {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    .visitor-right {
+        height: 140px;
+        max-width: 100%;
+    }
+}
