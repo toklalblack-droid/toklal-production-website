@@ -108,6 +108,7 @@
             color: #FFB830;
         }
 
+        /* UPLOAD FORM */
         .upload-form {
             background: rgba(255,255,255,0.04);
             border-radius: 16px;
@@ -201,10 +202,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255,184,48,0.3);
         }
-        .upload-form .upload-actions .upload-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
         .upload-form .upload-actions .clear-btn {
             background: rgba(255,107,107,0.15);
             color: #FF6B6B;
@@ -213,6 +210,7 @@
             background: rgba(255,107,107,0.25);
         }
 
+        /* PREVIEW */
         .preview-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -278,71 +276,135 @@
             margin-bottom: 8px;
         }
 
-        .saved-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .saved-item {
+        /* ========================================== */
+        /* GALERI CARD - DESIGN YANG ANDA MINTA     */
+        /* ========================================== */
+
+        .gallery-card {
             background: rgba(255,255,255,0.04);
-            border-radius: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .gallery-card:hover {
+            border-color: rgba(255,184,48,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-card .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,184,48,0.15);
+        }
+        .gallery-card .gallery-header .gallery-title {
+            color: #FFF8F0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .gallery-card .gallery-header .gallery-title span {
+            color: #FFB830;
+        }
+        .gallery-card .gallery-header .gallery-count {
+            color: #4A4A6A;
+            font-size: 0.85rem;
+        }
+
+        .gallery-card .gallery-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .gallery-card .gallery-images .gallery-img {
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.06);
             transition: all 0.3s ease;
+            position: relative;
         }
-        .saved-item:hover {
+        .gallery-card .gallery-images .gallery-img:hover {
             border-color: rgba(255,184,48,0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: scale(1.03);
         }
-        .saved-item img {
+        .gallery-card .gallery-images .gallery-img img {
             width: 100%;
             height: 180px;
             object-fit: cover;
             display: block;
             background: #2A2A4A;
         }
-        .saved-item .saved-info {
-            padding: 12px 15px;
-        }
-        .saved-item .saved-info .saved-title {
-            color: #FFF8F0;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .saved-item .saved-info .saved-date {
-            color: #4A4A6A;
-            font-size: 0.75rem;
-        }
-        .saved-item .saved-actions {
-            padding: 0 15px 12px 15px;
-            display: flex;
-            gap: 8px;
-        }
-        .saved-item .saved-actions button {
-            flex: 1;
-            padding: 6px;
+        .gallery-card .gallery-images .gallery-img .img-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255,107,107,0.85);
+            color: #FFF;
             border: none;
-            border-radius: 6px;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.7rem;
             cursor: pointer;
-            font-size: 0.75rem;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .saved-item .saved-actions .delete-btn {
+        .gallery-card .gallery-images .gallery-img .img-remove:hover {
+            background: #FF6B6B;
+            transform: scale(1.1);
+        }
+
+        .gallery-card .gallery-actions {
+            display: flex;
+            gap: 12px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            flex-wrap: wrap;
+        }
+        .gallery-card .gallery-actions button {
+            padding: 8px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-card .gallery-actions .edit-btn {
+            background: rgba(255,184,48,0.15);
+            color: #FFB830;
+            border: 1px solid rgba(255,184,48,0.2);
+        }
+        .gallery-card .gallery-actions .edit-btn:hover {
+            background: rgba(255,184,48,0.25);
+            transform: translateY(-2px);
+        }
+        .gallery-card .gallery-actions .delete-btn {
             background: rgba(255,107,107,0.15);
             color: #FF6B6B;
+            border: 1px solid rgba(255,107,107,0.2);
         }
-        .saved-item .saved-actions .delete-btn:hover {
+        .gallery-card .gallery-actions .delete-btn:hover {
             background: rgba(255,107,107,0.25);
+            transform: translateY(-2px);
         }
-        .saved-empty {
+
+        .gallery-empty-state {
             text-align: center;
             color: #4A4A6A;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
-        .saved-empty .empty-icon {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
+        .gallery-empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
         }
 
         .toast {
@@ -399,8 +461,14 @@
             .preview-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-            .saved-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            .gallery-card .gallery-images {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .gallery-card .gallery-actions {
+                flex-direction: column;
+            }
+            .gallery-card .gallery-actions button {
+                width: 100%;
             }
             .toast {
                 left: 20px;
@@ -416,11 +484,15 @@
             .preview-item img {
                 height: 120px;
             }
-            .saved-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            .gallery-card .gallery-images {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
-            .saved-item img {
+            .gallery-card .gallery-images .gallery-img img {
                 height: 140px;
+            }
+            .gallery-card .gallery-header {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -435,6 +507,7 @@
     <div class="admin-page">
         <div class="admin-container">
 
+            <!-- HEADER -->
             <header class="admin-header">
                 <div class="logo-area">
                     <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
@@ -449,6 +522,7 @@
                 </div>
             </header>
 
+            <!-- PAGE TITLE -->
             <div class="page-title">
                 <h1>🖼️ <span>Galeri Aktiviti</span></h1>
             </div>
@@ -474,7 +548,6 @@
                 </div>
 
                 <div class="upload-actions">
-                    <!-- BUTTON SENTIASA AKTIF - TAK PERLU CHECK -->
                     <button class="upload-btn" id="uploadBtn" onclick="uploadToSupabase()">
                         📤 Upload ke Database
                     </button>
@@ -491,18 +564,19 @@
                 </div>
             </div>
 
-            <!-- SAVED GALLERY -->
-            <h3 style="color:#FFF8F0; margin:30px 0 15px 0;">📚 Gambar Tersimpan</h3>
-            <div class="saved-gallery-grid" id="savedGallery">
-                <div class="saved-empty">
-                    <div class="empty-icon">📭</div>
-                    <p>Tiada gambar tersimpan.</p>
-                </div>
+            <!-- ========================================== -->
+            <!-- GALERI - DESIGN BARU                     -->
+            <!-- ========================================== -->
+
+            <h3 style="color:#FFF8F0; margin:30px 0 15px 0;">📚 Galeri Tersimpan</h3>
+            <div id="galleryContainer">
+                <!-- Gallery cards akan di-load oleh JavaScript -->
             </div>
 
         </div>
     </div>
 
+    <!-- TOAST -->
     <div class="toast" id="toast">
         <div class="toast-title" id="toastTitle">✅ Berjaya!</div>
         <div class="toast-message" id="toastMessage">Gambar berjaya diupload.</div>
@@ -514,7 +588,7 @@
         // ========================================== //
 
         const SUPABASE_URL = 'https://choqidxpmdwvmdnfpiox.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNob3FpZHhwbWR3dm1kbmZwaW94Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzA1MDA4NSwiZXhwIjoyMDk4NjI2MDg1fQ.4HbcXRmmeOrhBL-HVsULphP9M3rOqcMRZfzzZVFI8-g';  // <-- TUKAR KE SERVICE ROLE KEY
+        const SUPABASE_KEY = 'YOUR_SERVICE_ROLE_KEY_HERE';  // <-- TUKAR KE SERVICE ROLE KEY
 
         // ========================================== //
         // STATE                                     //
@@ -653,7 +727,6 @@
 
             console.log('🔍 Starting upload...');
             console.log('📁 Files:', previewFiles.length);
-            console.log('🔑 Supabase Key (first 20 chars):', SUPABASE_KEY.substring(0, 20) + '...');
 
             for (let item of previewFiles) {
                 try {
@@ -724,7 +797,7 @@
                 document.getElementById('fileInput').value = '';
                 document.getElementById('galleryTitle').value = '';
 
-                loadSavedGallery();
+                loadGalleries();
                 showToast(`✅ ${uploaded} gambar berjaya diupload!`, `Tajuk: "${title}"${failed > 0 ? ` (${failed} gagal)` : ''}`);
             } else {
                 alert('❌ Gagal upload. Sila semak console (F12) untuk error.');
@@ -732,10 +805,10 @@
         }
 
         // ========================================== //
-        // LOAD SAVED GALLERY                         //
+        // LOAD GALLERIES - DESIGN BARU              //
         // ========================================== //
 
-        async function loadSavedGallery() {
+        async function loadGalleries() {
             try {
                 const res = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?order=created_at.desc`, {
                     headers: {
@@ -747,43 +820,64 @@
                 if (!res.ok) throw new Error('Failed to load');
 
                 const data = await res.json();
-                const container = document.getElementById('savedGallery');
+                const container = document.getElementById('galleryContainer');
 
                 if (data.length === 0) {
                     container.innerHTML = `
-                        <div class="saved-empty">
+                        <div class="gallery-empty-state">
                             <div class="empty-icon">📭</div>
-                            <p>Tiada gambar tersimpan.</p>
+                            <p>Tiada galeri. Upload gambar untuk mula.</p>
                         </div>
                     `;
                     return;
                 }
 
-                let html = '';
+                // Group by title
+                const groups = {};
                 data.forEach(item => {
+                    if (!groups[item.title]) groups[item.title] = [];
+                    groups[item.title].push(item);
+                });
+
+                let html = '';
+                for (let [title, items] of Object.entries(groups)) {
                     html += `
-                        <div class="saved-item">
-                            <img src="${item.image_url}" alt="${item.title}" loading="lazy">
-                            <div class="saved-info">
-                                <div class="saved-title">${item.title}</div>
-                                <div class="saved-date">📅 ${new Date(item.created_at).toLocaleDateString('ms-MY')}</div>
+                        <div class="gallery-card" data-title="${title}">
+                            <div class="gallery-header">
+                                <div class="gallery-title">📸 <span>${title}</span></div>
+                                <div class="gallery-count">${items.length} gambar</div>
                             </div>
-                            <div class="saved-actions">
-                                <button class="delete-btn" onclick="deleteImage('${item.id}')">🗑️ Padam</button>
+                            <div class="gallery-images">
+                                ${items.map(item => `
+                                    <div class="gallery-img">
+                                        <img src="${item.image_url}" alt="${item.title}" loading="lazy">
+                                        <button class="img-remove" onclick="deleteImage('${item.id}')" title="Padam gambar ini">✕</button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="edit-btn" onclick="editGallery('${title}')">✏️ Edit Galeri</button>
+                                <button class="delete-btn" onclick="deleteGallery('${title}')">🗑️ Delete Galeri</button>
                             </div>
                         </div>
                     `;
-                });
+                }
 
                 container.innerHTML = html;
 
             } catch (error) {
                 console.error('Load error:', error);
+                document.getElementById('galleryContainer').innerHTML = `
+                    <div class="gallery-empty-state">
+                        <div class="empty-icon">❌</div>
+                        <p>Gagal memuatkan galeri.</p>
+                    </div>
+                `;
             }
         }
 
         // ========================================== //
-        // DELETE IMAGE                              //
+        // DELETE SINGLE IMAGE                       //
         // ========================================== //
 
         async function deleteImage(id) {
@@ -818,11 +912,88 @@
                 });
 
                 showToast('🗑️ Dipadam', 'Gambar berjaya dipadam.');
-                loadSavedGallery();
+                loadGalleries();
 
             } catch (error) {
                 console.error('Delete error:', error);
                 alert('Gagal memadam gambar.');
+            }
+        }
+
+        // ========================================== //
+        // DELETE ENTIRE GALLERY BY TITLE            //
+        // ========================================== //
+
+        async function deleteGallery(title) {
+            if (!confirm(`❌ Padam keseluruhan galeri "${title}"?`)) return;
+
+            try {
+                // Get all images with this title
+                const getRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(title)}`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                const data = await getRes.json();
+
+                // Delete each image from storage
+                for (let item of data) {
+                    const filename = item.image_url.split('/').pop();
+                    await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${SUPABASE_KEY}`
+                        }
+                    });
+                }
+
+                // Delete all from database
+                await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(title)}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                showToast('🗑️ Dipadam', `Galeri "${title}" berjaya dipadam.`);
+                loadGalleries();
+
+            } catch (error) {
+                console.error('Delete gallery error:', error);
+                alert('Gagal memadam galeri.');
+            }
+        }
+
+        // ========================================== //
+        // EDIT GALLERY - Tukar Tajuk                //
+        // ========================================== //
+
+        async function editGallery(oldTitle) {
+            const newTitle = prompt(`Tukar tajuk "${oldTitle}" kepada:`, oldTitle);
+            if (!newTitle || newTitle === oldTitle) return;
+
+            try {
+                // Update all images with this title
+                await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(oldTitle)}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ title: newTitle })
+                });
+
+                showToast('✅ Berjaya!', `Tajuk ditukar kepada "${newTitle}"`);
+                loadGalleries();
+
+            } catch (error) {
+                console.error('Edit error:', error);
+                alert('Gagal menukar tajuk.');
             }
         }
 
@@ -847,9 +1018,9 @@
         // ========================================== //
 
         document.addEventListener('DOMContentLoaded', function() {
-            loadSavedGallery();
+            loadGalleries();
             console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
-            console.log('%c🔑 Guna SERVICE ROLE KEY untuk upload', 'font-size:12px; color:#FF6B6B;');
+            console.log('%c📸 Galeri Aktiviti', 'font-size:14px; color:#C4C0B8;');
         });
     </script>
 
