@@ -30,7 +30,7 @@
             width: 100%;
             display: block;
             background: #1A1A2E;
-            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.2);
         }
 
         .site-header img {
@@ -62,12 +62,12 @@
         .page-title h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #FFFFFF;
+            color: #FFF8F0;
             margin-bottom: 10px;
         }
 
         .page-title h1 span {
-            color: #FFFFFF;
+            color: #FFB830;
         }
 
         .page-title p {
@@ -80,13 +80,13 @@
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #FFF8F0;
             margin: 50px 0 25px 0;
             text-align: center;
         }
 
         .section-title span {
-            color: #FFFFFF;
+            color: #FFB830;
         }
 
         .section-subtitle {
@@ -96,40 +96,45 @@
             margin-bottom: 30px;
         }
 
-        /* ----- GALLERY GRID ----- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 20px;
+        /* ========================================== */
+        /* GALERI DARI SUPABASE                      */
+        /* ========================================== */
+
+        .gallery-section {
+            padding: 20px 0;
         }
 
-        .gallery-group {
+        .visitor-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .visitor-gallery-group {
             grid-column: 1 / -1;
             margin-bottom: 30px;
         }
 
-        .gallery-group:last-child {
+        .visitor-gallery-group:last-child {
             margin-bottom: 0;
         }
 
-        .gallery-group-title {
-            color: #FFFFFF;
+        .visitor-gallery-group-title {
+            color: #FFF8F0;
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.15);
         }
 
-        .gallery-group .gallery-grid {
+        .visitor-gallery-group .visitor-gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 0;
         }
 
-        .gallery-item {
+        .visitor-gallery-item {
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -138,13 +143,13 @@
             cursor: pointer;
         }
 
-        .gallery-item:hover {
+        .visitor-gallery-item:hover {
             transform: scale(1.03);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 184, 48, 0.2);
         }
 
-        .gallery-item img {
+        .visitor-gallery-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
@@ -152,19 +157,19 @@
             background: #2A2A4A;
         }
 
-        .gallery-empty {
+        .visitor-gallery-empty {
             grid-column: 1 / -1;
             text-align: center;
             color: #4A4A6A;
             padding: 60px 20px;
         }
 
-        .gallery-empty .empty-icon {
+        .visitor-gallery-empty .empty-icon {
             font-size: 3rem;
             margin-bottom: 10px;
         }
 
-        /* ----- OLD GALLERY ITEMS (for backward compatibility) ----- */
+        /* ----- OLD GALLERY (Backup - Static) ----- */
         .gallery-item-old {
             border-radius: 12px;
             overflow: hidden;
@@ -173,7 +178,7 @@
         }
 
         .gallery-item-old:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 184, 48, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
@@ -186,21 +191,21 @@
             background: #2A2A4A;
         }
 
+        .gallery-item-old .item-info {
+            padding: 15px;
+        }
+
         .gallery-item-old .item-info h4 {
-            color: #FFFFFF;
+            color: #FFF8F0;
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 4px;
         }
 
         .gallery-item-old .item-info p {
-            color: #FFFFFF;
+            color: #C4C0B8;
             font-size: 0.85rem;
             font-weight: 300;
-        }
-
-        .gallery-item-old .item-info {
-            padding: 15px;
         }
 
         /* ----- TEACHERS GRID ----- */
@@ -221,7 +226,7 @@
         }
 
         .teacher-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 184, 48, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
@@ -236,13 +241,13 @@
         }
 
         .teacher-card h4 {
-            color: #FFFFFF;
+            color: #FFF8F0;
             font-size: 1.05rem;
             font-weight: 600;
         }
 
         .teacher-card p {
-            color: #FFFFFF;
+            color: #C4C0B8;
             font-size: 0.85rem;
             font-weight: 300;
             margin: 4px 0;
@@ -270,15 +275,15 @@
         }
 
         .schedule-table th {
-            color: #FFFFFF;
+            color: #FFF8F0;
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.2);
             font-weight: 600;
         }
 
         .schedule-table td {
-            color: #FFFFFF;
+            color: #C4C0B8;
             padding: 12px 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-weight: 300;
@@ -299,14 +304,14 @@
         }
 
         .contact-section h3 {
-            color: #FFFFFF;
+            color: #FFF8F0;
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 15px;
         }
 
         .contact-section p {
-            color: #FFFFFF;
+            color: #C4C0B8;
             font-size: 1rem;
             margin-bottom: 6px;
             font-weight: 300;
@@ -314,11 +319,11 @@
 
         .contact-section .contact-link {
             display: inline-block;
-            background: #4D13D1;
-            color: #FFFFFF;
+            background: #FFB830;
+            color: #1A1A2E;
             padding: 12px 35px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1rem;
             text-decoration: none;
             margin-top: 18px;
@@ -328,9 +333,9 @@
         }
 
         .contact-section .contact-link:hover {
-            background: #5D23E1;
+            background: #e8a820;
             transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 184, 48, 0.3);
         }
 
         .contact-section .qr-container {
@@ -343,7 +348,7 @@
         }
 
         .contact-section .qr-container .qr-label {
-            color: #FFFFFF;
+            color: #C4C0B8;
             margin: 0;
         }
 
@@ -351,12 +356,15 @@
             width: 80px;
             height: 80px;
             border-radius: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 184, 48, 0.3);
         }
 
-        /* ----- RESPONSIVE ----- */
+        /* ========================================== */
+        /* RESPONSIVE                                 */
+        /* ========================================== */
+
         @media screen and (max-width: 1024px) {
-            .gallery-group .gallery-grid {
+            .visitor-gallery-group .visitor-gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
         }
@@ -378,18 +386,17 @@
                 font-size: 1.4rem;
             }
 
-            .gallery-grid {
+            .visitor-gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
             }
 
-            .gallery-group .gallery-grid {
+            .visitor-gallery-group .visitor-gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 10px;
             }
 
-            .gallery-item img,
-            .gallery-item-old img {
+            .visitor-gallery-item img {
                 height: 150px;
             }
 
@@ -426,8 +433,12 @@
                 font-size: 0.85rem;
             }
 
-            .gallery-group-title {
+            .visitor-gallery-group-title {
                 font-size: 1.1rem;
+            }
+
+            .gallery-item-old img {
+                height: 150px;
             }
         }
 
@@ -436,18 +447,17 @@
                 font-size: 1.4rem;
             }
 
-            .gallery-grid {
+            .visitor-gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 gap: 10px;
             }
 
-            .gallery-group .gallery-grid {
+            .visitor-gallery-group .visitor-gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
                 gap: 6px;
             }
 
-            .gallery-item img,
-            .gallery-item-old img {
+            .visitor-gallery-item img {
                 height: 120px;
             }
 
@@ -480,16 +490,28 @@
                 height: 60px;
             }
 
-            .gallery-group-title {
+            .visitor-gallery-group-title {
                 font-size: 1rem;
             }
 
-            .gallery-empty {
+            .visitor-gallery-empty {
                 padding: 30px 15px;
             }
 
-            .gallery-empty .empty-icon {
+            .visitor-gallery-empty .empty-icon {
                 font-size: 2.2rem;
+            }
+
+            .gallery-item-old img {
+                height: 120px;
+            }
+
+            .gallery-item-old .item-info h4 {
+                font-size: 0.85rem;
+            }
+
+            .gallery-item-old .item-info p {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -518,31 +540,33 @@
 
             <!-- Page Title -->
             <div class="page-title">
-                <h1>👥 PORTAL PELAWAT</h1>
+                <h1>👥 <span>PORTAL</span> PELAWAT</h1>
                 <p>Terokai portfolio, kelas &amp; aktiviti Tok Lal Production</p>
             </div>
 
             <!-- ========================================== -->
-            <!-- GALLERY SECTION - NEW                     -->
+            <!-- GALERI DARI SUPABASE                      -->
             <!-- ========================================== -->
 
-            <h2 class="section-title">🖼️ Galeri Aktiviti</h2>
-            <p class="section-subtitle">Koleksi gambar-gambar aktiviti Tok Lal Production</p>
+            <div class="gallery-section">
+                <h2 class="section-title">🖼️ <span>Galeri</span> Aktiviti</h2>
+                <p class="section-subtitle">Koleksi gambar-gambar aktiviti Tok Lal Production</p>
 
-            <div id="visitorGallery" class="gallery-grid">
-                <!-- Gallery items will be loaded here -->
+                <div id="visitorGallery" class="visitor-gallery-grid">
+                    <!-- Gallery items will be loaded from Supabase -->
+                </div>
             </div>
 
             <!-- ========================================== -->
-            <!-- GALLERY SECTION - OLD (Backup)            -->
+            <!-- GALERI LAMA (Backup - Static)             -->
             <!-- ========================================== -->
 
-            <h2 class="section-title">🖼️ Galeri Projek Terkini</h2>
+            <h2 class="section-title">🖼️ <span>Galeri</span> Projek Terkini</h2>
 
-            <div class="gallery-grid">
+            <div class="visitor-gallery-grid">
 
                 <div class="gallery-item-old">
-                    <img src="pictures/gallery/performances/performance-1.jpg" alt="Performance" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2220%22 font-family=%22sans-serif%22%3EPerformance%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/gallery/performances/performance-1.jpg" alt="Performance" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EPerformance%3C/text%3E%3C/svg%3E'">
                     <div class="item-info">
                         <h4>Persembahan Marching Band</h4>
                         <p>Hari Kebangsaan 2024</p>
@@ -550,7 +574,7 @@
                 </div>
 
                 <div class="gallery-item-old">
-                    <img src="pictures/gallery/classes/class-1.jpg" alt="Class" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2220%22 font-family=%22sans-serif%22%3EClass%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/gallery/classes/class-1.jpg" alt="Class" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EClass%3C/text%3E%3C/svg%3E'">
                     <div class="item-info">
                         <h4>Kelas Kompang</h4>
                         <p>Sesi latihan mingguan</p>
@@ -558,7 +582,7 @@
                 </div>
 
                 <div class="gallery-item-old">
-                    <img src="pictures/gallery/studio/studio-1.jpg" alt="Studio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2220%22 font-family=%22sans-serif%22%3EStudio%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/gallery/studio/studio-1.jpg" alt="Studio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EStudio%3C/text%3E%3C/svg%3E'">
                     <div class="item-info">
                         <h4>Sesi Rakaman Studio</h4>
                         <p>Projek album 2024</p>
@@ -566,7 +590,7 @@
                 </div>
 
                 <div class="gallery-item-old">
-                    <img src="pictures/gallery/events/event-1.jpg" alt="Event" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2220%22 font-family=%22sans-serif%22%3EEvent%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/gallery/events/event-1.jpg" alt="Event" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EEvent%3C/text%3E%3C/svg%3E'">
                     <div class="item-info">
                         <h4>Bengkel Muzik Tradisional</h4>
                         <p>ASWARA 2023</p>
@@ -579,26 +603,26 @@
             <!-- TEACHERS SECTION                          -->
             <!-- ========================================== -->
 
-            <h2 class="section-title">👨‍🏫 Kenali Guru Kami</h2>
+            <h2 class="section-title">👨‍🏫 <span>Kenali</span> Guru Kami</h2>
 
             <div class="teachers-grid">
 
                 <div class="teacher-card">
-                    <img src="pictures/teachers/cikgu-ahmad.jpg" alt="Cikgu Ahmad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/teachers/cikgu-ahmad.jpg" alt="Cikgu Ahmad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
                     <h4>Cikgu Ahmad</h4>
                     <p>Kompang, Gendang, Rebana</p>
                     <span class="rating">⭐ 4.2/5</span>
                 </div>
 
                 <div class="teacher-card">
-                    <img src="pictures/teachers/cikgu-siti.jpg" alt="Cikgu Siti" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👩‍🏫%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/teachers/cikgu-siti.jpg" alt="Cikgu Siti" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👩‍🏫%3C/text%3E%3C/svg%3E'">
                     <h4>Cikgu Siti</h4>
                     <p>Gitar, Keyboard, Modern</p>
                     <span class="rating">⭐ 4.8/5</span>
                 </div>
 
                 <div class="teacher-card">
-                    <img src="pictures/teachers/cikgu-rizal.jpg" alt="Cikgu Rizal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFFFFF%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
+                    <img src="pictures/teachers/cikgu-rizal.jpg" alt="Cikgu Rizal" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%232A2A4A%22 width=%22100%22 height=%22100%22 rx=%2250%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2230%22 font-family=%22sans-serif%22%3E👨‍🏫%3C/text%3E%3C/svg%3E'">
                     <h4>Cikgu Rizal</h4>
                     <p>Serunai, Marching Band</p>
                     <span class="rating">⭐ 3.5/5</span>
@@ -610,7 +634,7 @@
             <!-- SCHEDULE SECTION                          -->
             <!-- ========================================== -->
 
-            <h2 class="section-title">📅 Jadual Studio</h2>
+            <h2 class="section-title">📅 <span>Jadual</span> Studio</h2>
 
             <div class="schedule-wrapper">
                 <table class="schedule-table">
@@ -668,7 +692,7 @@
 
                 <div class="qr-container">
                     <p class="qr-label">📍 Alamat:</p>
-                    <p style="color:#FFFFFF; margin:0;">KM 10, JALAN RAJA HAJI, TELOK MAS 75460 MELAKA</p>
+                    <p style="color:#C4C0B8; margin:0;">KM 10, JALAN RAJA HAJI, TELOK MAS 75460 MELAKA</p>
                     <img src="pictures/qr/qrlocation.png" alt="QR Code Lokasi" onerror="this.style.display='none'">
                 </div>
 
@@ -685,48 +709,78 @@
 
     <script>
         // ========================================== //
+        // SUPABASE CREDENTIALS                       //
+        // ========================================== //
+
+        const SUPABASE_URL = 'https://choqidxpmdwvmdnfpiox.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_HsjWqY3SVZl8xPJXEoaH6g_l1o0DFwA';
+
+        // ========================================== //
         // LOAD GALLERY FOR VISITOR                   //
         // ========================================== //
 
-        function loadVisitorGallery() {
-            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
-            const container = document.getElementById('visitorGallery');
+        async function loadVisitorGallery() {
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?order=created_at.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
 
-            if (gallery.length === 0) {
-                container.innerHTML = `
-                    <div class="gallery-empty">
-                        <div class="empty-icon">🖼️</div>
-                        <p>Tiada gambar dalam galeri buat masa ini.</p>
-                        <p style="font-size:0.85rem; color:#666;">Sila datang lagi nanti.</p>
-                    </div>
-                `;
-                return;
-            }
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`);
+                }
 
-            // Group by title
-            const groups = {};
-            gallery.forEach(item => {
-                if (!groups[item.title]) groups[item.title] = [];
-                groups[item.title].push(item);
-            });
+                const data = await res.json();
+                const container = document.getElementById('visitorGallery');
 
-            let html = '';
-            for (let [title, items] of Object.entries(groups)) {
-                html += `
-                    <div class="gallery-group">
-                        <h3 class="gallery-group-title">📸 ${title}</h3>
-                        <div class="gallery-grid">
-                            ${items.map(item => `
-                                <div class="gallery-item" onclick="openFullscreen('${item.image}', '${item.title}')">
-                                    <img src="${item.image}" alt="${item.title}" loading="lazy">
-                                </div>
-                            `).join('')}
+                if (data.length === 0) {
+                    container.innerHTML = `
+                        <div class="visitor-gallery-empty">
+                            <div class="empty-icon">🖼️</div>
+                            <p>Tiada gambar dalam galeri buat masa ini.</p>
+                            <p style="font-size:0.85rem; color:#666;">Sila datang lagi nanti.</p>
                         </div>
+                    `;
+                    return;
+                }
+
+                // Group by title
+                const groups = {};
+                data.forEach(item => {
+                    if (!groups[item.title]) groups[item.title] = [];
+                    groups[item.title].push(item);
+                });
+
+                let html = '';
+                for (let [title, items] of Object.entries(groups)) {
+                    html += `
+                        <div class="visitor-gallery-group">
+                            <h3 class="visitor-gallery-group-title">📸 ${title}</h3>
+                            <div class="visitor-gallery-grid">
+                                ${items.map(item => `
+                                    <div class="visitor-gallery-item" onclick="openFullscreen('${item.image_url}', '${item.title}')">
+                                        <img src="${item.image_url}" alt="${item.title}" loading="lazy">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error('Load error:', error);
+                document.getElementById('visitorGallery').innerHTML = `
+                    <div class="visitor-gallery-empty">
+                        <div class="empty-icon">❌</div>
+                        <p>Gagal memuatkan galeri.</p>
+                        <p style="font-size:0.85rem; color:#666;">Sila cuba lagi nanti.</p>
                     </div>
                 `;
             }
-
-            container.innerHTML = html;
         }
 
         // ========================================== //
@@ -773,7 +827,7 @@
                     border-radius: 8px;
                 ">
                 <div style="
-                    color: #FFFFFF;
+                    color: #FFF8F0;
                     font-size: 1rem;
                     margin-top: 15px;
                     font-weight: 300;
@@ -794,9 +848,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadVisitorGallery();
 
-            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
             console.log('%cPortal Pelawat', 'font-size:14px; color:#C4C0B8;');
-            console.log('%c📸 Galeri Aktiviti', 'font-size:12px; color:#FFB830;');
+            console.log('%c📸 Galeri dari Supabase (Anon Key)', 'font-size:12px; color:#FFB830;');
         });
     </script>
 
