@@ -89,20 +89,72 @@
         }
 
         /* ========================================== */
-        /* JADUAL STUDIO - GOOGLE CALENDAR STYLE     */
+        /* SCHEDULE - GOOGLE CALENDAR STYLE          */
         /* ========================================== */
 
-        /* ========================================== */
-        /* JADUAL STUDIO - GOOGLE CALENDAR STYLE     */
-        /* ========================================== */
-
-        .schedule-container {
+        .schedule-wrapper {
             background: rgba(255, 255, 255, 0.04);
             border-radius: 16px;
             padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            overflow-x: auto;
             margin-bottom: 20px;
+        }
+
+        .schedule-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .schedule-nav .month-title {
+            color: #FFB830;
+            font-size: 1.4rem;
+            font-weight: 700;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .schedule-nav .nav-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+            border: 1px solid rgba(255, 184, 48, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule-nav .nav-btn:hover {
+            background: rgba(255, 184, 48, 0.3);
+            transform: scale(1.1);
+        }
+
+        .schedule-nav .today-btn {
+            background: rgba(255, 184, 48, 0.15);
+            color: #FFB830;
+            border: 1px solid rgba(255, 184, 48, 0.2);
+            border-radius: 8px;
+            padding: 8px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .schedule-nav .today-btn:hover {
+            background: rgba(255, 184, 48, 0.3);
+            transform: scale(1.05);
+        }
+
+        .schedule-container {
+            overflow-x: auto;
         }
 
         .schedule-grid {
@@ -134,9 +186,8 @@
             background: rgba(255, 255, 255, 0.06);
         }
 
-        /* === NOMBOR HARI - WARNA TERANG === */
         .schedule-grid .day-cell .date-number {
-            color: #FF6B35;      /* OREN TERANG */
+            color: #FF6B35;
             font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 4px;
@@ -172,6 +223,12 @@
             color: #4A4A6A;
             font-size: 0.6rem;
         }
+
+        .schedule-grid .empty-cell {
+            background: transparent;
+            min-height: 100px;
+        }
+
         /* ========================================== */
         /* GALERI - ONLY 1 IMAGE PER GALLERY         */
         /* ========================================== */
@@ -399,6 +456,17 @@
                 font-size: 1.4rem;
             }
 
+            .schedule-nav .month-title {
+                font-size: 1.1rem;
+                min-width: 150px;
+            }
+
+            .schedule-nav .nav-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+
             .schedule-grid {
                 min-width: 500px;
                 font-size: 0.8rem;
@@ -412,6 +480,10 @@
             .schedule-grid .day-cell .event-item {
                 font-size: 0.6rem;
                 padding: 2px 4px;
+            }
+
+            .schedule-grid .day-cell .date-number {
+                font-size: 0.7rem;
             }
 
             .visitor-gallery-grid {
@@ -456,6 +528,26 @@
                 font-size: 1.4rem;
             }
 
+            .schedule-nav {
+                gap: 10px;
+            }
+
+            .schedule-nav .month-title {
+                font-size: 0.95rem;
+                min-width: 120px;
+            }
+
+            .schedule-nav .nav-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+
+            .schedule-nav .today-btn {
+                font-size: 0.75rem;
+                padding: 5px 12px;
+            }
+
             .schedule-grid {
                 min-width: 350px;
                 font-size: 0.65rem;
@@ -474,6 +566,10 @@
             .schedule-grid .day-cell .event-item {
                 font-size: 0.5rem;
                 padding: 1px 3px;
+            }
+
+            .schedule-grid .day-cell .date-number {
+                font-size: 0.6rem;
             }
 
             .visitor-gallery-grid {
@@ -560,14 +656,23 @@
 
             <h2 class="section-title">📅 Jadual Studio</h2>
 
-            <div class="schedule-container">
-                <div class="schedule-grid" id="scheduleGrid">
-                    <!-- Generated by JavaScript -->
+            <div class="schedule-wrapper">
+                <div class="schedule-nav">
+                    <button class="nav-btn" onclick="prevMonth()">◀</button>
+                    <h2 class="month-title" id="monthDisplay">Januari 2025</h2>
+                    <button class="nav-btn" onclick="nextMonth()">▶</button>
+                    <button class="today-btn" onclick="goToToday()">📅 Hari Ini</button>
+                </div>
+
+                <div class="schedule-container">
+                    <div class="schedule-grid" id="scheduleGrid">
+                        <!-- Generated by JavaScript -->
+                    </div>
                 </div>
             </div>
 
             <!-- ========================================== -->
-            <!-- GALERI DARI SUPABASE - ONLY 1 IMAGE       -->
+            <!-- GALERI DARI SUPABASE                      -->
             <!-- ========================================== -->
 
             <h2 class="section-title">🖼️ Galeri Aktiviti</h2>
@@ -646,58 +751,107 @@
         // JADUAL STUDIO - GOOGLE CALENDAR STYLE     //
         // ========================================== //
 
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        // Data jadual (contoh - boleh datang dari database nanti)
+        const scheduleData = [
+            { day: 1, time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 1, time: '14:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { day: 2, time: '10:00', name: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { day: 3, time: '09:00', name: 'Rakaman Studio', teacher: '—' },
+            { day: 4, time: '11:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 5, time: '10:30', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { day: 6, time: '08:00', name: 'Marching Band', teacher: 'Cikgu Rizal' },
+            { day: 7, time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 8, time: '10:00', name: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { day: 9, time: '14:00', name: 'Rakaman Studio', teacher: '—' },
+            { day: 10, time: '09:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { day: 11, time: '11:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 12, time: '10:30', name: 'Marching Band', teacher: 'Cikgu Rizal' },
+            { day: 15, time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 18, time: '10:00', name: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
+            { day: 22, time: '14:00', name: 'Rakaman Studio', teacher: '—' },
+            { day: 25, time: '09:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
+            { day: 28, time: '11:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
+            { day: 30, time: '10:30', name: 'Marching Band', teacher: 'Cikgu Rizal' },
+        ];
+
         function generateSchedule() {
             const grid = document.getElementById('scheduleGrid');
-
-            const events = [
-                { day: 0, date: '1', time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
-                { day: 0, date: '1', time: '14:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
-                { day: 1, date: '2', time: '10:00', name: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
-                { day: 2, date: '3', time: '09:00', name: 'Rakaman Studio', teacher: '—' },
-                { day: 3, date: '4', time: '11:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
-                { day: 4, date: '5', time: '10:30', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
-                { day: 5, date: '6', time: '08:00', name: 'Marching Band', teacher: 'Cikgu Rizal' },
-                { day: 6, date: '7', time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
-                { day: 0, date: '8', time: '10:00', name: 'Kelas Serunai', teacher: 'Cikgu Rizal' },
-                { day: 1, date: '9', time: '14:00', name: 'Rakaman Studio', teacher: '—' },
-                { day: 2, date: '10', time: '09:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
-                { day: 3, date: '11', time: '11:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
-                { day: 4, date: '12', time: '10:30', name: 'Marching Band', teacher: 'Cikgu Rizal' },
-            ];
+            const monthDisplay = document.getElementById('monthDisplay');
 
             const days = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
+            const monthNames = ['Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober',
+                'November', 'Disember'
+            ];
+
+            // Update month display
+            if (monthDisplay) {
+                monthDisplay.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            }
+
+            // Get first day of month and number of days
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
             let html = '';
 
+            // Day headers
             days.forEach(day => {
                 html += `<div class="day-header">${day}</div>`;
             });
 
-            for (let week = 0; week < 4; week++) {
-                for (let day = 0; day < 7; day++) {
-                    const date = week * 7 + day + 1;
-                    if (date > 31) break;
+            // Empty cells for days before first day
+            for (let i = 0; i < firstDay; i++) {
+                html += `<div class="day-cell empty-cell"></div>`;
+            }
 
-                    const dayEvents = events.filter(e => e.day === day && parseInt(e.date) === date);
+            // Fill in the days
+            for (let date = 1; date <= daysInMonth; date++) {
+                const dayEvents = scheduleData.filter(e => e.day === date);
 
-                    html += `<div class="day-cell">`;
-                    html += `<div class="date-number">${date}</div>`;
+                html += `<div class="day-cell">`;
+                html += `<div class="date-number">${date}</div>`;
 
-                    dayEvents.forEach(e => {
-                        html += `
-                            <div class="event-item">
-                                <span class="event-time">${e.time}</span>
-                                <span class="event-name">${e.name}</span>
-                                <span class="event-teacher">👨‍🏫 ${e.teacher}</span>
-                            </div>
-                        `;
-                    });
+                dayEvents.forEach(e => {
+                    html += `
+                        <div class="event-item">
+                            <span class="event-time">${e.time}</span>
+                            <span class="event-name">${e.name}</span>
+                            <span class="event-teacher">👨‍🏫 ${e.teacher}</span>
+                        </div>
+                    `;
+                });
 
-                    html += `</div>`;
-                }
+                html += `</div>`;
             }
 
             grid.innerHTML = html;
+        }
+
+        function prevMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateSchedule();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateSchedule();
+        }
+
+        function goToToday() {
+            currentMonth = new Date().getMonth();
+            currentYear = new Date().getFullYear();
+            generateSchedule();
         }
 
         // ========================================== //
@@ -943,7 +1097,8 @@
             }
 
             if (info) {
-                info.innerHTML = `📸 ${images[index].title} <span style="color:#4A4A6A; font-size:0.9rem;">(${index + 1}/${images.length})</span>`;
+                info.innerHTML =
+                    `📸 ${images[index].title} <span style="color:#4A4A6A; font-size:0.9rem;">(${index + 1}/${images.length})</span>`;
             }
 
             // Update dots
@@ -1019,6 +1174,7 @@
 
             console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
             console.log('%cPortal Pelawat', 'font-size:14px; color:#C4C0B8;');
+            console.log('%c📅 Jadual Studio - Bulan Semasa', 'font-size:12px; color:#FFB830;');
         });
     </script>
 
