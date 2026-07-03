@@ -168,67 +168,70 @@
             font-size: 0.6rem;
         }
 
-        .schedule-grid .empty-cell {
-            background: rgba(255, 255, 255, 0.02);
-            min-height: 100px;
-            border-radius: 0 0 8px 8px;
-        }
-
         /* ========================================== */
-        /* GALERI DARI SUPABASE                      */
+        /* GALERI - ONLY 1 IMAGE PER GALLERY         */
         /* ========================================== */
 
         .visitor-gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .visitor-gallery-group {
-            grid-column: 1 / -1;
-            margin-bottom: 30px;
-        }
-
-        .visitor-gallery-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .visitor-gallery-group-title {
-            color: #FFF8F0;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 184, 48, 0.15);
-        }
-
-        .visitor-gallery-group .visitor-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .visitor-gallery-item {
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             cursor: pointer;
+            position: relative;
         }
 
         .visitor-gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 184, 48, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 184, 48, 0.3);
         }
 
-        .visitor-gallery-item img {
+        .gallery-item-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item-wrapper img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             display: block;
             background: #2A2A4A;
+            transition: transform 0.5s ease;
+        }
+
+        .visitor-gallery-item:hover .gallery-item-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 15px 15px 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            transition: all 0.3s ease;
+        }
+
+        .gallery-overlay .gallery-title {
+            color: #FFB830;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .gallery-overlay .gallery-count {
+            color: #C4C0B8;
+            font-size: 0.8rem;
+            font-weight: 300;
         }
 
         .visitor-gallery-empty {
@@ -370,8 +373,8 @@
         /* ========================================== */
 
         @media screen and (max-width: 1024px) {
-            .visitor-gallery-group .visitor-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            .visitor-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
         }
 
@@ -408,17 +411,16 @@
             }
 
             .visitor-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 15px;
             }
 
-            .visitor-gallery-group .visitor-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 10px;
+            .gallery-item-wrapper img {
+                height: 180px;
             }
 
-            .visitor-gallery-item img {
-                height: 150px;
+            .gallery-overlay .gallery-title {
+                font-size: 0.95rem;
             }
 
             .teachers-grid {
@@ -442,10 +444,6 @@
             .contact-section .contact-link {
                 font-size: 0.9rem;
                 padding: 10px 25px;
-            }
-
-            .visitor-gallery-group-title {
-                font-size: 1.1rem;
             }
         }
 
@@ -475,17 +473,24 @@
             }
 
             .visitor-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
             }
 
-            .visitor-gallery-group .visitor-gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-                gap: 6px;
+            .gallery-item-wrapper img {
+                height: 150px;
             }
 
-            .visitor-gallery-item img {
-                height: 120px;
+            .gallery-overlay {
+                padding: 12px 10px 10px 10px;
+            }
+
+            .gallery-overlay .gallery-title {
+                font-size: 0.8rem;
+            }
+
+            .gallery-overlay .gallery-count {
+                font-size: 0.65rem;
             }
 
             .teachers-grid {
@@ -505,10 +510,6 @@
             .contact-section .qr-container img {
                 width: 60px;
                 height: 60px;
-            }
-
-            .visitor-gallery-group-title {
-                font-size: 1rem;
             }
 
             .visitor-gallery-empty {
@@ -543,7 +544,7 @@
             <!-- Back Button -->
             <a href="index.html" class="back-btn">← Kembali ke Laman Utama</a>
 
-            <!-- Page Title - GOLD -->
+            <!-- Page Title -->
             <div class="page-title">
                 <h1>👥 PORTAL PELAWAT</h1>
                 <p>Terokai portfolio, kelas &amp; aktiviti Tok Lal Production</p>
@@ -562,7 +563,7 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- GALERI DARI SUPABASE                      -->
+            <!-- GALERI DARI SUPABASE - ONLY 1 IMAGE       -->
             <!-- ========================================== -->
 
             <h2 class="section-title">🖼️ Galeri Aktiviti</h2>
@@ -644,7 +645,6 @@
         function generateSchedule() {
             const grid = document.getElementById('scheduleGrid');
 
-            // Data jadual (boleh datang dari database nanti)
             const events = [
                 { day: 0, date: '1', time: '09:00', name: 'Kelas Kompang', teacher: 'Cikgu Ahmad' },
                 { day: 0, date: '1', time: '14:00', name: 'Kelas Gitar', teacher: 'Cikgu Siti' },
@@ -663,15 +663,12 @@
 
             const days = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
 
-            // Build grid
             let html = '';
 
-            // Day headers
             days.forEach(day => {
                 html += `<div class="day-header">${day}</div>`;
             });
 
-            // For demo, show 4 weeks
             for (let week = 0; week < 4; week++) {
                 for (let day = 0; day < 7; day++) {
                     const date = week * 7 + day + 1;
@@ -700,8 +697,10 @@
         }
 
         // ========================================== //
-        // LOAD GALLERY FOR VISITOR                   //
+        // LOAD GALLERY - ONLY 1 IMAGE PER GALLERY   //
         // ========================================== //
+
+        let galleryData = [];
 
         async function loadVisitorGallery() {
             try {
@@ -737,21 +736,41 @@
                     groups[item.title].push(item);
                 });
 
+                // Sort groups by latest created_at (newest first)
+                const sortedGroups = Object.entries(groups).sort((a, b) => {
+                    const aLatest = a[1].reduce((max, item) => item.created_at > max.created_at ? item : max);
+                    const bLatest = b[1].reduce((max, item) => item.created_at > max.created_at ? item : max);
+                    return bLatest.created_at.localeCompare(aLatest.created_at);
+                });
+
+                galleryData = [];
                 let html = '';
-                for (let [title, items] of Object.entries(groups)) {
+
+                sortedGroups.forEach(([title, items]) => {
+                    // Get the latest image
+                    const latestItem = items.reduce((max, item) =>
+                        item.created_at > max.created_at ? item : max
+                    );
+
+                    const totalImages = items.length;
+                    const imageCountText = totalImages > 1 ? `${totalImages} gambar` : '1 gambar';
+                    const galleryIndex = galleryData.length;
+
+                    // Store all images for slideshow
+                    galleryData.push(items);
+
                     html += `
-                        <div class="visitor-gallery-group">
-                            <h3 class="visitor-gallery-group-title">📸 ${title}</h3>
-                            <div class="visitor-gallery-grid">
-                                ${items.map(item => `
-                                    <div class="visitor-gallery-item" onclick="openFullscreen('${item.image_url}', '${item.title}')">
-                                        <img src="${item.image_url}" alt="${item.title}" loading="lazy">
-                                    </div>
-                                `).join('')}
+                        <div class="visitor-gallery-item" onclick="openGallery(${galleryIndex})">
+                            <div class="gallery-item-wrapper">
+                                <img src="${latestItem.image_url}" alt="${title}" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">📸 ${title}</div>
+                                    <div class="gallery-count">${imageCountText}</div>
+                                </div>
                             </div>
                         </div>
                     `;
-                }
+                });
 
                 container.innerHTML = html;
 
@@ -768,11 +787,20 @@
         }
 
         // ========================================== //
-        // FULLSCREEN VIEW                            //
+        // OPEN GALLERY - FULLSCREEN SLIDESHOW       //
         // ========================================== //
 
-        function openFullscreen(imageSrc, title) {
+        let currentSlideIndex = 0;
+        let slideInterval = null;
+
+        function openGallery(index) {
+            const images = galleryData[index];
+            if (!images || images.length === 0) return;
+
+            currentSlideIndex = 0;
+
             const overlay = document.createElement('div');
+            overlay.id = 'gallerySlideshow';
             overlay.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -785,12 +813,11 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                cursor: pointer;
                 padding: 20px;
             `;
 
             overlay.innerHTML = `
-                <button onclick="this.parentElement.remove()" style="
+                <button onclick="closeSlideshow()" style="
                     position: absolute;
                     top: 20px;
                     right: 20px;
@@ -798,32 +825,185 @@
                     color: #FFF;
                     border: none;
                     border-radius: 50%;
-                    width: 45px;
-                    height: 45px;
+                    width: 50px;
+                    height: 50px;
                     font-size: 1.5rem;
                     cursor: pointer;
-                    z-index: 10000;
+                    z-index: 10001;
+                    transition: all 0.3s;
                 ">✕</button>
-                <img src="${imageSrc}" alt="${title}" style="
+                <button onclick="prevSlide()" style="
+                    position: absolute;
+                    left: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(255,255,255,0.1);
+                    color: #FFF;
+                    border: none;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    z-index: 10001;
+                    transition: all 0.3s;
+                ">◀</button>
+                <button onclick="nextSlide()" style="
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(255,255,255,0.1);
+                    color: #FFF;
+                    border: none;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    z-index: 10001;
+                    transition: all 0.3s;
+                ">▶</button>
+                <div id="slideImage" style="
                     max-width: 90%;
-                    max-height: 85vh;
-                    object-fit: contain;
-                    border-radius: 8px;
+                    max-height: 80vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 ">
-                <div style="
+                    <img src="${images[0].image_url}" alt="${images[0].title}" style="
+                        max-width: 100%;
+                        max-height: 80vh;
+                        object-fit: contain;
+                        border-radius: 12px;
+                    ">
+                </div>
+                <div id="slideInfo" style="
                     color: #FFF8F0;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     margin-top: 15px;
-                    font-weight: 300;
-                ">${title}</div>
+                    text-align: center;
+                ">
+                    📸 ${images[0].title} <span style="color:#4A4A6A; font-size:0.9rem;">(1/${images.length})</span>
+                </div>
+                <div style="
+                    display: flex;
+                    gap: 8px;
+                    margin-top: 12px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                ">
+                    ${images.map((_, idx) => `
+                        <div onclick="goToSlide(${idx})" style="
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background: ${idx === 0 ? '#FFB830' : '#4A4A6A'};
+                            cursor: pointer;
+                            transition: all 0.3s;
+                        "></div>
+                    `).join('')}
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 15px;">
+                    <button onclick="toggleSlideshow()" style="
+                        background: rgba(255,184,48,0.2);
+                        color: #FFB830;
+                        border: 1px solid rgba(255,184,48,0.2);
+                        padding: 8px 20px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                    ">⏸ Auto Play</button>
+                </div>
             `;
 
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) this.remove();
-            });
-
             document.body.appendChild(overlay);
+
+            window.slideImages = images;
+            updateSlide(0);
+            startSlideshow();
         }
+
+        function updateSlide(index) {
+            const images = window.slideImages;
+            if (!images || images.length === 0) return;
+
+            currentSlideIndex = index;
+
+            const img = document.querySelector('#slideImage img');
+            const info = document.getElementById('slideInfo');
+
+            if (img) {
+                img.src = images[index].image_url;
+                img.alt = images[index].title;
+            }
+
+            if (info) {
+                info.innerHTML = `📸 ${images[index].title} <span style="color:#4A4A6A; font-size:0.9rem;">(${index + 1}/${images.length})</span>`;
+            }
+
+            // Update dots
+            document.querySelectorAll('#gallerySlideshow div[onclick^="goToSlide"]').forEach((dot, i) => {
+                dot.style.background = i === index ? '#FFB830' : '#4A4A6A';
+            });
+        }
+
+        function nextSlide() {
+            const images = window.slideImages;
+            if (!images) return;
+            const next = (currentSlideIndex + 1) % images.length;
+            updateSlide(next);
+        }
+
+        function prevSlide() {
+            const images = window.slideImages;
+            if (!images) return;
+            const prev = (currentSlideIndex - 1 + images.length) % images.length;
+            updateSlide(prev);
+        }
+
+        function goToSlide(index) {
+            updateSlide(index);
+        }
+
+        function closeSlideshow() {
+            stopSlideshow();
+            const overlay = document.getElementById('gallerySlideshow');
+            if (overlay) overlay.remove();
+            window.slideImages = null;
+        }
+
+        function startSlideshow() {
+            stopSlideshow();
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 4000);
+        }
+
+        function stopSlideshow() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+        }
+
+        function toggleSlideshow() {
+            if (slideInterval) {
+                stopSlideshow();
+                document.querySelector('#gallerySlideshow button:last-child').textContent = '▶ Play';
+            } else {
+                startSlideshow();
+                document.querySelector('#gallerySlideshow button:last-child').textContent = '⏸ Auto Play';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('gallerySlideshow')) return;
+            if (e.key === 'Escape') closeSlideshow();
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
 
         // ========================================== //
         // LOAD ON PAGE LOAD                         //
