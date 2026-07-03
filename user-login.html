@@ -316,32 +316,6 @@
             display: block;
         }
 
-        /* ----- DEMO CREDENTIALS ----- */
-        .demo-credentials {
-            background: rgba(255, 184, 48, 0.06);
-            border: 1px solid rgba(255, 184, 48, 0.1);
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-top: 15px;
-        }
-
-        .demo-credentials p {
-            color: #C4C0B8;
-            font-size: 0.75rem;
-            margin: 2px 0;
-            text-align: center;
-        }
-
-        .demo-credentials .demo-label {
-            color: #FFB830;
-            font-weight: 600;
-        }
-
-        .demo-credentials .demo-email {
-            color: #FFF8F0;
-            font-weight: 500;
-        }
-
         /* ----- FOOTER ----- */
         .login-footer {
             text-align: center;
@@ -386,10 +360,6 @@
             .login-btn {
                 font-size: 0.95rem;
                 padding: 12px;
-            }
-
-            .demo-credentials p {
-                font-size: 0.7rem;
             }
         }
     </style>
@@ -446,13 +416,13 @@
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="email@toklal.com" required>
+                    <input type="email" id="email" placeholder=" " required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Kata Laluan</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" placeholder="••••••••" required>
+                        <input type="password" id="password" placeholder=" " required>
                         <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
                     </div>
                 </div>
@@ -469,15 +439,6 @@
                 <div class="error-msg" id="loginError">❌ Email atau kata laluan salah. Sila cuba lagi.</div>
 
             </form>
-
-            <!-- ========================================== -->
-            <!-- DEMO CREDENTIALS                          -->
-            <!-- ========================================== -->
-
-            <div class="demo-credentials">
-                <p><span class="demo-label">🎓 Pelajar:</span> <span class="demo-email">student@toklal.com</span> / <span style="color:#4A4A6A;">student123</span></p>
-                <p><span class="demo-label">👨‍🏫 Guru:</span> <span class="demo-email">teacher@toklal.com</span> / <span style="color:#4A4A6A;">teacher123</span></p>
-            </div>
 
             <!-- ========================================== -->
             <!-- REGISTER                                  -->
@@ -574,7 +535,7 @@
                 if (found.role === 'teacher') {
                     window.location.href = 'teacher-dashboard.html';
                 } else {
-                    window.location.href = 'user-dashboard.html';
+                    window.location.href = 'student-dashboard.html';
                 }
             } else {
                 // Login failed
@@ -596,7 +557,7 @@
         // ========================================== //
 
         function googleLogin() {
-            alert('Fungsi login Google akan dibina di peringkat seterusnya.\n\nUntuk demo, sila gunakan:\n🎓 Pelajar: student@toklal.com / student123\n👨‍🏫 Guru: teacher@toklal.com / teacher123');
+            alert('Fungsi login Google akan dibina di peringkat seterusnya.');
         }
 
         // ========================================== //
@@ -630,8 +591,6 @@
 
         console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
         console.log('%cPortal Guru & Pelajar', 'font-size: 14px; color: #C4C0B8;');
-        console.log('%c🎓 Demo: student@toklal.com / student123', 'font-size: 12px; color: #4D13D1;');
-        console.log('%c👨‍🏫 Demo: teacher@toklal.com / teacher123', 'font-size: 12px; color: #FFB830;');
     </script>
 
 </body>
