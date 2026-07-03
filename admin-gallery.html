@@ -18,7 +18,7 @@
             width: 100%;
             display: block;
             background: #1A1A2E;
-            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.2);
         }
 
         .site-header img {
@@ -38,7 +38,6 @@
             margin: 0 auto;
         }
 
-        /* ----- HEADER ----- */
         .admin-header {
             display: flex;
             justify-content: space-between;
@@ -110,7 +109,6 @@
             color: #FFB830;
         }
 
-        /* ----- PAGE TITLE ----- */
         .page-title {
             display: flex;
             justify-content: space-between;
@@ -127,10 +125,9 @@
         }
 
         .page-title h1 span {
-            color: #4D13D1;
+            color: #FFB830;
         }
 
-        /* ----- UPLOAD FORM ----- */
         .upload-form {
             background: rgba(255, 255, 255, 0.04);
             border-radius: 16px;
@@ -147,7 +144,7 @@
         }
 
         .upload-form h3 span {
-            color: #4D13D1;
+            color: #FFB830;
         }
 
         .upload-form .form-group {
@@ -176,7 +173,7 @@
 
         .upload-form .form-group input[type="text"]:focus {
             outline: none;
-            border-color: #4D13D1;
+            border-color: #FFB830;
         }
 
         .upload-form .form-group input[type="text"]::placeholder {
@@ -184,7 +181,7 @@
         }
 
         .upload-form .file-upload-area {
-            border: 2px dashed rgba(77, 19, 209, 0.2);
+            border: 2px dashed rgba(255, 184, 48, 0.2);
             border-radius: 8px;
             padding: 30px 20px;
             text-align: center;
@@ -194,7 +191,7 @@
         }
 
         .upload-form .file-upload-area:hover {
-            border-color: rgba(77, 19, 209, 0.4);
+            border-color: rgba(255, 184, 48, 0.4);
             background: rgba(255, 255, 255, 0.02);
         }
 
@@ -209,7 +206,7 @@
         }
 
         .upload-form .file-upload-area .file-count {
-            color: #4D13D1;
+            color: #FFB830;
             font-weight: 600;
             margin-top: 5px;
             font-size: 0.9rem;
@@ -233,15 +230,15 @@
         }
 
         .upload-form .upload-actions .upload-btn {
-            background: #4D13D1;
-            color: #FFF8F0;
+            background: #FFB830;
+            color: #1A1A2E;
             flex: 1;
         }
 
         .upload-form .upload-actions .upload-btn:hover {
-            background: #5D23E1;
+            background: #e8a820;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 184, 48, 0.3);
         }
 
         .upload-form .upload-actions .upload-btn:disabled {
@@ -260,7 +257,6 @@
             background: rgba(255, 107, 107, 0.25);
         }
 
-        /* ----- PREVIEW GRID ----- */
         .preview-section h3 {
             color: #FFF8F0;
             font-size: 1.2rem;
@@ -295,7 +291,7 @@
         }
 
         .preview-item:hover {
-            border-color: rgba(77, 19, 209, 0.3);
+            border-color: rgba(255, 184, 48, 0.3);
             transform: translateY(-4px);
         }
 
@@ -355,7 +351,6 @@
             margin-bottom: 8px;
         }
 
-        /* ----- SAVED GALLERY ----- */
         .saved-gallery-section h3 {
             color: #FFF8F0;
             font-size: 1.2rem;
@@ -382,7 +377,7 @@
         }
 
         .saved-item:hover {
-            border-color: rgba(77, 19, 209, 0.3);
+            border-color: rgba(255, 184, 48, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
@@ -447,13 +442,12 @@
             margin-bottom: 8px;
         }
 
-        /* ----- TOAST NOTIFICATION ----- */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: #1A1A2E;
-            border: 1px solid rgba(77, 19, 209, 0.3);
+            border: 1px solid rgba(255, 184, 48, 0.3);
             border-radius: 12px;
             padding: 18px 25px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -497,7 +491,6 @@
             color: #FFF8F0;
         }
 
-        /* ----- RESPONSIVE ----- */
         @media screen and (max-width: 768px) {
             .admin-header {
                 flex-direction: column;
@@ -582,23 +575,14 @@
 
 <body>
 
-    <!-- ========================================== -->
-    <!-- BANNER                                    -->
-    <!-- ========================================== -->
-
     <header class="site-header">
         <img src="pictures/banner.png" alt="TOK LAL Production Banner">
     </header>
-
-    <!-- ========================================== -->
-    <!-- ADMIN GALLERY                             -->
-    <!-- ========================================== -->
 
     <div class="admin-page">
 
         <div class="admin-container">
 
-            <!-- HEADER -->
             <header class="admin-header">
                 <div class="logo-area">
                     <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
@@ -613,7 +597,6 @@
                 </div>
             </header>
 
-            <!-- PAGE TITLE -->
             <div class="page-title">
                 <h1>🖼️ <span>Galeri Aktiviti</span></h1>
             </div>
@@ -679,10 +662,6 @@
 
     </div>
 
-    <!-- ========================================== -->
-    <!-- TOAST NOTIFICATION                        -->
-    <!-- ========================================== -->
-
     <div class="toast" id="toast">
         <button class="toast-close" onclick="hideToast()">✕</button>
         <div class="toast-title" id="toastTitle">✅ Berjaya!</div>
@@ -691,10 +670,17 @@
 
     <script>
         // ========================================== //
+        // SUPABASE CREDENTIALS                       //
+        // ========================================== //
+
+        const SUPABASE_URL = 'https://choqidxpmdwvmdnfpiox.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_HsjWqY3SVZl8xPJXEoaH6g_l1o0DFwA';
+
+        // ========================================== //
         // STATE                                     //
         // ========================================== //
 
-        let previewFiles = []; // Array of {file, dataUrl, name, size}
+        let previewFiles = [];
         let isUploading = false;
 
         // ========================================== //
@@ -708,7 +694,6 @@
             if (files.length === 0) return;
 
             for (let file of files) {
-                // Check if file already exists in preview (by name and size)
                 const exists = previewFiles.some(f => f.name === file.name && f.size === file.size);
                 if (exists) continue;
 
@@ -726,10 +711,7 @@
                 reader.readAsDataURL(file);
             }
 
-            // Clear file input so user can select same files again
             fileInput.value = '';
-
-            // Update file count display
             updateFileCountDisplay();
         }
 
@@ -808,7 +790,7 @@
                 countDisplay.style.color = '#4A4A6A';
             } else {
                 countDisplay.textContent = `${previewFiles.length} gambar dalam senarai`;
-                countDisplay.style.color = '#4D13D1';
+                countDisplay.style.color = '#FFB830';
             }
         }
 
@@ -818,7 +800,6 @@
 
         function clearPreview() {
             if (previewFiles.length === 0) return;
-
             if (!confirm('❌ Adakah anda pasti mahu kosongkan semua gambar dalam senarai preview?')) return;
 
             previewFiles = [];
@@ -829,10 +810,10 @@
         }
 
         // ========================================== //
-        // UPLOAD GALLERY TO DATABASE                 //
+        // UPLOAD GALLERY TO SUPABASE                 //
         // ========================================== //
 
-        function uploadGallery() {
+        async function uploadGallery() {
             const title = document.getElementById('galleryTitle').value.trim();
 
             if (!title) {
@@ -852,107 +833,208 @@
             btn.disabled = true;
             btn.textContent = '⏳ Sedang upload...';
 
-            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
             let uploaded = 0;
+            let failed = 0;
             const total = previewFiles.length;
 
-            // Process each file
-            previewFiles.forEach((item, index) => {
-                // Add to gallery
-                gallery.push({
-                    id: Date.now() + Math.random() * 1000 + index,
-                    title: title,
-                    image: item.dataUrl,
-                    filename: item.name,
-                    date: new Date().toLocaleDateString('ms-MY'),
-                    timestamp: new Date().toISOString()
-                });
+            for (let item of previewFiles) {
+                try {
+                    const timestamp = Date.now() + Math.random() * 1000;
+                    const cleanName = item.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
+                    const filename = `${timestamp}_${cleanName}`;
 
-                uploaded++;
+                    // Upload to Supabase Storage
+                    const formData = new FormData();
+                    formData.append('file', item.file);
 
-                // If all files are processed
-                if (uploaded === total) {
-                    // Save to localStorage
-                    localStorage.setItem('toklal_gallery', JSON.stringify(gallery));
+                    const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${SUPABASE_KEY}`
+                        },
+                        body: item.file
+                    });
 
-                    // Clear preview
-                    previewFiles = [];
-                    renderPreview();
-                    updateUploadButton();
-                    updateFileCountDisplay();
-                    document.getElementById('fileInput').value = '';
-                    document.getElementById('galleryTitle').value = '';
+                    if (!uploadRes.ok) {
+                        const errorText = await uploadRes.text();
+                        throw new Error(`Storage upload failed: ${errorText}`);
+                    }
 
-                    isUploading = false;
-                    btn.disabled = false;
-                    btn.textContent = '📤 Upload ke Database';
+                    // Get public URL
+                    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/gallery/${filename}`;
 
-                    // Load saved gallery
-                    loadSavedGallery();
+                    // Save metadata to database
+                    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_KEY,
+                            'Authorization': `Bearer ${SUPABASE_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify({
+                            title: title,
+                            image_url: publicUrl,
+                            filename: item.name
+                        })
+                    });
 
-                    // Show toast notification
-                    showToast('✅ Berjaya!', `${total} gambar berjaya diupload di bawah tajuk "${title}"`);
+                    if (!insertRes.ok) {
+                        const errorText = await insertRes.text();
+                        throw new Error(`Database insert failed: ${errorText}`);
+                    }
+
+                    uploaded++;
+
+                } catch (error) {
+                    console.error('Upload error for', item.name, error);
+                    failed++;
                 }
-            });
-        }
-
-        // ========================================== //
-        // LOAD SAVED GALLERY                         //
-        // ========================================== //
-
-        function loadSavedGallery() {
-            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
-            const container = document.getElementById('savedGallery');
-
-            document.getElementById('savedCount').textContent = `(${gallery.length} gambar)`;
-
-            if (gallery.length === 0) {
-                container.innerHTML = `
-                    <div class="saved-empty">
-                        <div class="empty-icon">📭</div>
-                        <p>Tiada gambar tersimpan.</p>
-                        <p style="font-size:0.85rem; color:#666;">Upload gambar menggunakan borang di atas.</p>
-                    </div>
-                `;
-                return;
             }
 
-            // Show latest first (reverse)
-            const sorted = [...gallery].reverse();
+            isUploading = false;
+            btn.disabled = false;
+            btn.textContent = '📤 Upload ke Database';
 
-            let html = '';
-            sorted.forEach((item, idx) => {
-                // Find original index in gallery array
-                const originalIndex = gallery.findIndex(g => g.id === item.id);
-                html += `
-                    <div class="saved-item">
-                        <img src="${item.image}" alt="${item.title}" loading="lazy">
-                        <div class="saved-info">
-                            <div class="saved-title">${item.title}</div>
-                            <div class="saved-date">📅 ${item.date || 'Baru'}</div>
-                        </div>
-                        <div class="saved-actions">
-                            <button class="delete-btn" onclick="deleteImage(${originalIndex})">🗑️ Padam</button>
-                        </div>
-                    </div>
-                `;
-            });
+            if (uploaded > 0) {
+                previewFiles = [];
+                renderPreview();
+                updateUploadButton();
+                updateFileCountDisplay();
+                document.getElementById('fileInput').value = '';
+                document.getElementById('galleryTitle').value = '';
 
-            container.innerHTML = html;
+                loadSavedGallery();
+                showToast('✅ Berjaya!', `${uploaded} gambar berjaya diupload di bawah tajuk "${title}"${failed > 0 ? ` (${failed} gagal)` : ''}`);
+            } else {
+                alert('❌ Tiada gambar berjaya diupload. Sila semak console untuk error.');
+            }
         }
 
         // ========================================== //
-        // DELETE IMAGE                              //
+        // LOAD SAVED GALLERY FROM SUPABASE           //
         // ========================================== //
 
-        function deleteImage(index) {
+        async function loadSavedGallery() {
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?order=created_at.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}: ${await res.text()}`);
+                }
+
+                const data = await res.json();
+                const container = document.getElementById('savedGallery');
+
+                document.getElementById('savedCount').textContent = `(${data.length} gambar)`;
+
+                if (data.length === 0) {
+                    container.innerHTML = `
+                        <div class="saved-empty">
+                            <div class="empty-icon">📭</div>
+                            <p>Tiada gambar tersimpan.</p>
+                            <p style="font-size:0.85rem; color:#666;">Upload gambar menggunakan borang di atas.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                data.forEach(item => {
+                    html += `
+                        <div class="saved-item">
+                            <img src="${item.image_url}" alt="${item.title}" loading="lazy">
+                            <div class="saved-info">
+                                <div class="saved-title">${item.title}</div>
+                                <div class="saved-date">📅 ${new Date(item.created_at).toLocaleDateString('ms-MY')}</div>
+                            </div>
+                            <div class="saved-actions">
+                                <button class="delete-btn" onclick="deleteImage('${item.id}')">🗑️ Padam</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error('Load error:', error);
+                document.getElementById('savedGallery').innerHTML = `
+                    <div class="saved-empty">
+                        <div class="empty-icon">❌</div>
+                        <p>Gagal memuatkan gambar.</p>
+                        <p style="font-size:0.85rem; color:#666;">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ========================================== //
+        // DELETE IMAGE FROM SUPABASE                 //
+        // ========================================== //
+
+        async function deleteImage(id) {
             if (!confirm('❌ Adakah anda pasti mahu memadam gambar ini?')) return;
 
-            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
-            gallery.splice(index, 1);
-            localStorage.setItem('toklal_gallery', JSON.stringify(gallery));
-            loadSavedGallery();
-            showToast('🗑️ Dipadam', 'Gambar berjaya dipadam dari galeri.');
+            try {
+                // Get image info
+                const getRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?id=eq.${id}`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                if (!getRes.ok) {
+                    throw new Error('Failed to get image info');
+                }
+
+                const data = await getRes.json();
+                if (data.length === 0) {
+                    alert('❌ Gambar tidak dijumpai.');
+                    return;
+                }
+
+                const image = data[0];
+                const filename = image.image_url.split('/').pop();
+
+                // Delete from Storage
+                const storageRes = await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                if (!storageRes.ok) {
+                    console.warn('Storage delete failed:', await storageRes.text());
+                }
+
+                // Delete from Database
+                const deleteDbRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?id=eq.${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                if (!deleteDbRes.ok) {
+                    throw new Error('Failed to delete from database');
+                }
+
+                showToast('🗑️ Dipadam', 'Gambar berjaya dipadam dari galeri.');
+                loadSavedGallery();
+
+            } catch (error) {
+                console.error('Delete error:', error);
+                alert(`❌ Gagal memadam gambar: ${error.message}`);
+            }
         }
 
         // ========================================== //
@@ -965,7 +1047,6 @@
             document.getElementById('toastMessage').textContent = message;
             toast.classList.add('show');
 
-            // Auto hide after 5 seconds
             clearTimeout(window.toastTimeout);
             window.toastTimeout = setTimeout(() => {
                 hideToast();
@@ -981,14 +1062,11 @@
         // ========================================== //
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Update upload button when title changes
             document.getElementById('galleryTitle').addEventListener('input', updateUploadButton);
-
-            // Load saved gallery
             loadSavedGallery();
 
-            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
-            console.log('%cPanel Admin - Galeri Aktiviti', 'font-size:14px; color:#C4C0B8;');
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
+            console.log('%cPanel Admin - Galeri Aktiviti (Supabase)', 'font-size:14px; color:#C4C0B8;');
         });
     </script>
 
