@@ -276,10 +276,7 @@
             margin-bottom: 8px;
         }
 
-        /* ========================================== */
-        /* GALERI CARD - DESIGN YANG ANDA MINTA     */
-        /* ========================================== */
-
+        /* GALERI CARD */
         .gallery-card {
             background: rgba(255,255,255,0.04);
             border-radius: 16px;
@@ -292,7 +289,6 @@
             border-color: rgba(255,184,48,0.3);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
         .gallery-card .gallery-header {
             display: flex;
             justify-content: space-between;
@@ -315,7 +311,6 @@
             color: #4A4A6A;
             font-size: 0.85rem;
         }
-
         .gallery-card .gallery-images {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -361,7 +356,6 @@
             background: #FF6B6B;
             transform: scale(1.1);
         }
-
         .gallery-card .gallery-actions {
             display: flex;
             gap: 12px;
@@ -564,10 +558,7 @@
                 </div>
             </div>
 
-            <!-- ========================================== -->
-            <!-- GALERI - DESIGN BARU                     -->
-            <!-- ========================================== -->
-
+            <!-- GALERI -->
             <h3 style="color:#FFF8F0; margin:30px 0 15px 0;">📚 Galeri Tersimpan</h3>
             <div id="galleryContainer">
                 <!-- Gallery cards akan di-load oleh JavaScript -->
@@ -584,11 +575,17 @@
 
     <script>
         // ========================================== //
-        // SUPABASE CREDENTIALS                       //
+        // WORKER URL - GUNA UNTUK UPLOAD            //
+        // ========================================== //
+
+        const WORKER_URL = 'https://super-king-af75.toklal-production.workers.dev/';
+
+        // ========================================== //
+        // SUPABASE CREDENTIALS (UNTUK LOAD GALLERY) //
         // ========================================== //
 
         const SUPABASE_URL = 'https://choqidxpmdwvmdnfpiox.supabase.co';
-        const SUPABASE_KEY = 'YOUR_SERVICE_ROLE_KEY_HERE';  // <-- TUKAR KE SERVICE ROLE KEY
+        const SUPABASE_KEY = 'sb_publishable_HsjWqY3SVZl8xPJXEoaH6g_l1o0DFwA';
 
         // ========================================== //
         // STATE                                     //
@@ -699,7 +696,7 @@
         }
 
         // ========================================== //
-        // UPLOAD TO SUPABASE                        //
+        // UPLOAD TO SUPABASE VIA WORKER             //
         // ========================================== //
 
         async function uploadToSupabase() {
@@ -725,59 +722,24 @@
             let uploaded = 0;
             let failed = 0;
 
-            console.log('🔍 Starting upload...');
-            console.log('📁 Files:', previewFiles.length);
-
             for (let item of previewFiles) {
                 try {
-                    const timestamp = Date.now() + Math.random() * 1000;
-                    const cleanName = item.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
-                    const filename = `${timestamp}_${cleanName}`;
+                    const formData = new FormData();
+                    formData.append('title', title);
+                    formData.append('file', item.file);
 
-                    console.log(`📤 Uploading: ${filename}`);
-
-                    // Upload to Storage
-                    const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
+                    const res = await fetch(WORKER_URL, {
                         method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${SUPABASE_KEY}`
-                        },
-                        body: item.file
+                        body: formData
                     });
 
-                    if (!uploadRes.ok) {
-                        const errorText = await uploadRes.text();
-                        console.error('❌ Storage error:', errorText);
-                        throw new Error(errorText);
+                    const result = await res.json();
+
+                    if (!res.ok) {
+                        throw new Error(result.error || 'Upload failed');
                     }
 
-                    console.log('✅ Storage OK');
-
-                    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/gallery/${filename}`;
-
-                    // Save to Database
-                    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images`, {
-                        method: 'POST',
-                        headers: {
-                            'apikey': SUPABASE_KEY,
-                            'Authorization': `Bearer ${SUPABASE_KEY}`,
-                            'Content-Type': 'application/json',
-                            'Prefer': 'return=minimal'
-                        },
-                        body: JSON.stringify({
-                            title: title,
-                            image_url: publicUrl,
-                            filename: item.name
-                        })
-                    });
-
-                    if (!insertRes.ok) {
-                        const errorText = await insertRes.text();
-                        console.error('❌ DB error:', errorText);
-                        throw new Error(errorText);
-                    }
-
-                    console.log('✅ DB OK');
+                    console.log('✅ Upload success:', result);
                     uploaded++;
 
                 } catch (error) {
@@ -805,7 +767,7 @@
         }
 
         // ========================================== //
-        // LOAD GALLERIES - DESIGN BARU              //
+        // LOAD GALLERIES                            //
         // ========================================== //
 
         async function loadGalleries() {
@@ -921,14 +883,13 @@
         }
 
         // ========================================== //
-        // DELETE ENTIRE GALLERY BY TITLE            //
+        // DELETE ENTIRE GALLERY                     //
         // ========================================== //
 
         async function deleteGallery(title) {
             if (!confirm(`❌ Padam keseluruhan galeri "${title}"?`)) return;
 
             try {
-                // Get all images with this title
                 const getRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(title)}`, {
                     headers: {
                         'apikey': SUPABASE_KEY,
@@ -938,7 +899,6 @@
 
                 const data = await getRes.json();
 
-                // Delete each image from storage
                 for (let item of data) {
                     const filename = item.image_url.split('/').pop();
                     await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
@@ -949,7 +909,6 @@
                     });
                 }
 
-                // Delete all from database
                 await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(title)}`, {
                     method: 'DELETE',
                     headers: {
@@ -976,7 +935,6 @@
             if (!newTitle || newTitle === oldTitle) return;
 
             try {
-                // Update all images with this title
                 await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?title=eq.${encodeURIComponent(oldTitle)}`, {
                     method: 'PATCH',
                     headers: {
@@ -1020,7 +978,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadGalleries();
             console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
-            console.log('%c📸 Galeri Aktiviti', 'font-size:14px; color:#C4C0B8;');
+            console.log('%c📸 Worker URL:', WORKER_URL);
         });
     </script>
 
