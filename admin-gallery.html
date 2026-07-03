@@ -459,7 +459,7 @@
 
                 <div class="form-group">
                     <label for="galleryTitle">Tajuk</label>
-                    <input type="text" id="galleryTitle" placeholder="Contoh: Persembahan 2024, Kelas Kompang" oninput="checkUploadReady()">
+                    <input type="text" id="galleryTitle" placeholder="Contoh: Persembahan 2024, Kelas Kompang">
                 </div>
 
                 <div class="form-group">
@@ -474,7 +474,8 @@
                 </div>
 
                 <div class="upload-actions">
-                    <button class="upload-btn" id="uploadBtn" onclick="uploadToSupabase()" disabled>
+                    <!-- BUTTON SENTIASA AKTIF - TAK PERLU CHECK -->
+                    <button class="upload-btn" id="uploadBtn" onclick="uploadToSupabase()">
                         📤 Upload ke Database
                     </button>
                     <button class="clear-btn" onclick="clearAll()">🗑️ Kosongkan</button>
@@ -533,7 +534,6 @@
             if (files.length === 0) return;
 
             for (let file of files) {
-                // Check duplicate
                 const exists = previewFiles.some(f => f.name === file.name && f.size === file.size);
                 if (exists) continue;
 
@@ -546,7 +546,6 @@
                         size: file.size
                     });
                     renderPreview();
-                    checkUploadReady();
                     updateFileCount();
                 };
                 reader.readAsDataURL(file);
@@ -593,7 +592,6 @@
         function removeFile(index) {
             previewFiles.splice(index, 1);
             renderPreview();
-            checkUploadReady();
             updateFileCount();
         }
 
@@ -613,23 +611,6 @@
         }
 
         // ========================================== //
-        // CHECK UPLOAD READY                        //
-        // ========================================== //
-
-        function checkUploadReady() {
-            const btn = document.getElementById('uploadBtn');
-            const title = document.getElementById('galleryTitle').value.trim();
-
-            if (previewFiles.length > 0 && title !== '') {
-                btn.disabled = false;
-                btn.textContent = `📤 Upload ${previewFiles.length} gambar`;
-            } else {
-                btn.disabled = true;
-                btn.textContent = '📤 Upload ke Database';
-            }
-        }
-
-        // ========================================== //
         // CLEAR ALL                                 //
         // ========================================== //
 
@@ -639,7 +620,6 @@
 
             previewFiles = [];
             renderPreview();
-            checkUploadReady();
             updateFileCount();
             document.getElementById('fileInput').value = '';
         }
@@ -673,6 +653,7 @@
 
             console.log('🔍 Starting upload...');
             console.log('📁 Files:', previewFiles.length);
+            console.log('🔑 Supabase Key (first 20 chars):', SUPABASE_KEY.substring(0, 20) + '...');
 
             for (let item of previewFiles) {
                 try {
@@ -739,7 +720,6 @@
             if (uploaded > 0) {
                 previewFiles = [];
                 renderPreview();
-                checkUploadReady();
                 updateFileCount();
                 document.getElementById('fileInput').value = '';
                 document.getElementById('galleryTitle').value = '';
@@ -810,7 +790,6 @@
             if (!confirm('Padam gambar ini?')) return;
 
             try {
-                // Get image info
                 const getRes = await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?id=eq.${id}`, {
                     headers: {
                         'apikey': SUPABASE_KEY,
@@ -823,7 +802,6 @@
 
                 const filename = data[0].image_url.split('/').pop();
 
-                // Delete from Storage
                 await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
                     method: 'DELETE',
                     headers: {
@@ -831,7 +809,6 @@
                     }
                 });
 
-                // Delete from Database
                 await fetch(`${SUPABASE_URL}/rest/v1/gallery_images?id=eq.${id}`, {
                     method: 'DELETE',
                     headers: {
