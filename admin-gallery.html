@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tok Lal Production - Admin Gallery</title>
+    <title>Tok Lal Production - Admin Galeri</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -130,206 +130,31 @@
             color: #4D13D1;
         }
 
-        .page-title .add-btn {
-            background: #4D13D1;
-            color: #FFF8F0;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .page-title .add-btn:hover {
-            background: #5D23E1;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
-        }
-
-        /* ----- CATEGORY FILTER ----- */
-        .category-filter {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .category-filter .filter-btn {
-            padding: 8px 20px;
+        /* ----- UPLOAD FORM ----- */
+        .upload-form {
             background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 30px 35px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            color: #C4C0B8;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
-        }
-
-        .category-filter .filter-btn:hover {
-            background: rgba(77, 19, 209, 0.1);
-            border-color: rgba(77, 19, 209, 0.3);
-            color: #FFF8F0;
-        }
-
-        .category-filter .filter-btn.active {
-            background: rgba(77, 19, 209, 0.2);
-            border-color: rgba(77, 19, 209, 0.3);
-            color: #FFF8F0;
-        }
-
-        /* ----- GALLERY GRID ----- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
             margin-bottom: 30px;
         }
 
-        .gallery-card {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-card:hover {
-            border-color: rgba(77, 19, 209, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-card .gallery-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            background: #2A2A4A;
-        }
-
-        .gallery-card .gallery-info {
-            padding: 15px;
-        }
-
-        .gallery-card .gallery-info h4 {
+        .upload-form h3 {
             color: #FFF8F0;
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .gallery-card .gallery-info p {
-            color: #C4C0B8;
-            font-size: 0.85rem;
-            font-weight: 300;
-        }
-
-        .gallery-card .gallery-actions {
-            display: flex;
-            gap: 8px;
-            padding: 10px 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .gallery-card .gallery-actions button {
-            padding: 5px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            flex: 1;
-        }
-
-        .gallery-card .gallery-actions .edit-btn {
-            background: rgba(77, 19, 209, 0.2);
-            color: #4D13D1;
-        }
-
-        .gallery-card .gallery-actions .edit-btn:hover {
-            background: rgba(77, 19, 209, 0.3);
-        }
-
-        .gallery-card .gallery-actions .delete-btn {
-            background: rgba(255, 107, 107, 0.15);
-            color: #FF6B6B;
-        }
-
-        .gallery-card .gallery-actions .delete-btn:hover {
-            background: rgba(255, 107, 107, 0.25);
-        }
-
-        .gallery-card .category-tag {
-            display: inline-block;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            background: rgba(77, 19, 209, 0.15);
-            color: #4D13D1;
-            margin-top: 5px;
-        }
-
-        /* ----- MODAL ----- */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1A1A2E;
-            border: 1px solid rgba(77, 19, 209, 0.2);
-            border-radius: 16px;
-            padding: 30px 35px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content .modal-close {
-            float: right;
-            background: none;
-            border: none;
-            color: #C4C0B8;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .modal-content .modal-close:hover {
-            color: #FF6B6B;
-        }
-
-        .modal-content h2 {
-            color: #FFF8F0;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            clear: both;
-        }
-
-        .modal-content .form-group {
             margin-bottom: 15px;
         }
 
-        .modal-content .form-group label {
+        .upload-form h3 span {
+            color: #4D13D1;
+        }
+
+        .upload-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .upload-form .form-group label {
             display: block;
             color: #C4C0B8;
             font-size: 0.85rem;
@@ -337,11 +162,9 @@
             margin-bottom: 5px;
         }
 
-        .modal-content .form-group input,
-        .modal-content .form-group select,
-        .modal-content .form-group textarea {
+        .upload-form .form-group input[type="text"] {
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 15px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
@@ -351,71 +174,330 @@
             box-sizing: border-box;
         }
 
-        .modal-content .form-group input:focus,
-        .modal-content .form-group select:focus,
-        .modal-content .form-group textarea:focus {
+        .upload-form .form-group input[type="text"]:focus {
             outline: none;
             border-color: #4D13D1;
         }
 
-        .modal-content .form-group select option {
-            background: #1A1A2E;
-            color: #FFF8F0;
+        .upload-form .form-group input[type="text"]::placeholder {
+            color: #4A4A6A;
         }
 
-        .modal-content .form-group textarea {
-            resize: vertical;
-            min-height: 60px;
-            font-family: inherit;
-        }
-
-        .modal-content .file-upload-area {
+        .upload-form .file-upload-area {
             border: 2px dashed rgba(77, 19, 209, 0.2);
             border-radius: 8px;
-            padding: 30px;
+            padding: 30px 20px;
             text-align: center;
             color: #C4C0B8;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .modal-content .file-upload-area:hover {
+        .upload-form .file-upload-area:hover {
             border-color: rgba(77, 19, 209, 0.4);
             background: rgba(255, 255, 255, 0.02);
         }
 
-        .modal-content .file-upload-area input[type="file"] {
+        .upload-form .file-upload-area .upload-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .upload-form .file-upload-area input[type="file"] {
             display: none;
         }
 
-        .modal-content .file-upload-area .upload-icon {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 10px;
+        .upload-form .file-upload-area .file-count {
+            color: #4D13D1;
+            font-weight: 600;
+            margin-top: 5px;
+            font-size: 0.9rem;
         }
 
-        .modal-content .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background: #4D13D1;
-            color: #FFF8F0;
+        .upload-form .upload-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .upload-form .upload-actions button {
+            padding: 12px 30px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 5px;
         }
 
-        .modal-content .submit-btn:hover {
+        .upload-form .upload-actions .upload-btn {
+            background: #4D13D1;
+            color: #FFF8F0;
+            flex: 1;
+        }
+
+        .upload-form .upload-actions .upload-btn:hover {
             background: #5D23E1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
         }
 
-        /* ============================================ */
-        /* RESPONSIVE                                  */
-        /* ============================================ */
+        .upload-form .upload-actions .upload-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
 
+        .upload-form .upload-actions .clear-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .upload-form .upload-actions .clear-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        /* ----- PREVIEW GRID ----- */
+        .preview-section h3 {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .preview-section h3 span {
+            color: #FFB830;
+        }
+
+        .preview-section .preview-count {
+            color: #4A4A6A;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .preview-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            background: #2A2A4A;
+        }
+
+        .preview-item .preview-info {
+            padding: 10px 12px;
+        }
+
+        .preview-item .preview-info .preview-filename {
+            color: #C4C0B8;
+            font-size: 0.75rem;
+            font-weight: 300;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .preview-item .preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 107, 107, 0.85);
+            color: #FFF;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-item .preview-remove:hover {
+            background: #FF6B6B;
+            transform: scale(1.1);
+        }
+
+        .preview-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #4A4A6A;
+            padding: 40px 20px;
+        }
+
+        .preview-empty .empty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        /* ----- SAVED GALLERY ----- */
+        .saved-gallery-section h3 {
+            color: #FFF8F0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .saved-gallery-section h3 span {
+            color: #4CAF50;
+        }
+
+        .saved-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .saved-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .saved-item:hover {
+            border-color: rgba(77, 19, 209, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .saved-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #2A2A4A;
+        }
+
+        .saved-item .saved-info {
+            padding: 12px 15px;
+        }
+
+        .saved-item .saved-info .saved-title {
+            color: #FFF8F0;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .saved-item .saved-info .saved-date {
+            color: #4A4A6A;
+            font-size: 0.75rem;
+        }
+
+        .saved-item .saved-actions {
+            padding: 0 15px 12px 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .saved-item .saved-actions button {
+            flex: 1;
+            padding: 6px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .saved-item .saved-actions .delete-btn {
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+        }
+
+        .saved-item .saved-actions .delete-btn:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        .saved-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #4A4A6A;
+            padding: 40px 20px;
+        }
+
+        .saved-empty .empty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        /* ----- TOAST NOTIFICATION ----- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1A1A2E;
+            border: 1px solid rgba(77, 19, 209, 0.3);
+            border-radius: 12px;
+            padding: 18px 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast .toast-title {
+            color: #4CAF50;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .toast .toast-message {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .toast .toast-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #4A4A6A;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .toast .toast-close:hover {
+            color: #FFF8F0;
+        }
+
+        /* ----- RESPONSIVE ----- */
         @media screen and (max-width: 768px) {
             .admin-header {
                 flex-direction: column;
@@ -438,12 +520,31 @@
                 font-size: 1.4rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            .upload-form {
+                padding: 20px;
             }
 
-            .modal-content {
-                padding: 25px 20px;
+            .upload-form .upload-actions {
+                flex-direction: column;
+            }
+
+            .upload-form .upload-actions button {
+                width: 100%;
+            }
+
+            .preview-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .saved-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                max-width: none;
             }
         }
 
@@ -452,21 +553,28 @@
                 padding: 12px;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .preview-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
 
-            .gallery-card .gallery-img {
-                height: 150px;
+            .preview-item img {
+                height: 120px;
             }
 
-            .category-filter {
-                justify-content: center;
+            .saved-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
 
-            .category-filter .filter-btn {
-                font-size: 0.75rem;
-                padding: 6px 14px;
+            .saved-item img {
+                height: 140px;
+            }
+
+            .upload-form .file-upload-area {
+                padding: 20px 15px;
+            }
+
+            .upload-form .file-upload-area .upload-icon {
+                font-size: 2rem;
             }
         }
     </style>
@@ -507,74 +615,64 @@
 
             <!-- PAGE TITLE -->
             <div class="page-title">
-                <h1>🖼️ <span>Galeri Projek</span></h1>
-                <button class="add-btn" onclick="openModal('add')">➕ Upload Gambar</button>
+                <h1>🖼️ <span>Galeri Aktiviti</span></h1>
             </div>
 
-            <!-- CATEGORY FILTER -->
-            <div class="category-filter">
-                <button class="filter-btn active" onclick="filterGallery('all', this)">📷 Semua</button>
-                <button class="filter-btn" onclick="filterGallery('performance', this)">🎭 Performance</button>
-                <button class="filter-btn" onclick="filterGallery('class', this)">📚 Kelas</button>
-                <button class="filter-btn" onclick="filterGallery('studio', this)">🎵 Studio</button>
-                <button class="filter-btn" onclick="filterGallery('event', this)">📅 Event</button>
+            <!-- ========================================== -->
+            <!-- UPLOAD FORM                               -->
+            <!-- ========================================== -->
+
+            <div class="upload-form">
+                <h3>📤 <span>Upload Gambar</span></h3>
+
+                <div class="form-group">
+                    <label for="galleryTitle">Tajuk</label>
+                    <input type="text" id="galleryTitle" placeholder="Contoh: Persembahan 2024, Kelas Kompang, Sesi Rakaman">
+                </div>
+
+                <div class="form-group">
+                    <label>Pilih Gambar</label>
+                    <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
+                        <span class="upload-icon">📸</span>
+                        <p>Klik untuk pilih gambar</p>
+                        <p style="font-size:0.8rem; color:#4A4A6A;">Anda boleh pilih banyak gambar sekaligus (Ctrl+Click)</p>
+                        <input type="file" id="fileInput" multiple accept="image/*" onchange="addFilesToPreview()">
+                        <div class="file-count" id="fileCount">Tiada gambar dipilih</div>
+                    </div>
+                </div>
+
+                <div class="upload-actions">
+                    <button class="upload-btn" id="uploadBtn" onclick="uploadGallery()" disabled>
+                        📤 Upload ke Database
+                    </button>
+                    <button class="clear-btn" onclick="clearPreview()">🗑️ Kosongkan Senarai</button>
+                </div>
             </div>
 
-            <!-- GALLERY GRID -->
-            <div class="gallery-grid" id="galleryGrid">
+            <!-- ========================================== -->
+            <!-- PREVIEW SECTION                           -->
+            <!-- ========================================== -->
 
-                <div class="gallery-card" data-category="performance">
-                    <img src="pictures/gallery/performances/performance-1.jpg" alt="Performance" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EPerformance%3C/text%3E%3C/svg%3E'">
-                    <div class="gallery-info">
-                        <h4>Persembahan Marching Band</h4>
-                        <p>Hari Kebangsaan 2024</p>
-                        <span class="category-tag">🎭 Performance</span>
-                    </div>
-                    <div class="gallery-actions">
-                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
+            <div class="preview-section">
+                <h3>📋 <span>Preview Gambar</span> <span class="preview-count" id="previewCount">(0 gambar)</span></h3>
+                <div class="preview-grid" id="previewGrid">
+                    <div class="preview-empty">
+                        <div class="empty-icon">🖼️</div>
+                        <p>Tiada gambar dalam senarai preview.</p>
+                        <p style="font-size:0.85rem; color:#666;">Pilih gambar untuk ditambah ke senarai.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="gallery-card" data-category="class">
-                    <img src="pictures/gallery/classes/class-1.jpg" alt="Class" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EClass%3C/text%3E%3C/svg%3E'">
-                    <div class="gallery-info">
-                        <h4>Kelas Kompang</h4>
-                        <p>Sesi latihan mingguan</p>
-                        <span class="category-tag">📚 Kelas</span>
-                    </div>
-                    <div class="gallery-actions">
-                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
-                    </div>
+            <!-- ========================================== -->
+            <!-- SAVED GALLERY                             -->
+            <!-- ========================================== -->
+
+            <div class="saved-gallery-section">
+                <h3>📚 <span>Gambar Tersimpan</span> <span class="preview-count" id="savedCount">(0 gambar)</span></h3>
+                <div class="saved-gallery-grid" id="savedGallery">
+                    <!-- Loaded by JavaScript -->
                 </div>
-
-                <div class="gallery-card" data-category="studio">
-                    <img src="pictures/gallery/studio/studio-1.jpg" alt="Studio" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EStudio%3C/text%3E%3C/svg%3E'">
-                    <div class="gallery-info">
-                        <h4>Sesi Rakaman Studio</h4>
-                        <p>Projek album 2024</p>
-                        <span class="category-tag">🎵 Studio</span>
-                    </div>
-                    <div class="gallery-actions">
-                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
-                    </div>
-                </div>
-
-                <div class="gallery-card" data-category="event">
-                    <img src="pictures/gallery/events/event-1.jpg" alt="Event" class="gallery-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3EEvent%3C/text%3E%3C/svg%3E'">
-                    <div class="gallery-info">
-                        <h4>Bengkel Muzik Tradisional</h4>
-                        <p>ASWARA 2023</p>
-                        <span class="category-tag">📅 Event</span>
-                    </div>
-                    <div class="gallery-actions">
-                        <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -582,186 +680,316 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- MODAL                                     -->
+    <!-- TOAST NOTIFICATION                        -->
     <!-- ========================================== -->
 
-    <div class="modal" id="galleryModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">✕</button>
-            <h2 id="modalTitle">Upload Gambar</h2>
-            <form onsubmit="saveGallery(event)">
-                <div class="form-group">
-                    <label for="galleryTitle">Tajuk</label>
-                    <input type="text" id="galleryTitle" placeholder="Persembahan Marching Band" required>
-                </div>
-                <div class="form-group">
-                    <label for="galleryDesc">Keterangan</label>
-                    <textarea id="galleryDesc" placeholder="Hari Kebangsaan 2024"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="galleryCategory">Kategori</label>
-                    <select id="galleryCategory" required>
-                        <option value="performance">🎭 Performance</option>
-                        <option value="class">📚 Kelas</option>
-                        <option value="studio">🎵 Studio</option>
-                        <option value="event">📅 Event</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Gambar</label>
-                    <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
-                        <span class="upload-icon">📸</span>
-                        <p>Klik untuk upload gambar</p>
-                        <input type="file" id="fileInput" accept="image/*">
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">💾 Simpan</button>
-            </form>
-        </div>
+    <div class="toast" id="toast">
+        <button class="toast-close" onclick="hideToast()">✕</button>
+        <div class="toast-title" id="toastTitle">✅ Berjaya!</div>
+        <div class="toast-message" id="toastMessage">Gambar berjaya diupload.</div>
     </div>
 
     <script>
         // ========================================== //
-        // MODAL FUNCTIONS                           //
+        // STATE                                     //
         // ========================================== //
 
-        function openModal(action) {
-            const modal = document.getElementById('galleryModal');
-            const title = document.getElementById('modalTitle');
-
-            if (action === 'add') {
-                title.textContent = '📸 Upload Gambar';
-                document.getElementById('galleryTitle').value = '';
-                document.getElementById('galleryDesc').value = '';
-                document.getElementById('galleryCategory').value = 'performance';
-                document.getElementById('fileInput').value = '';
-            } else {
-                title.textContent = '✏️ Edit Gambar';
-            }
-
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('galleryModal').classList.remove('active');
-        }
-
-        // Close modal on outside click
-        document.getElementById('galleryModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        let previewFiles = []; // Array of {file, dataUrl, name, size}
+        let isUploading = false;
 
         // ========================================== //
-        // SAVE GALLERY                              //
+        // ADD FILES TO PREVIEW                       //
         // ========================================== //
 
-        function saveGallery(event) {
-            event.preventDefault();
-
-            const title = document.getElementById('galleryTitle').value;
-            const desc = document.getElementById('galleryDesc').value || '—';
-            const category = document.getElementById('galleryCategory').value;
+        function addFilesToPreview() {
             const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
 
-            // Category labels
-            const categoryLabels = {
-                'performance': '🎭 Performance',
-                'class': '📚 Kelas',
-                'studio': '🎵 Studio',
-                'event': '📅 Event'
-            };
+            if (files.length === 0) return;
 
-            const categoryEmojis = {
-                'performance': '🎭',
-                'class': '📚',
-                'studio': '🎵',
-                'event': '📅'
-            };
+            for (let file of files) {
+                // Check if file already exists in preview (by name and size)
+                const exists = previewFiles.some(f => f.name === file.name && f.size === file.size);
+                if (exists) continue;
 
-            // Create new gallery card
-            const grid = document.getElementById('galleryGrid');
-            const card = document.createElement('div');
-            card.className = 'gallery-card';
-            card.dataset.category = category;
-
-            // Get image preview if available
-            let imgSrc = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%232A2A4A%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFF8F0%22 font-size=%2220%22 font-family=%22sans-serif%22%3E' + categoryEmojis[category] + '%3C/text%3E%3C/svg%3E';
-
-            if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    imgSrc = e.target.result;
-                    updateCardImage(card, imgSrc);
+                    previewFiles.push({
+                        file: file,
+                        dataUrl: e.target.result,
+                        name: file.name,
+                        size: file.size
+                    });
+                    renderPreview();
+                    updateUploadButton();
                 };
-                reader.readAsDataURL(fileInput.files[0]);
+                reader.readAsDataURL(file);
             }
 
-            card.innerHTML = `
-                <img src="${imgSrc}" alt="${title}" class="gallery-img">
-                <div class="gallery-info">
-                    <h4>${title}</h4>
-                    <p>${desc}</p>
-                    <span class="category-tag">${categoryLabels[category]}</span>
-                </div>
-                <div class="gallery-actions">
-                    <button class="edit-btn" onclick="openModal('edit')">✏️ Edit</button>
-                    <button class="delete-btn" onclick="deleteGallery(this)">🗑️ Padam</button>
-                </div>
-            `;
+            // Clear file input so user can select same files again
+            fileInput.value = '';
 
-            grid.appendChild(card);
-
-            closeModal();
-            alert('✅ Gambar berjaya diupload!');
-        }
-
-        function updateCardImage(card, src) {
-            const img = card.querySelector('.gallery-img');
-            if (img) {
-                img.src = src;
-            }
+            // Update file count display
+            updateFileCountDisplay();
         }
 
         // ========================================== //
-        // DELETE GALLERY                            //
+        // REMOVE FILE FROM PREVIEW                   //
         // ========================================== //
 
-        function deleteGallery(btn) {
-            if (confirm('❌ Adakah anda pasti mahu memadam gambar ini?')) {
-                const card = btn.closest('.gallery-card');
-                card.remove();
-                alert('✅ Gambar berjaya dipadam!');
+        function removeFromPreview(index) {
+            previewFiles.splice(index, 1);
+            renderPreview();
+            updateUploadButton();
+            updateFileCountDisplay();
+        }
+
+        // ========================================== //
+        // RENDER PREVIEW                             //
+        // ========================================== //
+
+        function renderPreview() {
+            const grid = document.getElementById('previewGrid');
+
+            if (previewFiles.length === 0) {
+                grid.innerHTML = `
+                    <div class="preview-empty">
+                        <div class="empty-icon">🖼️</div>
+                        <p>Tiada gambar dalam senarai preview.</p>
+                        <p style="font-size:0.85rem; color:#666;">Pilih gambar untuk ditambah ke senarai.</p>
+                    </div>
+                `;
+                document.getElementById('previewCount').textContent = '(0 gambar)';
+                return;
+            }
+
+            let html = '';
+            previewFiles.forEach((item, index) => {
+                html += `
+                    <div class="preview-item">
+                        <img src="${item.dataUrl}" alt="${item.name}">
+                        <div class="preview-info">
+                            <div class="preview-filename">${item.name}</div>
+                        </div>
+                        <button class="preview-remove" onclick="removeFromPreview(${index})" title="Buang dari senarai">✕</button>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+            document.getElementById('previewCount').textContent = `(${previewFiles.length} gambar)`;
+        }
+
+        // ========================================== //
+        // UPDATE UPLOAD BUTTON                       //
+        // ========================================== //
+
+        function updateUploadButton() {
+            const btn = document.getElementById('uploadBtn');
+            const title = document.getElementById('galleryTitle').value.trim();
+
+            if (previewFiles.length > 0 && title !== '') {
+                btn.disabled = false;
+                btn.textContent = `📤 Upload ${previewFiles.length} gambar ke Database`;
+            } else {
+                btn.disabled = true;
+                btn.textContent = '📤 Upload ke Database';
             }
         }
 
         // ========================================== //
-        // FILTER GALLERY                            //
+        // UPDATE FILE COUNT DISPLAY                  //
         // ========================================== //
 
-        function filterGallery(category, btn) {
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if (btn) btn.classList.add('active');
+        function updateFileCountDisplay() {
+            const countDisplay = document.getElementById('fileCount');
+            if (previewFiles.length === 0) {
+                countDisplay.textContent = 'Tiada gambar dipilih';
+                countDisplay.style.color = '#4A4A6A';
+            } else {
+                countDisplay.textContent = `${previewFiles.length} gambar dalam senarai`;
+                countDisplay.style.color = '#4D13D1';
+            }
+        }
 
-            const cards = document.querySelectorAll('.gallery-card');
+        // ========================================== //
+        // CLEAR PREVIEW                              //
+        // ========================================== //
 
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+        function clearPreview() {
+            if (previewFiles.length === 0) return;
+
+            if (!confirm('❌ Adakah anda pasti mahu kosongkan semua gambar dalam senarai preview?')) return;
+
+            previewFiles = [];
+            renderPreview();
+            updateUploadButton();
+            updateFileCountDisplay();
+            document.getElementById('fileInput').value = '';
+        }
+
+        // ========================================== //
+        // UPLOAD GALLERY TO DATABASE                 //
+        // ========================================== //
+
+        function uploadGallery() {
+            const title = document.getElementById('galleryTitle').value.trim();
+
+            if (!title) {
+                alert('⚠️ Sila masukkan tajuk untuk gambar-gambar ini.');
+                return;
+            }
+
+            if (previewFiles.length === 0) {
+                alert('⚠️ Tiada gambar dalam senarai untuk diupload.');
+                return;
+            }
+
+            if (isUploading) return;
+
+            isUploading = true;
+            const btn = document.getElementById('uploadBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Sedang upload...';
+
+            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
+            let uploaded = 0;
+            const total = previewFiles.length;
+
+            // Process each file
+            previewFiles.forEach((item, index) => {
+                // Add to gallery
+                gallery.push({
+                    id: Date.now() + Math.random() * 1000 + index,
+                    title: title,
+                    image: item.dataUrl,
+                    filename: item.name,
+                    date: new Date().toLocaleDateString('ms-MY'),
+                    timestamp: new Date().toISOString()
+                });
+
+                uploaded++;
+
+                // If all files are processed
+                if (uploaded === total) {
+                    // Save to localStorage
+                    localStorage.setItem('toklal_gallery', JSON.stringify(gallery));
+
+                    // Clear preview
+                    previewFiles = [];
+                    renderPreview();
+                    updateUploadButton();
+                    updateFileCountDisplay();
+                    document.getElementById('fileInput').value = '';
+                    document.getElementById('galleryTitle').value = '';
+
+                    isUploading = false;
+                    btn.disabled = false;
+                    btn.textContent = '📤 Upload ke Database';
+
+                    // Load saved gallery
+                    loadSavedGallery();
+
+                    // Show toast notification
+                    showToast('✅ Berjaya!', `${total} gambar berjaya diupload di bawah tajuk "${title}"`);
                 }
             });
         }
 
         // ========================================== //
-        // CONSOLE WELCOME                           //
+        // LOAD SAVED GALLERY                         //
         // ========================================== //
 
-        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
-        console.log('%cPanel Admin - Galeri Projek', 'font-size: 14px; color: #C4C0B8;');
+        function loadSavedGallery() {
+            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
+            const container = document.getElementById('savedGallery');
+
+            document.getElementById('savedCount').textContent = `(${gallery.length} gambar)`;
+
+            if (gallery.length === 0) {
+                container.innerHTML = `
+                    <div class="saved-empty">
+                        <div class="empty-icon">📭</div>
+                        <p>Tiada gambar tersimpan.</p>
+                        <p style="font-size:0.85rem; color:#666;">Upload gambar menggunakan borang di atas.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Show latest first (reverse)
+            const sorted = [...gallery].reverse();
+
+            let html = '';
+            sorted.forEach((item, idx) => {
+                // Find original index in gallery array
+                const originalIndex = gallery.findIndex(g => g.id === item.id);
+                html += `
+                    <div class="saved-item">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="saved-info">
+                            <div class="saved-title">${item.title}</div>
+                            <div class="saved-date">📅 ${item.date || 'Baru'}</div>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="delete-btn" onclick="deleteImage(${originalIndex})">🗑️ Padam</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ========================================== //
+        // DELETE IMAGE                              //
+        // ========================================== //
+
+        function deleteImage(index) {
+            if (!confirm('❌ Adakah anda pasti mahu memadam gambar ini?')) return;
+
+            const gallery = JSON.parse(localStorage.getItem('toklal_gallery') || '[]');
+            gallery.splice(index, 1);
+            localStorage.setItem('toklal_gallery', JSON.stringify(gallery));
+            loadSavedGallery();
+            showToast('🗑️ Dipadam', 'Gambar berjaya dipadam dari galeri.');
+        }
+
+        // ========================================== //
+        // TOAST NOTIFICATION                         //
+        // ========================================== //
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+
+            // Auto hide after 5 seconds
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
+        }
+
+        // ========================================== //
+        // TITLE INPUT LISTENER                       //
+        // ========================================== //
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update upload button when title changes
+            document.getElementById('galleryTitle').addEventListener('input', updateUploadButton);
+
+            // Load saved gallery
+            loadSavedGallery();
+
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%cPanel Admin - Galeri Aktiviti', 'font-size:14px; color:#C4C0B8;');
+        });
     </script>
 
 </body>
