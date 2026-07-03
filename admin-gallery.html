@@ -674,7 +674,7 @@
         // ========================================== //
 
         const SUPABASE_URL = 'https://choqidxpmdwvmdnfpiox.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNob3FpZHhwbWR3dm1kbmZwaW94Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzA1MDA4NSwiZXhwIjoyMDk4NjI2MDg1fQ.4HbcXRmmeOrhBL-HVsULphP9M3rOqcMRZfzzZVFI8-g';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNob3FpZHhwbWR3dm1kbmZwaW94Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzA1MDA4NSwiZXhwIjoyMDk4NjI2MDg1fQ.4HbcXRmmeOrhBL-HVsULphP9M3rOqcMRZfzzZVFI8-g';  // <-- TUKAR KE SERVICE ROLE KEY
 
         // ========================================== //
         // STATE                                     //
@@ -693,26 +693,44 @@
 
             if (files.length === 0) return;
 
+            // Reset previewFiles BEFORE adding new files
+            // This prevents duplicates
+            const newFiles = [];
+            let loadedCount = 0;
+
             for (let file of files) {
+                // Check if file already exists in preview (by name and size)
                 const exists = previewFiles.some(f => f.name === file.name && f.size === file.size);
                 if (exists) continue;
 
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    previewFiles.push({
+                    newFiles.push({
                         file: file,
                         dataUrl: e.target.result,
                         name: file.name,
                         size: file.size
                     });
-                    renderPreview();
-                    updateUploadButton();
+
+                    loadedCount++;
+
+                    // When all files are loaded, add to previewFiles
+                    if (loadedCount === files.length) {
+                        previewFiles = previewFiles.concat(newFiles);
+                        renderPreview();
+                        updateUploadButton();
+                        updateFileCountDisplay();
+                    }
                 };
                 reader.readAsDataURL(file);
             }
 
+            // If no new files were added
+            if (files.length === 0) {
+                updateFileCountDisplay();
+            }
+
             fileInput.value = '';
-            updateFileCountDisplay();
         }
 
         // ========================================== //
@@ -837,16 +855,21 @@
             let failed = 0;
             const total = previewFiles.length;
 
+            // Log untuk debugging
+            console.log('🔍 Starting upload...');
+            console.log('📁 Total files:', total);
+            console.log('🔑 Supabase URL:', SUPABASE_URL);
+            console.log('🔑 Supabase Key (first 20 chars):', SUPABASE_KEY.substring(0, 20) + '...');
+
             for (let item of previewFiles) {
                 try {
                     const timestamp = Date.now() + Math.random() * 1000;
                     const cleanName = item.name.replace(/[^a-zA-Z0-9.\-]/g, '_');
                     const filename = `${timestamp}_${cleanName}`;
 
-                    // Upload to Supabase Storage
-                    const formData = new FormData();
-                    formData.append('file', item.file);
+                    console.log(`📤 Uploading: ${filename}...`);
 
+                    // Upload to Supabase Storage
                     const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/gallery/${filename}`, {
                         method: 'POST',
                         headers: {
@@ -857,8 +880,11 @@
 
                     if (!uploadRes.ok) {
                         const errorText = await uploadRes.text();
+                        console.error('❌ Storage upload failed:', errorText);
                         throw new Error(`Storage upload failed: ${errorText}`);
                     }
+
+                    console.log('✅ Storage upload successful');
 
                     // Get public URL
                     const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/gallery/${filename}`;
@@ -881,16 +907,20 @@
 
                     if (!insertRes.ok) {
                         const errorText = await insertRes.text();
+                        console.error('❌ Database insert failed:', errorText);
                         throw new Error(`Database insert failed: ${errorText}`);
                     }
 
+                    console.log('✅ Database insert successful');
                     uploaded++;
 
                 } catch (error) {
-                    console.error('Upload error for', item.name, error);
+                    console.error('❌ Upload error for', item.name, error);
                     failed++;
                 }
             }
+
+            console.log(`📊 Upload complete: ${uploaded} success, ${failed} failed`);
 
             isUploading = false;
             btn.disabled = false;
@@ -1067,6 +1097,7 @@
 
             console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
             console.log('%cPanel Admin - Galeri Aktiviti (Supabase)', 'font-size:14px; color:#C4C0B8;');
+            console.log('%c🔑 Gunakan SERVICE ROLE KEY untuk upload', 'font-size:12px; color:#FF6B6B;');
         });
     </script>
 
