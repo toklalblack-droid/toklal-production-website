@@ -10,83 +10,68 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <style>
-        /* ============================================ */
-        /* ADMIN BOOKING - ELECTRIC INDIGO THEME       */
-        /* ============================================ */
-
         .site-header {
             width: 100%;
             display: block;
             background: #1A1A2E;
-            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.2);
         }
-
         .site-header img {
             width: 100%;
             height: auto;
             display: block;
         }
-
         .admin-page {
             min-height: 100vh;
             background: #1A1A2E;
             padding: 20px;
         }
-
         .admin-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* ----- HEADER ----- */
         .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255,255,255,0.06);
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .admin-header .logo-area {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
         .admin-header .logo-area img {
             height: 40px;
             width: auto;
             filter: brightness(0) invert(1);
         }
-
         .admin-header .logo-area span {
             color: #FFF8F0;
             font-size: 1.2rem;
             font-weight: 700;
         }
-
         .admin-header .user-area {
             display: flex;
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
         }
-
         .admin-header .user-area .user-name {
             color: #FFF8F0;
             font-size: 0.9rem;
             font-weight: 600;
         }
-
         .admin-header .user-area .logout-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255,255,255,0.06);
             color: #FF6B6B;
-            border: 1px solid rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255,107,107,0.15);
             padding: 8px 18px;
             border-radius: 8px;
             cursor: pointer;
@@ -94,23 +79,18 @@
             transition: all 0.3s;
             text-decoration: none;
         }
-
         .admin-header .user-area .logout-btn:hover {
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(255,107,107,0.1);
         }
-
         .admin-header .back-btn {
             color: #C4C0B8;
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
-
         .admin-header .back-btn:hover {
             color: #FFB830;
         }
-
-        /* ----- PAGE TITLE ----- */
         .page-title {
             display: flex;
             justify-content: space-between;
@@ -119,76 +99,64 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-
         .page-title h1 {
             color: #FFF8F0;
             font-size: 1.8rem;
             font-weight: 700;
         }
-
         .page-title h1 span {
-            color: #4D13D1;
+            color: #FFB830;
         }
-
         .page-title .add-btn {
-            background: #4D13D1;
-            color: #FFF8F0;
+            background: #FFB830;
+            color: #1A1A2E;
             border: none;
             padding: 10px 25px;
             border-radius: 8px;
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .page-title .add-btn:hover {
-            background: #5D23E1;
+            background: #e8a820;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+            box-shadow: 0 8px 25px rgba(255,184,48,0.3);
         }
 
-        /* ----- STATS BAR ----- */
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
         }
-
         .stat-box {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 10px;
             padding: 15px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255,255,255,0.06);
             text-align: center;
         }
-
         .stat-box .stat-number {
             font-size: 1.8rem;
             font-weight: 700;
             color: #FFF8F0;
         }
-
         .stat-box .stat-number.purple {
-            color: #4D13D1;
+            color: #FFB830;
         }
-
         .stat-box .stat-number.gold {
             color: #FFB830;
         }
-
         .stat-box .stat-number.green {
             color: #4CAF50;
         }
-
         .stat-box .stat-label {
             color: #C4C0B8;
             font-size: 0.8rem;
             margin-top: 3px;
         }
 
-        /* ----- FILTER ----- */
         .filter-bar {
             display: flex;
             gap: 12px;
@@ -196,105 +164,89 @@
             flex-wrap: wrap;
             align-items: center;
         }
-
         .filter-bar input,
         .filter-bar select {
             padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 8px;
             color: #FFF8F0;
             font-size: 0.9rem;
             transition: border-color 0.3s;
         }
-
         .filter-bar input:focus,
         .filter-bar select:focus {
             outline: none;
-            border-color: #4D13D1;
+            border-color: #FFB830;
         }
-
         .filter-bar input::placeholder {
             color: #4A4A6A;
         }
-
         .filter-bar select option {
             background: #1A1A2E;
             color: #FFF8F0;
         }
-
         .filter-bar .filter-btn {
             padding: 10px 20px;
-            background: rgba(77, 19, 209, 0.2);
+            background: rgba(255,184,48,0.2);
             color: #FFF8F0;
-            border: 1px solid rgba(77, 19, 209, 0.2);
+            border: 1px solid rgba(255,184,48,0.2);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .filter-bar .filter-btn:hover {
-            background: rgba(77, 19, 209, 0.3);
+            background: rgba(255,184,48,0.3);
         }
 
-        /* ----- BOOKING CARDS ----- */
         .booking-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
-
         .booking-card {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
             padding: 20px 25px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255,255,255,0.06);
             transition: all 0.3s ease;
         }
-
         .booking-card:hover {
-            border-color: rgba(77, 19, 209, 0.3);
+            border-color: rgba(255,184,48,0.3);
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
         .booking-card .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 10px;
         }
-
         .booking-card .card-header .booking-id {
-            color: #4D13D1;
+            color: #FFB830;
             font-weight: 600;
             font-size: 0.85rem;
         }
-
         .booking-card .card-header .booking-date {
             color: #4A4A6A;
             font-size: 0.75rem;
         }
-
         .booking-card .card-client {
             color: #FFF8F0;
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 4px;
         }
-
         .booking-card .card-service {
             color: #C4C0B8;
             font-size: 0.9rem;
         }
-
         .booking-card .card-fees {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
             border-radius: 8px;
             padding: 10px 12px;
             margin: 10px 0;
         }
-
         .booking-card .card-fees .fee-row {
             display: flex;
             justify-content: space-between;
@@ -302,23 +254,20 @@
             color: #C4C0B8;
             padding: 2px 0;
         }
-
         .booking-card .card-fees .fee-row.total {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255,255,255,0.06);
             padding-top: 6px;
             margin-top: 4px;
             font-weight: 600;
             color: #FFF8F0;
         }
-
         .booking-card .card-fees .fee-row.final {
-            border-top: 2px solid rgba(77, 19, 209, 0.3);
+            border-top: 2px solid rgba(255,184,48,0.3);
             padding-top: 6px;
             margin-top: 4px;
             font-weight: 700;
             color: #FFB830;
         }
-
         .booking-card .card-status {
             display: inline-block;
             padding: 3px 12px;
@@ -326,29 +275,24 @@
             font-size: 0.7rem;
             font-weight: 600;
         }
-
         .booking-card .card-status.confirmed {
-            background: rgba(76, 175, 80, 0.15);
+            background: rgba(76,175,80,0.15);
             color: #4CAF50;
         }
-
         .booking-card .card-status.pending {
-            background: rgba(255, 184, 48, 0.15);
+            background: rgba(255,184,48,0.15);
             color: #FFB830;
         }
-
         .booking-card .card-status.cancelled {
-            background: rgba(255, 107, 107, 0.15);
+            background: rgba(255,107,107,0.15);
             color: #FF6B6B;
         }
-
         .booking-card .card-actions {
             display: flex;
             gap: 8px;
             margin-top: 12px;
             flex-wrap: wrap;
         }
-
         .booking-card .card-actions button {
             padding: 5px 14px;
             border: none;
@@ -356,39 +300,33 @@
             cursor: pointer;
             font-size: 0.8rem;
             transition: all 0.3s;
+            flex: 1;
         }
-
         .booking-card .card-actions .view-btn {
-            background: rgba(77, 19, 209, 0.2);
-            color: #4D13D1;
-        }
-
-        .booking-card .card-actions .view-btn:hover {
-            background: rgba(77, 19, 209, 0.3);
-        }
-
-        .booking-card .card-actions .edit-btn {
-            background: rgba(255, 184, 48, 0.15);
+            background: rgba(255,184,48,0.2);
             color: #FFB830;
         }
-
-        .booking-card .card-actions .edit-btn:hover {
-            background: rgba(255, 184, 48, 0.25);
+        .booking-card .card-actions .view-btn:hover {
+            background: rgba(255,184,48,0.3);
         }
-
+        .booking-card .card-actions .edit-btn {
+            background: rgba(255,184,48,0.15);
+            color: #FFB830;
+        }
+        .booking-card .card-actions .edit-btn:hover {
+            background: rgba(255,184,48,0.25);
+        }
         .booking-card .card-actions .delete-btn {
-            background: rgba(255, 107, 107, 0.15);
+            background: rgba(255,107,107,0.15);
             color: #FF6B6B;
         }
-
         .booking-card .card-actions .delete-btn:hover {
-            background: rgba(255, 107, 107, 0.25);
+            background: rgba(255,107,107,0.25);
         }
-
         .booking-card .bundle-badge {
             display: inline-block;
-            background: rgba(77, 19, 209, 0.15);
-            color: #4D13D1;
+            background: rgba(255,184,48,0.15);
+            color: #FFB830;
             padding: 2px 10px;
             border-radius: 10px;
             font-size: 0.7rem;
@@ -396,7 +334,6 @@
             margin-left: 8px;
         }
 
-        /* ----- MODAL ----- */
         .modal {
             display: none;
             position: fixed;
@@ -404,29 +341,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal-content {
             background: #1A1A2E;
-            border: 1px solid rgba(77, 19, 209, 0.2);
+            border: 1px solid rgba(255,184,48,0.2);
             border-radius: 16px;
             padding: 30px 35px;
             max-width: 600px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-
         .modal-content .modal-close {
             float: right;
             background: none;
@@ -436,11 +370,9 @@
             cursor: pointer;
             transition: color 0.3s;
         }
-
         .modal-content .modal-close:hover {
             color: #FF6B6B;
         }
-
         .modal-content h2 {
             color: #FFF8F0;
             font-size: 1.4rem;
@@ -448,11 +380,9 @@
             margin-bottom: 20px;
             clear: both;
         }
-
         .modal-content .form-group {
             margin-bottom: 15px;
         }
-
         .modal-content .form-group label {
             display: block;
             color: #C4C0B8;
@@ -460,58 +390,50 @@
             font-weight: 500;
             margin-bottom: 5px;
         }
-
         .modal-content .form-group input,
         .modal-content .form-group select,
         .modal-content .form-group textarea {
             width: 100%;
             padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 8px;
             color: #FFF8F0;
             font-size: 1rem;
             transition: border-color 0.3s;
             box-sizing: border-box;
         }
-
         .modal-content .form-group input:focus,
         .modal-content .form-group select:focus {
             outline: none;
-            border-color: #4D13D1;
+            border-color: #FFB830;
         }
-
         .modal-content .form-group select option {
             background: #1A1A2E;
             color: #FFF8F0;
         }
-
         .modal-content .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-
         .modal-content .bundle-items {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
             border-radius: 8px;
             padding: 12px 15px;
             margin-top: 10px;
         }
-
         .modal-content .bundle-items .bundle-item {
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
             color: #C4C0B8;
             font-size: 0.9rem;
         }
-
         .modal-content .bundle-items .bundle-item:last-child {
             border-bottom: none;
         }
-
         .modal-content .bundle-items .bundle-item .remove-item {
             color: #FF6B6B;
             cursor: pointer;
@@ -519,48 +441,41 @@
             border: none;
             font-size: 0.8rem;
         }
-
         .modal-content .bundle-items .bundle-item .remove-item:hover {
             opacity: 0.7;
         }
-
         .modal-content .add-bundle-item {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-
         .modal-content .add-bundle-item input {
             flex: 1;
             padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 6px;
             color: #FFF8F0;
             font-size: 0.9rem;
         }
-
         .modal-content .add-bundle-item button {
             padding: 8px 15px;
-            background: rgba(77, 19, 209, 0.2);
+            background: rgba(255,184,48,0.2);
             color: #FFF8F0;
-            border: 1px solid rgba(77, 19, 209, 0.2);
+            border: 1px solid rgba(255,184,48,0.2);
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .modal-content .add-bundle-item button:hover {
-            background: rgba(77, 19, 209, 0.3);
+            background: rgba(255,184,48,0.3);
         }
-
         .modal-content .fee-display {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
             border-radius: 8px;
             padding: 15px;
             margin-top: 10px;
         }
-
         .modal-content .fee-display .fee-row {
             display: flex;
             justify-content: space-between;
@@ -568,49 +483,43 @@
             color: #C4C0B8;
             font-size: 0.9rem;
         }
-
         .modal-content .fee-display .fee-row.total {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255,255,255,0.06);
             padding-top: 10px;
             margin-top: 5px;
             font-weight: 600;
             color: #FFF8F0;
         }
-
         .modal-content .fee-display .fee-row.discount {
             color: #FF6B6B;
         }
-
         .modal-content .fee-display .fee-row.final {
-            border-top: 2px solid rgba(77, 19, 209, 0.3);
+            border-top: 2px solid rgba(255,184,48,0.3);
             padding-top: 10px;
             margin-top: 5px;
             font-weight: 700;
             color: #FFB830;
             font-size: 1.1rem;
         }
-
         .modal-content .submit-btn {
             width: 100%;
             padding: 12px;
-            background: #4D13D1;
-            color: #FFF8F0;
+            background: #FFB830;
+            color: #1A1A2E;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 15px;
         }
-
         .modal-content .submit-btn:hover {
-            background: #5D23E1;
+            background: #e8a820;
         }
-
         .modal-content .bundle-toggle {
-            background: rgba(77, 19, 209, 0.1);
-            border: 1px solid rgba(77, 19, 209, 0.2);
+            background: rgba(255,184,48,0.1);
+            border: 1px solid rgba(255,184,48,0.2);
             border-radius: 8px;
             padding: 12px 15px;
             cursor: pointer;
@@ -620,14 +529,40 @@
             color: #FFF8F0;
             transition: all 0.3s;
         }
-
         .modal-content .bundle-toggle:hover {
-            background: rgba(77, 19, 209, 0.15);
+            background: rgba(255,184,48,0.15);
         }
 
-        /* ============================================ */
-        /* RESPONSIVE                                  */
-        /* ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1A1A2E;
+            border: 1px solid rgba(255,184,48,0.3);
+            border-radius: 12px;
+            padding: 18px 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            max-width: 400px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast .toast-title {
+            color: #4CAF50;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .toast .toast-message {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
 
         @media screen and (max-width: 768px) {
             .admin-header {
@@ -636,70 +571,58 @@
                 text-align: center;
                 padding: 15px 20px;
             }
-
             .admin-header .user-area {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-
             .page-title {
                 flex-direction: column;
                 text-align: center;
             }
-
-            .page-title h1 {
-                font-size: 1.4rem;
-            }
-
             .filter-bar {
                 flex-direction: column;
             }
-
             .filter-bar input,
             .filter-bar select {
                 width: 100%;
             }
-
             .modal-content {
                 padding: 25px 20px;
             }
-
             .modal-content .form-row {
                 grid-template-columns: 1fr;
             }
-
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
             }
-
             .booking-grid {
                 grid-template-columns: 1fr;
             }
         }
-
         @media screen and (max-width: 480px) {
             .admin-page {
                 padding: 12px;
             }
-
             .stats-bar {
                 grid-template-columns: 1fr;
             }
-
             .booking-card {
                 padding: 15px 18px;
             }
-
             .booking-card .card-actions {
                 flex-direction: column;
             }
-
             .booking-card .card-actions button {
                 width: 100%;
             }
-
             .modal-content .add-bundle-item {
                 flex-direction: column;
+            }
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                max-width: none;
             }
         }
     </style>
@@ -707,23 +630,13 @@
 
 <body>
 
-    <!-- ========================================== -->
-    <!-- BANNER                                    -->
-    <!-- ========================================== -->
-
     <header class="site-header">
         <img src="pictures/banner.png" alt="TOK LAL Production Banner">
     </header>
 
-    <!-- ========================================== -->
-    <!-- ADMIN BOOKING                             -->
-    <!-- ========================================== -->
-
     <div class="admin-page">
-
         <div class="admin-container">
 
-            <!-- HEADER -->
             <header class="admin-header">
                 <div class="logo-area">
                     <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
@@ -738,13 +651,11 @@
                 </div>
             </header>
 
-            <!-- PAGE TITLE -->
             <div class="page-title">
                 <h1>📅 <span>Urus Tempahan</span></h1>
                 <button class="add-btn" onclick="openBookingModal()">➕ Tempah Baru</button>
             </div>
 
-            <!-- STATS BAR -->
             <div class="stats-bar">
                 <div class="stat-box">
                     <div class="stat-number purple" id="totalBookings">0</div>
@@ -764,7 +675,6 @@
                 </div>
             </div>
 
-            <!-- FILTER BAR -->
             <div class="filter-bar">
                 <input type="text" id="searchBooking" placeholder="🔍 Cari client / service..." onkeyup="filterBookings()">
                 <select id="statusFilter" onchange="filterBookings()">
@@ -779,31 +689,20 @@
                 <button class="filter-btn" onclick="clearFilters()">🔄 Reset</button>
             </div>
 
-            <!-- BOOKING GRID -->
-            <div class="booking-grid" id="bookingGrid">
-                <!-- Data will be loaded from localStorage -->
-            </div>
+            <div class="booking-grid" id="bookingGrid"></div>
 
         </div>
-
     </div>
-
-    <!-- ========================================== -->
-    <!-- BOOKING MODAL                             -->
-    <!-- ========================================== -->
 
     <div class="modal" id="bookingModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeBookingModal()">✕</button>
             <h2 id="modalTitle">📅 Tempah Baru</h2>
-
             <form id="bookingForm" onsubmit="saveBooking(event)">
-                <!-- Client -->
                 <div class="form-group">
                     <label for="clientName">Nama Client</label>
                     <input type="text" id="clientName" placeholder="Ahmad Bin Abdullah" required>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="clientEmail">Email</label>
@@ -814,13 +713,10 @@
                         <input type="text" id="clientPhone" placeholder="012-3456789">
                     </div>
                 </div>
-
-                <!-- Service -->
                 <div class="form-group">
                     <label for="serviceName">Perkhidmatan</label>
                     <input type="text" id="serviceName" placeholder="Recording Session / Kelas Kompang" required>
                 </div>
-
                 <div class="form-group">
                     <label for="serviceType">Jenis Perkhidmatan</label>
                     <select id="serviceType" onchange="toggleFeeFields()">
@@ -829,16 +725,12 @@
                         <option value="coaching">👨‍🏫 Coaching Sahaja</option>
                     </select>
                 </div>
-
-                <!-- Bundle Toggle -->
                 <div class="form-group">
                     <div class="bundle-toggle" onclick="toggleBundle()">
                         <span>📦 Bundle (Gabungan Perkhidmatan)</span>
                         <span id="bundleToggleIcon">▶</span>
                     </div>
                 </div>
-
-                <!-- Bundle Items (Hidden by default) -->
                 <div id="bundleSection" style="display:none;">
                     <div class="form-group">
                         <label>Item dalam Bundle</label>
@@ -853,8 +745,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Fees -->
                 <div class="form-row">
                     <div class="form-group" id="studioFeeGroup">
                         <label for="studioFee">🏢 Yuran Studio (RM)</label>
@@ -865,14 +755,10 @@
                         <input type="number" id="coachingFee" placeholder="100" min="0" step="0.01" oninput="calculateTotals()">
                     </div>
                 </div>
-
-                <!-- Discount -->
                 <div class="form-group">
                     <label for="discountPercent">Diskaun (%)</label>
                     <input type="number" id="discountPercent" placeholder="0" min="0" max="100" step="1" value="0" oninput="calculateTotals()">
                 </div>
-
-                <!-- Fee Display -->
                 <div class="fee-display" id="feeDisplay">
                     <div class="fee-row">
                         <span>🏢 Yuran Studio</span>
@@ -895,8 +781,6 @@
                         <span id="displayFinalTotal">RM 0.00</span>
                     </div>
                 </div>
-
-                <!-- Status -->
                 <div class="form-group">
                     <label for="bookingStatus">Status Tempahan</label>
                     <select id="bookingStatus">
@@ -905,30 +789,18 @@
                         <option value="cancelled">❌ Dibatal</option>
                     </select>
                 </div>
-
-                <!-- Date -->
                 <div class="form-group">
                     <label for="bookingDate">Tarikh</label>
                     <input type="date" id="bookingDate" required>
                 </div>
-
                 <button type="submit" class="submit-btn">💾 Simpan Tempahan</button>
             </form>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VIEW BOOKING MODAL                        -->
-    <!-- ========================================== -->
-
-    <div class="modal" id="viewModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeViewModal()">✕</button>
-            <h2>📄 Maklumat Tempahan</h2>
-            <div id="viewContent">
-                <p style="color:#C4C0B8; text-align:center;">Memuatkan...</p>
-            </div>
-        </div>
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">✅ Berjaya!</div>
+        <div class="toast-message" id="toastMessage">Gambar berjaya diupload.</div>
     </div>
 
     <script>
@@ -941,13 +813,11 @@
         let bundleItems = [];
         let isBundle = false;
 
-        // Load data from localStorage
         function loadData() {
             const saved = localStorage.getItem('toklal_bookings');
             if (saved) {
                 bookings = JSON.parse(saved);
             } else {
-                // Seed with sample data
                 bookings = [{
                     id: 'BOK-001',
                     clientName: 'Ahmad Bin Abdullah',
@@ -1005,7 +875,6 @@
                 }];
                 saveData();
             }
-
             updateStats();
             renderBookings();
         }
@@ -1016,15 +885,10 @@
             renderBookings();
         }
 
-        // ========================================== //
-        // BUNDLE FUNCTIONS                          //
-        // ========================================== //
-
         function toggleBundle() {
             isBundle = !isBundle;
             const section = document.getElementById('bundleSection');
             const icon = document.getElementById('bundleToggleIcon');
-
             if (isBundle) {
                 section.style.display = 'block';
                 icon.textContent = '▼';
@@ -1039,17 +903,14 @@
         function addBundleItem() {
             const input = document.getElementById('bundleItemInput');
             const item = input.value.trim();
-
             if (!item) {
                 alert('⚠️ Sila masukkan nama perkhidmatan.');
                 return;
             }
-
             if (bundleItems.includes(item)) {
                 alert('⚠️ Perkhidmatan ini sudah ada dalam bundle.');
                 return;
             }
-
             bundleItems.push(item);
             input.value = '';
             renderBundleItems();
@@ -1062,27 +923,15 @@
 
         function renderBundleItems() {
             const container = document.getElementById('bundleItems');
-
             if (bundleItems.length === 0) {
-                container.innerHTML = `
-                    <div class="bundle-item" style="color:#4A4A6A; text-align:center; padding:10px 0;">
-                        Tiada item. Tambah di bawah.
-                    </div>
-                `;
+                container.innerHTML =
+                    `<div class="bundle-item" style="color:#4A4A6A; text-align:center; padding:10px 0;">Tiada item. Tambah di bawah.</div>`;
                 return;
             }
-
-            container.innerHTML = bundleItems.map((item, index) => `
-                <div class="bundle-item">
-                    <span>📦 ${item}</span>
-                    <button class="remove-item" onclick="removeBundleItem(${index})">✕</button>
-                </div>
-            `).join('');
+            container.innerHTML = bundleItems.map((item, index) =>
+                `<div class="bundle-item"><span>📦 ${item}</span><button class="remove-item" onclick="removeBundleItem(${index})">✕</button></div>`
+            ).join('');
         }
-
-        // ========================================== //
-        // CALCULATE TOTALS                          //
-        // ========================================== //
 
         function calculateTotals() {
             const studioFee = parseFloat(document.getElementById('studioFee').value) || 0;
@@ -1093,7 +942,6 @@
             const discountAmount = subtotal * (discountPercent / 100);
             const finalTotal = subtotal - discountAmount;
 
-            // Calculate proportional fees after discount
             let studioFeeFinal = studioFee;
             let coachingFeeFinal = coachingFee;
 
@@ -1103,7 +951,6 @@
                 coachingFeeFinal = coachingFee * ratio;
             }
 
-            // Update display
             document.getElementById('displayStudioFee').textContent = `RM ${studioFee.toFixed(2)}`;
             document.getElementById('displayCoachingFee').textContent = `RM ${coachingFee.toFixed(2)}`;
             document.getElementById('displaySubtotal').textContent = `RM ${subtotal.toFixed(2)}`;
@@ -1118,21 +965,9 @@
 
             document.getElementById('displayFinalTotal').textContent = `RM ${finalTotal.toFixed(2)}`;
 
-            return {
-                studioFee,
-                coachingFee,
-                subtotal,
-                discountPercent,
-                discountAmount,
-                finalTotal,
-                studioFeeFinal,
-                coachingFeeFinal
-            };
+            return { studioFee, coachingFee, subtotal, discountPercent, discountAmount, finalTotal, studioFeeFinal,
+                coachingFeeFinal };
         }
-
-        // ========================================== //
-        // TOGGLE FEE FIELDS                         //
-        // ========================================== //
 
         function toggleFeeFields() {
             const type = document.getElementById('serviceType').value;
@@ -1151,19 +986,12 @@
                 studioGroup.style.display = 'block';
                 coachingGroup.style.display = 'block';
             }
-
             calculateTotals();
         }
 
-        // ========================================== //
-        // OPEN / CLOSE MODAL                        //
-        // ========================================== //
-
         function openBookingModal() {
             const modal = document.getElementById('bookingModal');
-            const title = document.getElementById('modalTitle');
-
-            title.textContent = '📅 Tempah Baru';
+            document.getElementById('modalTitle').textContent = '📅 Tempah Baru';
             document.getElementById('bookingForm').reset();
             document.getElementById('bookingStatus').value = 'confirmed';
             document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
@@ -1179,7 +1007,6 @@
             renderBundleItems();
             toggleFeeFields();
             calculateTotals();
-
             modal.classList.add('active');
         }
 
@@ -1191,7 +1018,6 @@
             document.getElementById('viewModal').classList.remove('active');
         }
 
-        // Close modals on outside click
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this) closeBookingModal();
         });
@@ -1199,10 +1025,6 @@
         document.getElementById('viewModal').addEventListener('click', function(e) {
             if (e.target === this) closeViewModal();
         });
-
-        // ========================================== //
-        // SAVE BOOKING                              //
-        // ========================================== //
 
         function saveBooking(event) {
             event.preventDefault();
@@ -1215,24 +1037,13 @@
             const status = document.getElementById('bookingStatus').value;
             const date = document.getElementById('bookingDate').value;
 
-            // Get calculated values
-            const {
-                studioFee,
-                coachingFee,
-                subtotal,
-                discountPercent,
-                discountAmount,
-                finalTotal,
-                studioFeeFinal,
-                coachingFeeFinal
-            } = calculateTotals();
+            const { studioFee, coachingFee, subtotal, discountPercent, discountAmount, finalTotal, studioFeeFinal,
+                coachingFeeFinal } = calculateTotals();
 
-            // Validate
             if (!clientName || !serviceName) {
                 alert('⚠️ Sila isi nama client dan perkhidmatan.');
                 return;
             }
-
             if (subtotal === 0) {
                 alert('⚠️ Sila masukkan yuran (studio atau coaching).');
                 return;
@@ -1272,67 +1083,35 @@
             alert(`✅ Tempahan ${booking.id} berjaya disimpan!`);
         }
 
-        // ========================================== //
-        // VIEW BOOKING                              //
-        // ========================================== //
-
         function viewBooking(id) {
             const booking = bookings.find(b => b.id === id);
             if (!booking) return;
 
             const content = document.getElementById('viewContent');
-            const statusColors = {
-                confirmed: '✅ Disahkan',
-                pending: '⏳ Menunggu',
-                cancelled: '❌ Dibatal'
-            };
-
-            const statusColorMap = {
-                confirmed: '#4CAF50',
-                pending: '#FFB830',
-                cancelled: '#FF6B6B'
-            };
-
-            const serviceTypeLabels = {
-                studio: '🏢 Studio Sahaja',
-                coaching: '👨‍🏫 Coaching Sahaja',
-                both: '🏢 Studio + 👨‍🏫 Coaching'
-            };
+            const statusColors = { confirmed: '✅ Disahkan', pending: '⏳ Menunggu', cancelled: '❌ Dibatal' };
+            const statusColorMap = { confirmed: '#4CAF50', pending: '#FFB830', cancelled: '#FF6B6B' };
+            const serviceTypeLabels = { studio: '🏢 Studio Sahaja', coaching: '👨‍🏫 Coaching Sahaja', both: '🏢 Studio + 👨‍🏫 Coaching' };
 
             let bundleHtml = '';
             if (booking.isBundle && booking.bundleItems.length > 0) {
-                bundleHtml = `
-                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                        <span style="color:#C4C0B8;">📦 Bundle</span>
-                        <span style="color:#FFF8F0; font-weight:600;">${booking.bundleItems.join(', ')}</span>
-                    </div>
-                `;
+                bundleHtml =
+                    `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:#C4C0B8;">📦 Bundle</span><span style="color:#FFF8F0; font-weight:600;">${booking.bundleItems.join(', ')}</span></div>`;
             }
 
             content.innerHTML = `
                 <div style="margin-top:15px;">
-                    <div style="background:rgba(77,19,209,0.1); padding:12px 15px; border-radius:8px; margin-bottom:15px;">
+                    <div style="background:rgba(255,184,48,0.1); padding:12px 15px; border-radius:8px; margin-bottom:15px;">
                         <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;">
-                            <span style="color:#4D13D1; font-weight:700;">📅 ${booking.id}</span>
+                            <span style="color:#FFB830; font-weight:700;">📅 ${booking.id}</span>
                             <span style="color:#C4C0B8; font-size:0.85rem;">${booking.date}</span>
                         </div>
                     </div>
-
                     <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
                         <span style="color:#C4C0B8;">Client</span>
                         <span style="color:#FFF8F0; font-weight:600;">${booking.clientName}</span>
                     </div>
-                    ${booking.clientEmail ? `
-                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                        <span style="color:#C4C0B8;">Email</span>
-                        <span style="color:#FFF8F0;">${booking.clientEmail}</span>
-                    </div>` : ''}
-                    ${booking.clientPhone ? `
-                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                        <span style="color:#C4C0B8;">Telefon</span>
-                        <span style="color:#FFF8F0;">${booking.clientPhone}</span>
-                    </div>` : ''}
-
+                    ${booking.clientEmail ? `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:#C4C0B8;">Email</span><span style="color:#FFF8F0;">${booking.clientEmail}</span></div>` : ''}
+                    ${booking.clientPhone ? `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:#C4C0B8;">Telefon</span><span style="color:#FFF8F0;">${booking.clientPhone}</span></div>` : ''}
                     <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
                         <span style="color:#C4C0B8;">Perkhidmatan</span>
                         <span style="color:#FFF8F0; font-weight:600;">${booking.serviceName}</span>
@@ -1342,7 +1121,6 @@
                         <span style="color:#FFF8F0;">${serviceTypeLabels[booking.serviceType]}</span>
                     </div>
                     ${bundleHtml}
-
                     <div style="background:rgba(255,255,255,0.02); border-radius:8px; padding:12px; margin-top:10px;">
                         <div style="display:flex; justify-content:space-between; padding:4px 0; color:#C4C0B8;">
                             <span>🏢 Yuran Studio</span>
@@ -1356,29 +1134,19 @@
                             <span>💰 Subtotal</span>
                             <span>RM ${booking.subtotal.toFixed(2)}</span>
                         </div>
-                        ${booking.discountPercent > 0 ? `
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; color:#FF6B6B;">
-                            <span>✏️ Diskaun (${booking.discountPercent}%)</span>
-                            <span>- RM ${booking.discountAmount.toFixed(2)}</span>
-                        </div>` : ''}
-                        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:2px solid rgba(77,19,209,0.3); margin-top:4px; color:#FFB830; font-weight:700; font-size:1.1rem;">
+                        ${booking.discountPercent > 0 ? `<div style="display:flex; justify-content:space-between; padding:4px 0; color:#FF6B6B;"><span>✏️ Diskaun (${booking.discountPercent}%)</span><span>- RM ${booking.discountAmount.toFixed(2)}</span></div>` : ''}
+                        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:2px solid rgba(255,184,48,0.3); margin-top:4px; color:#FFB830; font-weight:700; font-size:1.1rem;">
                             <span>💵 Jumlah Akhir</span>
                             <span>RM ${booking.finalTotal.toFixed(2)}</span>
                         </div>
                     </div>
-
                     <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); margin-top:10px;">
                         <span style="color:#C4C0B8;">Status</span>
                         <span style="color:${statusColorMap[booking.status]}; font-weight:600;">${statusColors[booking.status]}</span>
                     </div>
-
                     <div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
-                        <button onclick="editBooking('${booking.id}')" style="flex:1; padding:10px; background:#FFB830; color:#1A1A2E; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-                            ✏️ Edit
-                        </button>
-                        <button onclick="closeViewModal()" style="flex:1; padding:10px; background:rgba(255,255,255,0.06); color:#C4C0B8; border:none; border-radius:8px; cursor:pointer;">
-                            Tutup
-                        </button>
+                        <button onclick="editBooking('${booking.id}')" style="flex:1; padding:10px; background:#FFB830; color:#1A1A2E; border:none; border-radius:8px; font-weight:700; cursor:pointer;">✏️ Edit</button>
+                        <button onclick="closeViewModal()" style="flex:1; padding:10px; background:rgba(255,255,255,0.06); color:#C4C0B8; border:none; border-radius:8px; cursor:pointer;">Tutup</button>
                     </div>
                 </div>
             `;
@@ -1386,17 +1154,12 @@
             document.getElementById('viewModal').classList.add('active');
         }
 
-        // ========================================== //
-        // EDIT BOOKING                              //
-        // ========================================== //
-
         function editBooking(id) {
             const booking = bookings.find(b => b.id === id);
             if (!booking) return;
 
             closeViewModal();
 
-            // Open modal with data
             const modal = document.getElementById('bookingModal');
             document.getElementById('modalTitle').textContent = '✏️ Edit Tempahan';
 
@@ -1431,21 +1194,12 @@
             modal.classList.add('active');
         }
 
-        // ========================================== //
-        // DELETE BOOKING                            //
-        // ========================================== //
-
         function deleteBooking(id) {
             if (!confirm('❌ Adakah anda pasti mahu memadam tempahan ini?')) return;
-
             bookings = bookings.filter(b => b.id !== id);
             saveData();
             alert('✅ Tempahan berjaya dipadam!');
         }
-
-        // ========================================== //
-        // FILTER BOOKINGS                           //
-        // ========================================== //
 
         function filterBookings() {
             const search = document.getElementById('searchBooking').value.toLowerCase();
@@ -1473,36 +1227,18 @@
             renderBookings(bookings);
         }
 
-        // ========================================== //
-        // RENDER BOOKINGS                           //
-        // ========================================== //
-
         function renderBookings(data) {
             const grid = document.getElementById('bookingGrid');
             const items = data || bookings;
 
             if (items.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#4A4A6A;">
-                        <div style="font-size:3rem; margin-bottom:15px;">📭</div>
-                        <h3 style="color:#FFF8F0;">Tiada Tempahan</h3>
-                        <p>Klik "Tempah Baru" untuk membuat tempahan.</p>
-                    </div>
-                `;
+                grid.innerHTML =
+                    `<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#4A4A6A;"><div style="font-size:3rem; margin-bottom:15px;">📭</div><h3 style="color:#FFF8F0;">Tiada Tempahan</h3><p>Klik "Tempah Baru" untuk membuat tempahan.</p></div>`;
                 return;
             }
 
-            const statusColors = {
-                confirmed: 'confirmed',
-                pending: 'pending',
-                cancelled: 'cancelled'
-            };
-
-            const statusLabels = {
-                confirmed: '✅ Disahkan',
-                pending: '⏳ Menunggu',
-                cancelled: '❌ Dibatal'
-            };
+            const statusColors = { confirmed: 'confirmed', pending: 'pending', cancelled: 'cancelled' };
+            const statusLabels = { confirmed: '✅ Disahkan', pending: '⏳ Menunggu', cancelled: '❌ Dibatal' };
 
             grid.innerHTML = items.map(b => `
                 <div class="booking-card">
@@ -1516,27 +1252,12 @@
                         ${b.isBundle ? '<span class="bundle-badge">📦 Bundle</span>' : ''}
                     </div>
                     <div class="card-fees">
-                        <div class="fee-row">
-                            <span>🏢 Studio</span>
-                            <span>RM ${b.studioFee.toFixed(2)}</span>
-                        </div>
-                        <div class="fee-row">
-                            <span>👨‍🏫 Coaching</span>
-                            <span>RM ${b.coachingFee.toFixed(2)}</span>
-                        </div>
-                        ${b.discountPercent > 0 ? `
-                        <div class="fee-row" style="color:#FF6B6B;">
-                            <span>✏️ Diskaun (${b.discountPercent}%)</span>
-                            <span>- RM ${b.discountAmount.toFixed(2)}</span>
-                        </div>` : ''}
-                        <div class="fee-row final">
-                            <span>💵 Jumlah</span>
-                            <span>RM ${b.finalTotal.toFixed(2)}</span>
-                        </div>
+                        <div class="fee-row"><span>🏢 Studio</span><span>RM ${b.studioFee.toFixed(2)}</span></div>
+                        <div class="fee-row"><span>👨‍🏫 Coaching</span><span>RM ${b.coachingFee.toFixed(2)}</span></div>
+                        ${b.discountPercent > 0 ? `<div class="fee-row" style="color:#FF6B6B;"><span>✏️ Diskaun (${b.discountPercent}%)</span><span>- RM ${b.discountAmount.toFixed(2)}</span></div>` : ''}
+                        <div class="fee-row final"><span>💵 Jumlah</span><span>RM ${b.finalTotal.toFixed(2)}</span></div>
                     </div>
-                    <div>
-                        <span class="card-status ${statusColors[b.status]}">${statusLabels[b.status]}</span>
-                    </div>
+                    <div><span class="card-status ${statusColors[b.status]}">${statusLabels[b.status]}</span></div>
                     <div class="card-actions">
                         <button class="view-btn" onclick="viewBooking('${b.id}')">👁️ Lihat</button>
                         <button class="edit-btn" onclick="editBooking('${b.id}')">✏️ Edit</button>
@@ -1545,10 +1266,6 @@
                 </div>
             `).join('');
         }
-
-        // ========================================== //
-        // UPDATE STATS                              //
-        // ========================================== //
 
         function updateStats() {
             const total = bookings.length;
@@ -1562,16 +1279,11 @@
             document.getElementById('cancelledBookings').textContent = cancelled;
         }
 
-        // ========================================== //
-        // INITIALIZE                                //
-        // ========================================== //
-
         document.addEventListener('DOMContentLoaded', function() {
             loadData();
-            // Set default date
             document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
 
-            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#4D13D1;');
+            console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
             console.log('%cPanel Admin - Urus Tempahan', 'font-size:14px; color:#C4C0B8;');
             console.log(`%c📅 Jumlah Tempahan: ${bookings.length}`, 'font-size:12px; color:#FFB830;');
         });

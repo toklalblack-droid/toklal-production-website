@@ -10,83 +10,68 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <style>
-        /* ============================================ */
-        /* ADMIN SCHEDULE - ELECTRIC INDIGO THEME      */
-        /* ============================================ */
-
         .site-header {
             width: 100%;
             display: block;
             background: #1A1A2E;
-            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            border-bottom: 2px solid rgba(255, 184, 48, 0.2);
         }
-
         .site-header img {
             width: 100%;
             height: auto;
             display: block;
         }
-
         .admin-page {
             min-height: 100vh;
             background: #1A1A2E;
             padding: 20px;
         }
-
         .admin-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* ----- HEADER ----- */
         .admin-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255,255,255,0.06);
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .admin-header .logo-area {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
         .admin-header .logo-area img {
             height: 40px;
             width: auto;
             filter: brightness(0) invert(1);
         }
-
         .admin-header .logo-area span {
             color: #FFF8F0;
             font-size: 1.2rem;
             font-weight: 700;
         }
-
         .admin-header .user-area {
             display: flex;
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
         }
-
         .admin-header .user-area .user-name {
             color: #FFF8F0;
             font-size: 0.9rem;
             font-weight: 600;
         }
-
         .admin-header .user-area .logout-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255,255,255,0.06);
             color: #FF6B6B;
-            border: 1px solid rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255,107,107,0.15);
             padding: 8px 18px;
             border-radius: 8px;
             cursor: pointer;
@@ -94,23 +79,18 @@
             transition: all 0.3s;
             text-decoration: none;
         }
-
         .admin-header .user-area .logout-btn:hover {
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(255,107,107,0.1);
         }
-
         .admin-header .back-btn {
             color: #C4C0B8;
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
-
         .admin-header .back-btn:hover {
             color: #FFB830;
         }
-
-        /* ----- PAGE TITLE ----- */
         .page-title {
             display: flex;
             justify-content: space-between;
@@ -119,74 +99,63 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-
         .page-title h1 {
             color: #FFF8F0;
             font-size: 1.8rem;
             font-weight: 700;
         }
-
         .page-title h1 span {
-            color: #4D13D1;
+            color: #FFB830;
         }
-
         .page-title .add-btn {
-            background: #4D13D1;
-            color: #FFF8F0;
+            background: #FFB830;
+            color: #1A1A2E;
             border: none;
             padding: 10px 25px;
             border-radius: 8px;
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .page-title .add-btn:hover {
-            background: #5D23E1;
+            background: #e8a820;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(77, 19, 209, 0.3);
+            box-shadow: 0 8px 25px rgba(255,184,48,0.3);
         }
 
-        /* ----- TABLE ----- */
         .table-wrapper {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255,255,255,0.06);
             overflow-x: auto;
         }
-
         .admin-table {
             width: 100%;
             border-collapse: collapse;
             min-width: 700px;
         }
-
         .admin-table th {
             color: #FFF8F0;
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 2px solid rgba(77, 19, 209, 0.2);
+            border-bottom: 2px solid rgba(255,184,48,0.2);
             font-weight: 600;
         }
-
         .admin-table td {
             color: #C4C0B8;
             padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             font-weight: 300;
         }
-
         .admin-table tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255,255,255,0.02);
         }
-
         .admin-table .action-btns {
             display: flex;
             gap: 8px;
         }
-
         .admin-table .action-btns button {
             padding: 5px 12px;
             border: none;
@@ -195,43 +164,35 @@
             font-size: 0.8rem;
             transition: all 0.3s;
         }
-
         .admin-table .edit-btn {
-            background: rgba(77, 19, 209, 0.2);
-            color: #4D13D1;
+            background: rgba(255,184,48,0.2);
+            color: #FFB830;
         }
-
         .admin-table .edit-btn:hover {
-            background: rgba(77, 19, 209, 0.3);
+            background: rgba(255,184,48,0.3);
         }
-
         .admin-table .delete-btn {
-            background: rgba(255, 107, 107, 0.15);
+            background: rgba(255,107,107,0.15);
             color: #FF6B6B;
         }
-
         .admin-table .delete-btn:hover {
-            background: rgba(255, 107, 107, 0.25);
+            background: rgba(255,107,107,0.25);
         }
-
         .admin-table .status-badge {
             padding: 3px 12px;
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 600;
         }
-
         .admin-table .status-active {
-            background: rgba(76, 175, 80, 0.15);
+            background: rgba(76,175,80,0.15);
             color: #4CAF50;
         }
-
         .admin-table .status-inactive {
-            background: rgba(255, 107, 107, 0.15);
+            background: rgba(255,107,107,0.15);
             color: #FF6B6B;
         }
 
-        /* ----- MODAL ----- */
         .modal {
             display: none;
             position: fixed;
@@ -239,29 +200,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal-content {
             background: #1A1A2E;
-            border: 1px solid rgba(77, 19, 209, 0.2);
+            border: 1px solid rgba(255,184,48,0.2);
             border-radius: 16px;
             padding: 30px 35px;
             max-width: 500px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-
         .modal-content .modal-close {
             float: right;
             background: none;
@@ -271,11 +229,9 @@
             cursor: pointer;
             transition: color 0.3s;
         }
-
         .modal-content .modal-close:hover {
             color: #FF6B6B;
         }
-
         .modal-content h2 {
             color: #FFF8F0;
             font-size: 1.4rem;
@@ -283,11 +239,9 @@
             margin-bottom: 20px;
             clear: both;
         }
-
         .modal-content .form-group {
             margin-bottom: 15px;
         }
-
         .modal-content .form-group label {
             display: block;
             color: #C4C0B8;
@@ -295,52 +249,74 @@
             font-weight: 500;
             margin-bottom: 5px;
         }
-
         .modal-content .form-group input,
         .modal-content .form-group select {
             width: 100%;
             padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 8px;
             color: #FFF8F0;
             font-size: 1rem;
             transition: border-color 0.3s;
             box-sizing: border-box;
         }
-
         .modal-content .form-group input:focus,
         .modal-content .form-group select:focus {
             outline: none;
-            border-color: #4D13D1;
+            border-color: #FFB830;
         }
-
         .modal-content .form-group select option {
             background: #1A1A2E;
             color: #FFF8F0;
         }
-
         .modal-content .submit-btn {
             width: 100%;
             padding: 12px;
-            background: #4D13D1;
-            color: #FFF8F0;
+            background: #FFB830;
+            color: #1A1A2E;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 5px;
         }
-
         .modal-content .submit-btn:hover {
-            background: #5D23E1;
+            background: #e8a820;
         }
 
-        /* ============================================ */
-        /* RESPONSIVE                                  */
-        /* ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1A1A2E;
+            border: 1px solid rgba(255,184,48,0.3);
+            border-radius: 12px;
+            padding: 18px 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            max-width: 400px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast .toast-title {
+            color: #4CAF50;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .toast .toast-message {
+            color: #C4C0B8;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
 
         @media screen and (max-width: 768px) {
             .admin-header {
@@ -349,49 +325,69 @@
                 text-align: center;
                 padding: 15px 20px;
             }
-
             .admin-header .user-area {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-
             .page-title {
                 flex-direction: column;
                 text-align: center;
             }
-
-            .page-title h1 {
-                font-size: 1.4rem;
-            }
-
             .modal-content {
                 padding: 25px 20px;
             }
-        }
-
-        @media screen and (max-width: 480px) {
-            .admin-page {
-                padding: 12px;
-            }
-
             .admin-table {
                 min-width: 500px;
             }
-
             .admin-table th,
             .admin-table td {
                 padding: 8px 10px;
                 font-size: 0.85rem;
             }
-
             .admin-table .action-btns {
                 flex-direction: column;
                 gap: 5px;
             }
-
             .admin-table .action-btns button {
                 font-size: 0.7rem;
                 padding: 4px 10px;
+            }
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                max-width: none;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .admin-page {
+                padding: 12px;
+            }
+            .admin-table {
+                min-width: 350px;
+            }
+            .admin-table th,
+            .admin-table td {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+            .admin-table .action-btns button {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+            }
+            .modal-content {
+                padding: 20px 15px;
+            }
+            .modal-content .form-group input,
+            .modal-content .form-group select {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                max-width: none;
             }
         }
     </style>
@@ -399,23 +395,13 @@
 
 <body>
 
-    <!-- ========================================== -->
-    <!-- BANNER                                    -->
-    <!-- ========================================== -->
-
     <header class="site-header">
         <img src="pictures/banner.png" alt="TOK LAL Production Banner">
     </header>
 
-    <!-- ========================================== -->
-    <!-- ADMIN SCHEDULE                            -->
-    <!-- ========================================== -->
-
     <div class="admin-page">
-
         <div class="admin-container">
 
-            <!-- HEADER -->
             <header class="admin-header">
                 <div class="logo-area">
                     <img src="pictures/logo/toklal-logo.png" alt="Tok Lal Production" onerror="this.style.display='none'">
@@ -430,13 +416,11 @@
                 </div>
             </header>
 
-            <!-- PAGE TITLE -->
             <div class="page-title">
                 <h1>📅 <span>Jadual Studio</span></h1>
                 <button class="add-btn" onclick="openModal('add')">➕ Tambah Kelas</button>
             </div>
 
-            <!-- TABLE -->
             <div class="table-wrapper">
                 <table class="admin-table">
                     <thead>
@@ -520,12 +504,7 @@
             </div>
 
         </div>
-
     </div>
-
-    <!-- ========================================== -->
-    <!-- MODAL                                     -->
-    <!-- ========================================== -->
 
     <div class="modal" id="scheduleModal">
         <div class="modal-content">
@@ -568,6 +547,11 @@
         </div>
     </div>
 
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">✅ Berjaya!</div>
+        <div class="toast-message" id="toastMessage">Gambar berjaya diupload.</div>
+    </div>
+
     <script>
         // ========================================== //
         // MODAL FUNCTIONS                           //
@@ -595,7 +579,6 @@
             document.getElementById('scheduleModal').classList.remove('active');
         }
 
-        // Close modal on outside click
         document.getElementById('scheduleModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
@@ -615,7 +598,6 @@
             const teacher = document.getElementById('scheduleTeacher').value || '—';
             const status = document.getElementById('scheduleStatus').value;
 
-            // Add row to table
             const table = document.getElementById('scheduleTableBody');
             const row = document.createElement('tr');
 
@@ -638,7 +620,7 @@
             table.appendChild(row);
 
             closeModal();
-            alert('✅ Kelas berjaya ditambah!');
+            showToast('✅ Berjaya!', 'Kelas berjaya ditambah!');
         }
 
         // ========================================== //
@@ -649,16 +631,32 @@
             if (confirm('❌ Adakah anda pasti mahu memadam kelas ini?')) {
                 const row = btn.closest('tr');
                 row.remove();
-                alert('✅ Kelas berjaya dipadam!');
+                showToast('✅ Berjaya!', 'Kelas berjaya dipadam!');
             }
+        }
+
+        // ========================================== //
+        // TOAST                                      //
+        // ========================================== //
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         // ========================================== //
         // CONSOLE WELCOME                           //
         // ========================================== //
 
-        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size: 20px; font-weight: 800; color: #4D13D1;');
-        console.log('%cPanel Admin - Jadual Studio', 'font-size: 14px; color: #C4C0B8;');
+        console.log('%c🎵 TOK LAL PRODUCTION', 'font-size:20px; font-weight:800; color:#FFB830;');
+        console.log('%cPanel Admin - Jadual Studio', 'font-size:14px; color:#C4C0B8;');
     </script>
 
 </body>
